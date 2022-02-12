@@ -1,0 +1,6 @@
+<resources>
+    <string-array name="spinnerItems">
+        <item>Gasto</item>
+        <item>Ingreso</item>
+    </string-array>
+</resources>
