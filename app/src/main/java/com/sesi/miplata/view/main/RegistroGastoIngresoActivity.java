@@ -1,4 +1,4 @@
-package com.sesi.miplata.view;
+package com.sesi.miplata.view.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;

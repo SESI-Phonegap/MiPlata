@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -18,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.sesi.miplata.R;
 import com.sesi.miplata.databinding.ActivityMenuBinding;
-import com.sesi.miplata.view.RegistroGastoIngresoActivity;
 
 public class MenuActivity extends AppCompatActivity {
 

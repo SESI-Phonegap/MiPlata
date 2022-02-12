@@ -15,13 +15,8 @@
             android:label="@string/title_activity_menu"
             android:theme="@style/Theme.MiPlata.NoActionBar" />
         <activity
-            android:name=".view.RegistroGastoIngresoActivity"
+            android:name=".view.main.RegistroGastoIngresoActivity"
             android:exported="false"
-            android:theme="@style/Theme.MiPlata.NoActionBar" />
-        <activity
-            android:name=".view.CurrentBalanceActivity"
-            android:exported="false"
-            android:label="@string/title_activity_current_balance"
             android:theme="@style/Theme.MiPlata.NoActionBar" />
         <activity
             android:name=".view.MainActivity"

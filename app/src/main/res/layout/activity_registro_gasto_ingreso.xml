@@ -7,16 +7,16 @@
         <import type="android.view.View"/>
         <variable
             name="registroGastoIngresoActivity"
-            type="com.sesi.miplata.view.RegistroGastoIngresoActivity" />
+            type="com.sesi.miplata.view.main.RegistroGastoIngresoActivity" />
         <variable
             name="viewModel"
-            type="com.sesi.miplata.view.RegistroGastoIngresoViewModel" />
+            type="com.sesi.miplata.view.main.RegistroGastoIngresoViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.RegistroGastoIngresoActivity">
+    tools:context=".view.main.RegistroGastoIngresoActivity">
 
      <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

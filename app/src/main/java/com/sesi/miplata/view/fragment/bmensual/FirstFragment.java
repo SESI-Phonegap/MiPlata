@@ -1,4 +1,4 @@
-package com.sesi.miplata.view;
+package com.sesi.miplata.view.fragment.bmensual;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

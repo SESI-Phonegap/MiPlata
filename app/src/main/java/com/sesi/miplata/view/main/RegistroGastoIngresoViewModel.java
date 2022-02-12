@@ -1,4 +1,4 @@
-package com.sesi.miplata.view;
+package com.sesi.miplata.view.main;
 
 import android.app.Application;
 
