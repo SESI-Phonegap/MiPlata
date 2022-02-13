@@ -50,6 +50,7 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         });
         binding.btnGuardar.setOnClickListener(v -> {
             saveOperation();
+            finish();
         });
 
         binding.spinnerTipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

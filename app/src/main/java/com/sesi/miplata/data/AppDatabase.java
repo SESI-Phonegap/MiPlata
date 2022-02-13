@@ -22,18 +22,11 @@ import com.sesi.miplata.data.entity.Categorias;
 import com.sesi.miplata.data.entity.GastosRecurrentes;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.data.entity.Operaciones;
-import com.sesi.miplata.data.worker.SeedDataBaseWorker;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = {Categorias.class, GastosRecurrentes.class, IngresosRecurrentes.class, Operaciones.class},
-        version = 1,exportSchema = true)
+        version = 1)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 

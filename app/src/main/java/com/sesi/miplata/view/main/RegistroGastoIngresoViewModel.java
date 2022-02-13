@@ -74,5 +74,4 @@ public class RegistroGastoIngresoViewModel extends ViewModel {
             throw new IllegalArgumentException("Unknown ViewModel class");
         }
     }
-
 }

@@ -10,16 +10,9 @@
             android:iconTint="@color/black"
             android:title="@string/menu_balance_mensual"/>
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_balance_general"
+            android:icon="@drawable/ic_cash_check"
+            android:iconTint="@color/black"
+            android:title="@string/menu_balance_general"/>
     </group>
 </menu>

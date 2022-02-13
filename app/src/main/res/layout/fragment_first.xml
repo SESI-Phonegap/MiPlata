@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
-    tools:context=".FirstFragment">
+    tools:context=".view.fragment.bmensual.FirstFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
