@@ -1,5 +1,6 @@
 package com.sesi.miplata.view.fragment.bgeneral;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ import com.sesi.miplata.R;
 import com.sesi.miplata.data.entity.GastosRecurrentes;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.databinding.FragmentBalanceGeneralBinding;
+import com.sesi.miplata.view.main.ListaOperacionesActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +64,7 @@ public class BalanceGeneralFragment extends Fragment implements OnChartValueSele
                 String ingresoNeto = String.valueOf(viewModel.getIngresoNeto());
                 binding.tvGastosGeneral.setText(gastoTotal);
                 binding.tvIngresoNeto.setText(ingresoNeto);
-                setData(ingresoNeto, gastoTotal, ingresoNeto);
+                setData(ingresoTotal, gastoTotal, ingresoNeto);
             }
         });
         viewModel.getIngresos().observe(getViewLifecycleOwner(), new Observer<List<IngresosRecurrentes>>() {
@@ -79,6 +81,13 @@ public class BalanceGeneralFragment extends Fragment implements OnChartValueSele
         });
 
         configChart();
+
+        binding.cosntraintGastosGeneral.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), ListaOperacionesActivity.class);
+            intent.putExtra("isGastoView",true);
+            startActivity(intent);
+
+        });
         return binding.getRoot();
     }
 

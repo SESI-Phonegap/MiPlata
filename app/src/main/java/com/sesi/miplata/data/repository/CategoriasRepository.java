@@ -19,7 +19,7 @@ public class CategoriasRepository {
     public CategoriasRepository(Application application) {
         AppDatabase db = AppDatabase.getInstance(application);
         categoriasDao = db.getCategoriasDao();
-        //categories = categoriasDao.getAll();
+        categories = categoriasDao.getAll();
     }
 
     public void insert(Categorias categoria) {

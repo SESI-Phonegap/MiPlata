@@ -49,6 +49,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATA_BASE_NAME)
                             .createFromAsset("miplata.db")
+                            .allowMainThreadQueries()
                             .build();
                 }
             }
