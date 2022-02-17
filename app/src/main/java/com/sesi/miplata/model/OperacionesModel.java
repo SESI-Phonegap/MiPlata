@@ -1,6 +1,8 @@
 package com.sesi.miplata.model;
 
-public class OperacionesModel {
+import java.io.Serializable;
+
+public class OperacionesModel implements Serializable {
 
     private Long id;
     private String name;
@@ -10,6 +12,7 @@ public class OperacionesModel {
     private Long idCategoria;
     private String catNombre;
     private int icono;
+    private boolean isGasto;
 
     public Long getId() {
         return id;
@@ -73,5 +76,13 @@ public class OperacionesModel {
 
     public void setIcono(int icono) {
         this.icono = icono;
+    }
+
+    public boolean isGasto() {
+        return isGasto;
+    }
+
+    public void setGasto(boolean gasto) {
+        isGasto = gasto;
     }
 }

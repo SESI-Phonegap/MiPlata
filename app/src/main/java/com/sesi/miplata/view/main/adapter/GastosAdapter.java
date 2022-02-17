@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sesi.miplata.R;
@@ -41,11 +42,16 @@ public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.GastosView
         holder.tvMonto.setText(String.valueOf(gasto.getMonto()));
         //holder.imgIcon.setImageResource(gasto.getIcono());
         holder.tvFecha.setText(gasto.getFecha());
-        holder.view.setOnClickListener(v -> {
+        holder.cardView.setOnClickListener(v ->{
             if (null != itemClickListener){
                 itemClickListener.onItemClick(gasto);
             }
         });
+       /* holder.view.setOnClickListener(v -> {
+            if (null != itemClickListener){
+                itemClickListener.onItemClick(gasto);
+            }
+        });*/
     }
 
     public void setGastos(List<OperacionesModel> gastos) {
@@ -71,6 +77,7 @@ public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.GastosView
         TextView tvNota;
         TextView tvFecha;
         TextView tvMonto;
+        CardView cardView;
         OperacionesModel gasto;
         View view;
 
@@ -81,6 +88,7 @@ public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.GastosView
             this.tvFecha = view.findViewById(R.id.tv_fecha);
             this.tvMonto = view.findViewById(R.id.tv_monto);
             this.imgIcon = view.findViewById(R.id.img_icon);
+            this.cardView = view.findViewById(R.id.item_cardview);
             this.view = view;
         }
     }

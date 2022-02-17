@@ -53,6 +53,8 @@ public class ListaOperacionesViewModel extends ViewModel {
                         operacion.setMonto(gasto.getMonto());
                         operacion.setIdCategoria(gasto.getIdCategoria());
                         operacion.setIcono(categoria.getIcono());
+                        operacion.setCatNombre(categoria.getNombre());
+                        operacion.setGasto(true);
                         lstOperaciones.add(operacion);
                     }
                 }
@@ -69,6 +71,9 @@ public class ListaOperacionesViewModel extends ViewModel {
         return ingresos;
     }
 
+    public List<Categorias> getCategorias(){
+        return categorias;
+    }
     public static class ListaOperacionesViewModelFactory implements ViewModelProvider.Factory {
         private final Application application;
 

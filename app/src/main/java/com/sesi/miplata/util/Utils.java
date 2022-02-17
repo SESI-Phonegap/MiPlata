@@ -1,8 +1,11 @@
 package com.sesi.miplata.util;
 
+import android.graphics.Color;
+
 import com.sesi.miplata.data.entity.GastosRecurrentes;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
@@ -21,5 +24,28 @@ public class Utils {
             total += ingreso.getMonto();
         }
         return total;
+    }
+
+    public static List<Integer> getColors(){
+        ArrayList<Integer> colors = new ArrayList<>();
+        //green
+        colors.add(Color.rgb(0,112,26));
+        //red
+        colors.add(Color.rgb(255,0,0));
+        //Rosa
+        colors.add(Color.rgb(255,14,127));
+        //Morado
+        colors.add(Color.rgb(153,0,153));
+        //azul
+        colors.add(Color.rgb(127,0,255));
+        //verde agua
+        colors.add(Color.rgb(0,153,153));
+        //Mostaza
+        colors.add(Color.rgb(204,204,0));
+        //naranja
+        colors.add(Color.rgb(255,137,0));
+        colors.add(Color.rgb(12,232,12));
+        colors.add(Color.rgb(0,239,255));
+        return colors;
     }
 }

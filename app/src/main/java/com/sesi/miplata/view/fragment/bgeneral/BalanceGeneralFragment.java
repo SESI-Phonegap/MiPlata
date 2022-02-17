@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -35,6 +32,7 @@ import com.sesi.miplata.R;
 import com.sesi.miplata.data.entity.GastosRecurrentes;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.databinding.FragmentBalanceGeneralBinding;
+import com.sesi.miplata.util.Utils;
 import com.sesi.miplata.view.main.ListaOperacionesActivity;
 
 import java.util.ArrayList;
@@ -108,7 +106,7 @@ public class BalanceGeneralFragment extends Fragment implements OnChartValueSele
         dataSet.setIconsOffset(new MPPointF(0, 40));
         dataSet.setSelectionShift(5f);
 
-        dataSet.setColors(getColors());
+        dataSet.setColors(Utils.getColors());
         //dataSet.setSelectionShift(0f);
 
         PieData data = new PieData(dataSet);
@@ -121,15 +119,6 @@ public class BalanceGeneralFragment extends Fragment implements OnChartValueSele
         binding.chartGeneral.highlightValues(null);
 
         binding.chartGeneral.invalidate();
-    }
-
-    private ArrayList<Integer> getColors() {
-        ArrayList<Integer> colors = new ArrayList<>();
-        //green
-        colors.add(Color.rgb(0,112,26));
-        //red
-        colors.add(Color.rgb(255,0,0));
-        return colors;
     }
 
     private void configChart() {
