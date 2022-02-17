@@ -13,6 +13,7 @@ public class OperacionesModel implements Serializable {
     private String catNombre;
     private int icono;
     private boolean isGasto;
+    private boolean isUpdate;
 
     public Long getId() {
         return id;
@@ -84,5 +85,13 @@ public class OperacionesModel implements Serializable {
 
     public void setGasto(boolean gasto) {
         isGasto = gasto;
+    }
+
+    public boolean isUpdate() {
+        return isUpdate;
+    }
+
+    public void setUpdate(boolean update) {
+        isUpdate = update;
     }
 }

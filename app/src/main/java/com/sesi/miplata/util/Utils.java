@@ -5,8 +5,10 @@ import android.graphics.Color;
 import com.sesi.miplata.data.entity.GastosRecurrentes;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Utils {
 
@@ -47,5 +49,11 @@ public class Utils {
         colors.add(Color.rgb(12,232,12));
         colors.add(Color.rgb(0,239,255));
         return colors;
+    }
+
+    public static String getCurrencyFormatter(double monto){
+        Locale locale = new Locale("en", "US");
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+        return currencyFormatter.format(monto);
     }
 }

@@ -15,6 +15,7 @@ import com.sesi.miplata.data.entity.Categorias;
 import com.sesi.miplata.data.entity.GastosRecurrentes;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.databinding.ActivityRegistroGastoIngresoBinding;
+import com.sesi.miplata.model.OperacionesModel;
 
 import java.util.List;
 
@@ -32,7 +33,8 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         RegistroGastoIngresoViewModel.RegistroGastoIngresoViewModelFactory factory = new RegistroGastoIngresoViewModel.RegistroGastoIngresoViewModelFactory(getApplication());
         viewModel = new ViewModelProvider(this, factory).get(RegistroGastoIngresoViewModel.class);
-        isUpdate = getIntent().getBooleanExtra("isUpdate",false);
+        OperacionesModel operacion = (OperacionesModel) getIntent().getSerializableExtra("operacion");
+        isUpdate = operacion.isUpdate();
 
         binding.setLifecycleOwner(this);
         binding.setViewModel(viewModel);
@@ -46,8 +48,13 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
             public void onChanged(List<Categorias> categorias) {
                 adapter = new ArrayAdapter<Categorias>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, categorias);
                 binding.spinnerCategorias.setAdapter(adapter);
+                if (isUpdate){
+                    fillUpdateForm(operacion, categorias);
+                }
             }
         });
+
+
         binding.btnGuardar.setOnClickListener(v -> {
             saveOperation();
             finish();
@@ -64,6 +71,25 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+    }
+
+    public void fillUpdateForm(OperacionesModel operacion, List<Categorias> categorias){
+        binding.tvTitle.setText("Actualiza Registro");
+        binding.etName.setText(operacion.getName());
+        binding.etNota.setText(operacion.getNota());
+        binding.etMonto.setText(String.valueOf(operacion.getMonto()));
+        if (operacion.isGasto()){
+            binding.spinnerTipo.setSelection(0);
+        } else {
+            binding.spinnerTipo.setSelection(1);
+        }
+        int position = 0;
+        for (Categorias categoria : categorias){
+            if (operacion.getIdCategoria().equals(categoria.getId())){
+                position = adapter.getPosition(categoria);
+            }
+        }
+        binding.spinnerCategorias.setSelection(position);
     }
 
     public void saveOperation(){

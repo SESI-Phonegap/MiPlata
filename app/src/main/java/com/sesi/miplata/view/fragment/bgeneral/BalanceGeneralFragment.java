@@ -57,24 +57,24 @@ public class BalanceGeneralFragment extends Fragment implements OnChartValueSele
         viewModel.getGastos().observe(getViewLifecycleOwner(), new Observer<List<GastosRecurrentes>>() {
             @Override
             public void onChanged(List<GastosRecurrentes> gastosRecurrentes) {
-                String gastoTotal = String.valueOf(viewModel.getGastoTotal());
-                String ingresoTotal = String.valueOf(viewModel.getIngresoTotal());
-                String ingresoNeto = String.valueOf(viewModel.getIngresoNeto());
-                binding.tvGastosGeneral.setText(gastoTotal);
-                binding.tvIngresoNeto.setText(ingresoNeto);
+                double gastoTotal = viewModel.getGastoTotal();
+                double ingresoTotal = viewModel.getIngresoTotal();
+                double ingresoNeto = viewModel.getIngresoNeto();
+                binding.tvGastosGeneral.setText(Utils.getCurrencyFormatter(gastoTotal));
+                binding.tvIngresoNeto.setText(Utils.getCurrencyFormatter(ingresoNeto));
                 setData(ingresoTotal, gastoTotal, ingresoNeto);
             }
         });
         viewModel.getIngresos().observe(getViewLifecycleOwner(), new Observer<List<IngresosRecurrentes>>() {
             @Override
             public void onChanged(List<IngresosRecurrentes> ingresosRecurrentes) {
-                String gastoTotal = String.valueOf(viewModel.getGastoTotal());
-                String ingresoTotal = String.valueOf(viewModel.getIngresoTotal());
-                String ingresoNeto = String.valueOf(viewModel.getIngresoNeto());
-                binding.tvIngresosGeneral.setText(ingresoTotal);
-                binding.tvIngresoNeto.setText(ingresoNeto);
+                double gastoTotal = viewModel.getGastoTotal();
+                double ingresoTotal = viewModel.getIngresoTotal();
+                double ingresoNeto = viewModel.getIngresoNeto();
+                binding.tvIngresosGeneral.setText(Utils.getCurrencyFormatter(ingresoTotal));
+                binding.tvIngresoNeto.setText(Utils.getCurrencyFormatter(ingresoNeto));
                 setData(ingresoTotal, gastoTotal, ingresoNeto);
-                binding.chartGeneral.setCenterText(generateCenterSpannableText(ingresoTotal));
+                binding.chartGeneral.setCenterText(generateCenterSpannableText(Utils.getCurrencyFormatter(ingresoTotal)));
             }
         });
 
@@ -89,11 +89,11 @@ public class BalanceGeneralFragment extends Fragment implements OnChartValueSele
         return binding.getRoot();
     }
 
-    private void setData(String ingreso, String gasto, String ingresoNeto) {
+    private void setData(double ingreso, double gasto, double ingresoNeto) {
         ArrayList<PieEntry> entries = new ArrayList<>();
-        float ingresoBrutoF = Float.parseFloat(ingreso);
-        float gastoF = Float.parseFloat(gasto);
-        float ingresoNetoF = Float.parseFloat(ingresoNeto);
+        float ingresoBrutoF = Float.parseFloat(String.valueOf(ingreso));
+        float gastoF = Float.parseFloat(String.valueOf(gasto));
+        float ingresoNetoF = Float.parseFloat(String.valueOf(ingresoNeto));
         float porcentajeIngreso = (ingresoNetoF / ingresoBrutoF) * 100;
         float porcentajeGasto = (gastoF / ingresoBrutoF) * 100;
         //ingreso

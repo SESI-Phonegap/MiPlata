@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.sesi.miplata.R;
 import com.sesi.miplata.data.entity.GastosRecurrentes;
 import com.sesi.miplata.model.OperacionesModel;
+import com.sesi.miplata.util.Utils;
 
 import java.util.Collections;
 import java.util.List;
@@ -39,19 +40,14 @@ public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.GastosView
         holder.gasto = gasto;
         holder.tvName.setText(gasto.getName());
         holder.tvNota.setText(gasto.getNota());
-        holder.tvMonto.setText(String.valueOf(gasto.getMonto()));
+        holder.tvMonto.setText(Utils.getCurrencyFormatter(gasto.getMonto()));
         //holder.imgIcon.setImageResource(gasto.getIcono());
         holder.tvFecha.setText(gasto.getFecha());
-        holder.cardView.setOnClickListener(v ->{
+        holder.view.setOnClickListener(v -> {
             if (null != itemClickListener){
                 itemClickListener.onItemClick(gasto);
             }
         });
-       /* holder.view.setOnClickListener(v -> {
-            if (null != itemClickListener){
-                itemClickListener.onItemClick(gasto);
-            }
-        });*/
     }
 
     public void setGastos(List<OperacionesModel> gastos) {
@@ -77,7 +73,6 @@ public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.GastosView
         TextView tvNota;
         TextView tvFecha;
         TextView tvMonto;
-        CardView cardView;
         OperacionesModel gasto;
         View view;
 
@@ -88,7 +83,6 @@ public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.GastosView
             this.tvFecha = view.findViewById(R.id.tv_fecha);
             this.tvMonto = view.findViewById(R.id.tv_monto);
             this.imgIcon = view.findViewById(R.id.img_icon);
-            this.cardView = view.findViewById(R.id.item_cardview);
             this.view = view;
         }
     }

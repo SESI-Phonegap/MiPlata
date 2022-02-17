@@ -55,6 +55,7 @@ public class ListaOperacionesViewModel extends ViewModel {
                         operacion.setIcono(categoria.getIcono());
                         operacion.setCatNombre(categoria.getNombre());
                         operacion.setGasto(true);
+                        operacion.setUpdate(true);
                         lstOperaciones.add(operacion);
                     }
                 }
