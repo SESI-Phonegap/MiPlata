@@ -7,35 +7,33 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sesi.miplata.R;
-import com.sesi.miplata.data.entity.GastosRecurrentes;
 import com.sesi.miplata.model.OperacionesModel;
 import com.sesi.miplata.util.Utils;
 
 import java.util.Collections;
 import java.util.List;
 
-public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.GastosViewHolder> {
+public class OperacionesAdapter extends RecyclerView.Adapter<OperacionesAdapter.OperacionesViewHolder> {
 
     private List<OperacionesModel> gastos;
     private ItemClickListener itemClickListener;
 
-    public GastosAdapter(){
+    public OperacionesAdapter(){
         gastos = Collections.emptyList();
     }
 
     @NonNull
     @Override
-    public GastosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public OperacionesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_operacion,parent,false);
-        return new GastosViewHolder(itemView);
+        return new OperacionesViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GastosViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull OperacionesViewHolder holder, int position) {
         OperacionesModel gasto = gastos.get(position);
         holder.gasto = gasto;
         holder.tvName.setText(gasto.getName());
@@ -50,7 +48,7 @@ public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.GastosView
         });
     }
 
-    public void setGastos(List<OperacionesModel> gastos) {
+    public void setOperaciones(List<OperacionesModel> gastos) {
         this.gastos = gastos;
     }
 
@@ -67,7 +65,7 @@ public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.GastosView
         void onItemClick(OperacionesModel gasto);
     }
 
-    public static class GastosViewHolder extends RecyclerView.ViewHolder{
+    public static class OperacionesViewHolder extends RecyclerView.ViewHolder{
         TextView tvName;
         ImageView imgIcon;
         TextView tvNota;
@@ -76,7 +74,7 @@ public class GastosAdapter extends RecyclerView.Adapter<GastosAdapter.GastosView
         OperacionesModel gasto;
         View view;
 
-        public GastosViewHolder(View view){
+        public OperacionesViewHolder(View view){
             super(view);
             this.tvName = view.findViewById(R.id.tv_nombre);
             this.tvNota = view.findViewById(R.id.tv_nota);

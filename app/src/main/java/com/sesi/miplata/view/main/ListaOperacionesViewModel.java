@@ -41,7 +41,6 @@ public class ListaOperacionesViewModel extends ViewModel {
         List<OperacionesModel> lstOperaciones = new ArrayList<>();
         List<GastosRecurrentes> lstGastos = gastos.getValue();
         List<Categorias> lstCategorias = categorias;
-        List<IngresosRecurrentes> lstIngresos = ingresos.getValue();
         if (lstGastos != null && lstCategorias != null) {
             for (GastosRecurrentes gasto : lstGastos) {
                 for (Categorias categoria : lstCategorias) {
@@ -56,6 +55,32 @@ public class ListaOperacionesViewModel extends ViewModel {
                         operacion.setCatNombre(categoria.getNombre());
                         operacion.setGasto(true);
                         operacion.setUpdate(true);
+                        lstOperaciones.add(operacion);
+                    }
+                }
+            }
+        }
+        return lstOperaciones;
+    }
+
+    public List<OperacionesModel> fillIngresos(){
+        categorias = categoriasRepo.getAll();
+        List<OperacionesModel> lstOperaciones = new ArrayList<>();
+        List<IngresosRecurrentes> lstIngresos = ingresos.getValue();
+        List<Categorias> lstCategorias = categorias;
+        if (lstIngresos != null && lstCategorias != null){
+            for (IngresosRecurrentes ingreso : lstIngresos){
+                for (Categorias categoria : lstCategorias){
+                    if (ingreso.getIdCategoria().equals(categoria.getId())){
+                        OperacionesModel operacion = new OperacionesModel();
+                        operacion.setId(ingreso.getId());
+                        operacion.setName(ingreso.getNombre());
+                        operacion.setNota(ingreso.getNota());
+                        operacion.setMonto(ingreso.getMonto());
+                        operacion.setIdCategoria(ingreso.getIdCategoria());
+                        operacion.setCatNombre(categoria.getNombre());
+                        operacion.setGasto(false);
+                        operacion.setUpdate(false);
                         lstOperaciones.add(operacion);
                     }
                 }

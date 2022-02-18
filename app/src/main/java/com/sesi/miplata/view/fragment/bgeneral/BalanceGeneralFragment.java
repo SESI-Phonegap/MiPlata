@@ -86,6 +86,11 @@ public class BalanceGeneralFragment extends Fragment implements OnChartValueSele
             startActivity(intent);
 
         });
+
+        binding.cosntraintIngresoGeneral.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), ListaOperacionesActivity.class);
+            startActivity(intent);
+        });
         return binding.getRoot();
     }
 

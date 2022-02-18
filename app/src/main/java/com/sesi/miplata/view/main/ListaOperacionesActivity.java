@@ -33,9 +33,8 @@ import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.databinding.ActivityListaOperacionesBinding;
 import com.sesi.miplata.model.OperacionesModel;
 import com.sesi.miplata.util.Utils;
-import com.sesi.miplata.view.main.adapter.GastosAdapter;
+import com.sesi.miplata.view.main.adapter.OperacionesAdapter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +43,7 @@ public class ListaOperacionesActivity extends AppCompatActivity implements OnCha
     private ActivityListaOperacionesBinding binding;
     private ListaOperacionesViewModel viewModel;
     private boolean isGastosView;
-    private GastosAdapter adapter;
+    private OperacionesAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +62,10 @@ public class ListaOperacionesActivity extends AppCompatActivity implements OnCha
             @Override
             public void onChanged(List<GastosRecurrentes> gastosRecurrentes) {
                 if (isGastosView) {
-                    adapter = new GastosAdapter();
+                    adapter = new OperacionesAdapter();
                     List<OperacionesModel> lstOp = viewModel.fillGastos();
                     List<OperacionesModel> groupListOp = groupOperations(lstOp);
-                    adapter.setGastos(lstOp);
+                    adapter.setOperaciones(lstOp);
                     adapter.setItemClickListener((OperacionesModel operacion) -> openEditActivity(operacion));
                     setData(groupListOp);
                     binding.rvList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -77,7 +76,16 @@ public class ListaOperacionesActivity extends AppCompatActivity implements OnCha
         viewModel.getIngresos().observe(this, new Observer<List<IngresosRecurrentes>>() {
             @Override
             public void onChanged(List<IngresosRecurrentes> ingresosRecurrentes) {
-
+                if (!isGastosView){
+                    adapter = new OperacionesAdapter();
+                    List<OperacionesModel> lstOp = viewModel.fillIngresos();
+                    List<OperacionesModel> groupListOp = groupOperations(lstOp);
+                    adapter.setOperaciones(lstOp);
+                    adapter.setItemClickListener((OperacionesModel operacion) -> openEditActivity(operacion));
+                    setData(groupListOp);
+                    binding.rvList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    binding.rvList.setAdapter(adapter);
+                }
             }
         });
 
