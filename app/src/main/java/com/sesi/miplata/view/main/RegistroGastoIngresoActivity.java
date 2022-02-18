@@ -34,7 +34,8 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         RegistroGastoIngresoViewModel.RegistroGastoIngresoViewModelFactory factory = new RegistroGastoIngresoViewModel.RegistroGastoIngresoViewModelFactory(getApplication());
         viewModel = new ViewModelProvider(this, factory).get(RegistroGastoIngresoViewModel.class);
         OperacionesModel operacion = (OperacionesModel) getIntent().getSerializableExtra("operacion");
-        isUpdate = operacion.isUpdate();
+
+        isUpdate = (operacion != null) ? operacion.isUpdate() : false;
 
         binding.setLifecycleOwner(this);
         binding.setViewModel(viewModel);
@@ -56,7 +57,7 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
 
 
         binding.btnGuardar.setOnClickListener(v -> {
-            saveOperation();
+            saveOperation(operacion);
             finish();
         });
 
@@ -92,13 +93,13 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         binding.spinnerCategorias.setSelection(position);
     }
 
-    public void saveOperation(){
+    public void saveOperation(OperacionesModel operacion){
         String operationType = binding.spinnerTipo.getSelectedItem().toString();
         if (isUpdate){
             if (operationType.equals("Gasto")){
-                //updateGasto();
+                updateGasto(operacion);
             } else {
-                //updateIngreso();
+                updateIngreso(operacion);
             }
 
         } else {
@@ -125,10 +126,10 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         viewModel.insertGasto(populatedGasto());
     }
 
-    private void updateGasto(Long id){
-        GastosRecurrentes gasto = populatedGasto();
-        gasto.setId(id);
-        viewModel.updateGasto(gasto);
+    private void updateGasto(OperacionesModel gasto){
+        GastosRecurrentes gastoUpdate = populatedGasto();
+        gastoUpdate.setId(gasto.getId());
+        viewModel.updateGasto(gastoUpdate);
     }
 
     private IngresosRecurrentes populatedIngreso(){
@@ -146,9 +147,9 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         viewModel.insertIngreso(populatedIngreso());
     }
 
-    private void updateIngreso(Long id){
-        IngresosRecurrentes ingreso = populatedIngreso();
-        ingreso.setId(id);
-        viewModel.updateIngreso(ingreso);
+    private void updateIngreso(OperacionesModel ingreso){
+        IngresosRecurrentes ingresoUpdate = populatedIngreso();
+        ingresoUpdate.setId(ingreso.getId());
+        viewModel.updateIngreso(ingresoUpdate);
     }
 }

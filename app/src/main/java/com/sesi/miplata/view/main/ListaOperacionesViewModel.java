@@ -80,7 +80,7 @@ public class ListaOperacionesViewModel extends ViewModel {
                         operacion.setIdCategoria(ingreso.getIdCategoria());
                         operacion.setCatNombre(categoria.getNombre());
                         operacion.setGasto(false);
-                        operacion.setUpdate(false);
+                        operacion.setUpdate(true);
                         lstOperaciones.add(operacion);
                     }
                 }

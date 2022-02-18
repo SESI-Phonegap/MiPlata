@@ -40,7 +40,7 @@ public class GastosRecurrentesRepository {
         return gastosTodos;
     }
 
-    public LiveData<GastosRecurrentes> getById(Long id){
+    public GastosRecurrentes getById(Long id){
         return gastosRecurrentesDao.getById(id);
     }
 }

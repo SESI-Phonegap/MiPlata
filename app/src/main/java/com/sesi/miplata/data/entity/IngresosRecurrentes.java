@@ -32,6 +32,8 @@ public class IngresosRecurrentes {
     private double monto;
 
     @ColumnInfo(name = "ir_id_categoria")
+    @NonNull
+
     private Long idCategoria;
 
     public Long getId() {

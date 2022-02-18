@@ -77,6 +77,7 @@ public class ListaOperacionesActivity extends AppCompatActivity implements OnCha
             @Override
             public void onChanged(List<IngresosRecurrentes> ingresosRecurrentes) {
                 if (!isGastosView){
+                    binding.tvTitle.setText("Ingresos");
                     adapter = new OperacionesAdapter();
                     List<OperacionesModel> lstOp = viewModel.fillIngresos();
                     List<OperacionesModel> groupListOp = groupOperations(lstOp);
@@ -152,7 +153,7 @@ public class ListaOperacionesActivity extends AppCompatActivity implements OnCha
             float fPorcent = Float.parseFloat(String.valueOf(porcentaje));
             entries.add(new PieEntry(fPorcent, operacion.getCatNombre(), R.drawable.ic_cash_remove));
         }
-        PieDataSet dataSet = new PieDataSet(entries, "Balance de Gastos");
+        PieDataSet dataSet = new PieDataSet(entries, "Balance");
         dataSet.setDrawIcons(false);
         dataSet.setSliceSpace(3f);
         dataSet.setIconsOffset(new MPPointF(0, 40));
@@ -169,7 +170,7 @@ public class ListaOperacionesActivity extends AppCompatActivity implements OnCha
         binding.pieChart.setData(data);
         binding.pieChart.highlightValue(null);
         binding.pieChart.invalidate();
-        binding.pieChart.setCenterText(generateCenterSpannableText(String.valueOf(total)));
+        binding.pieChart.setCenterText(generateCenterSpannableText(Utils.getCurrencyFormatter(total)));
     }
 
     private double getTotal(List<OperacionesModel> operaciones){

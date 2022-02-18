@@ -15,6 +15,7 @@ import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.data.repository.CategoriasRepository;
 import com.sesi.miplata.data.repository.GastosRecurrentesRepository;
 import com.sesi.miplata.data.repository.IngresosRecurrentesRepository;
+import com.sesi.miplata.model.OperacionesModel;
 
 import java.util.List;
 
