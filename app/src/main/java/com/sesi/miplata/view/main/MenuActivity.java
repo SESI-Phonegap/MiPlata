@@ -54,8 +54,10 @@ public class MenuActivity extends AppCompatActivity {
                 }
             }
         });
-        binding.appBarMenu.fabAddOpDay.setOnClickListener(v ->{
 
+        binding.appBarMenu.fabAddOpDay.setOnClickListener(v ->{
+            Intent intent = new Intent(this, RegistroOperacionesMensualesActivity.class);
+            startActivity(intent);
         });
 
         binding.appBarMenu.fabAddOpRec.setOnClickListener(v -> {
