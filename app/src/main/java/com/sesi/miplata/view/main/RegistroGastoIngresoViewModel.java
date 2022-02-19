@@ -35,41 +35,42 @@ public class RegistroGastoIngresoViewModel extends ViewModel {
                 type -> categoriasRepository.getCategoriesByType(type));
     }
 
-    public void insertGasto(GastosRecurrentes gasto){
+    public void insertGasto(GastosRecurrentes gasto) {
         gastosRepo.insert(gasto);
     }
 
-    public void updateGasto(GastosRecurrentes gasto){
+    public void updateGasto(GastosRecurrentes gasto) {
         gastosRepo.update(gasto);
     }
 
-    public void insertIngreso(IngresosRecurrentes ingreso){
+    public void insertIngreso(IngresosRecurrentes ingreso) {
         ingresosRepo.insert(ingreso);
     }
 
-    public void updateIngreso(IngresosRecurrentes ingreso){
+    public void updateIngreso(IngresosRecurrentes ingreso) {
         ingresosRepo.update(ingreso);
     }
 
-    public void setFilterType(String type){
+    public void setFilterType(String type) {
         filterType.setValue(type);
     }
 
-    public LiveData<List<Categorias>> getCategorias(){
+    public LiveData<List<Categorias>> getCategorias() {
         return categorias;
     }
 
-    public static class RegistroGastoIngresoViewModelFactory implements ViewModelProvider.Factory{
+    public static class RegistroGastoIngresoViewModelFactory implements ViewModelProvider.Factory {
 
         private final Application application;
 
-        public RegistroGastoIngresoViewModelFactory(Application application){
+        public RegistroGastoIngresoViewModelFactory(Application application) {
             this.application = application;
         }
+
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            if (modelClass.isAssignableFrom(RegistroGastoIngresoViewModel.class)){
+            if (modelClass.isAssignableFrom(RegistroGastoIngresoViewModel.class)) {
                 return (T) new RegistroGastoIngresoViewModel(application);
             }
             throw new IllegalArgumentException("Unknown ViewModel class");

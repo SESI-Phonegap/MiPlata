@@ -40,6 +40,8 @@ public class IngresosRecurrentesRepository {
         return ingresosTodos;
     }
 
+    public List<IngresosRecurrentes> getAllMain(){ return  ingresosRecurrentesDao.getAllMain();}
+
     public LiveData<IngresosRecurrentes> getById(Long id) {
         return ingresosRecurrentesDao.getById(id);
     }

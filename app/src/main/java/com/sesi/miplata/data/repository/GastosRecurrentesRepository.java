@@ -40,6 +40,7 @@ public class GastosRecurrentesRepository {
         return gastosTodos;
     }
 
+    public List<GastosRecurrentes> getAllMain(){ return gastosRecurrentesDao.getAllMain();}
     public GastosRecurrentes getById(Long id){
         return gastosRecurrentesDao.getById(id);
     }

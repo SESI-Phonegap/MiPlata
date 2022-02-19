@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.sesi.miplata.view.fragment.bmensual.FirstFragment"
+        android:name="com.sesi.miplata.view.fragment.bmensual.BalanceMensualFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first"/>
+        tools:layout="@layout/fragment_balance_mensual"/>
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.sesi.miplata.view.SecondFragment"

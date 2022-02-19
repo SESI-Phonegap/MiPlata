@@ -26,6 +26,9 @@ public interface GastosRecurrentesDao {
     @Query("SELECT * FROM GASTOS_RECURRENTES")
     public LiveData<List<GastosRecurrentes>> getAll();
 
+    @Query("SELECT * FROM GASTOS_RECURRENTES")
+    public List<GastosRecurrentes> getAllMain();
+
     @Query("SELECT * FROM GASTOS_RECURRENTES WHERE gr_id = :id")
     public GastosRecurrentes getById(Long id);
 }

@@ -74,7 +74,7 @@ public class BalanceGeneralFragment extends Fragment implements OnChartValueSele
                 binding.tvIngresosGeneral.setText(Utils.getCurrencyFormatter(ingresoTotal));
                 binding.tvIngresoNeto.setText(Utils.getCurrencyFormatter(ingresoNeto));
                 setData(ingresoTotal, gastoTotal, ingresoNeto);
-                binding.chartGeneral.setCenterText(generateCenterSpannableText(Utils.getCurrencyFormatter(ingresoTotal)));
+                binding.chartGeneral.setCenterText(Utils.generateCenterSpannableText(Utils.getCurrencyFormatter(ingresoTotal)));
             }
         });
 
@@ -169,16 +169,6 @@ public class BalanceGeneralFragment extends Fragment implements OnChartValueSele
         binding.chartGeneral.setEntryLabelColor(Color.WHITE);
         //binding.chartGeneral.setEntryLabelTypeface(tfRegular);
         binding.chartGeneral.setEntryLabelTextSize(12f);
-    }
-
-    private SpannableString generateCenterSpannableText(String ingresoTotal) {
-
-        SpannableString s = new SpannableString(ingresoTotal + "\nIngreso Bruto");
-        s.setSpan(new RelativeSizeSpan(2.0f), 0, s.length()-13, 0);
-        s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 13, s.length(), 0);
-        s.setSpan(new RelativeSizeSpan(1.5f),s.length()-13,s.length(),0);
-        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 13, s.length(), 0);
-        return s;
     }
 
     @Override

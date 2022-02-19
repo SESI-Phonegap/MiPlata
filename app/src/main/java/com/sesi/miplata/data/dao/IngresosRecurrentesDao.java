@@ -26,6 +26,9 @@ public interface IngresosRecurrentesDao {
     @Query("SELECT * FROM INGRESOS_RECURRENTES")
     public LiveData<List<IngresosRecurrentes>> getAll();
 
+    @Query("SELECT * FROM INGRESOS_RECURRENTES")
+    public List<IngresosRecurrentes> getAllMain();
+
     @Query("SELECT * FROM INGRESOS_RECURRENTES WHERE ir_id = :id")
     public LiveData<IngresosRecurrentes> getById(Long id);
 }

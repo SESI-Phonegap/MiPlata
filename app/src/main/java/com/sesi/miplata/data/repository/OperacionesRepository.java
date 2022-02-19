@@ -14,7 +14,7 @@ public class OperacionesRepository {
 
     private OperacionesDao operacionesDao;
 
-    OperacionesRepository(Application application) {
+    public OperacionesRepository(Application application) {
         AppDatabase db = AppDatabase.getInstance(application);
         operacionesDao = db.getOperacionesDao();
     }
@@ -34,13 +34,7 @@ public class OperacionesRepository {
                 operacionesDao.delete(operacion));
     }
 
-    /**
-     *
-     * @param type - cadena Gasto/Ingreso.
-     * @param month - Mes en formato nemerico 01 Enero.
-     * @return
-     */
-    /*public LiveData<List<Operaciones>> getByTypeAndMonth(String type, String month) {
-        return operacionesDao.getOperationsByTypeAndMonth(type, month);
-    }*/
+    public LiveData<List<Operaciones>> getOperacionesByDate(String fechaIni, String fechaFinal){
+        return operacionesDao.getOperationsByDate(fechaIni, fechaFinal);
+    }
 }

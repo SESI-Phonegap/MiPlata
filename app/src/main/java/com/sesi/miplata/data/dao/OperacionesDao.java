@@ -23,11 +23,6 @@ public interface OperacionesDao {
     @Delete
     public int delete(Operaciones operacion);
 
-    /**
-     *
-     * @param mes - Mes en formato nemerico 01 Enero.
-     * @return List of operations.
-     */
-   /* @Query("SELECT * FROM OPERACIONES WHERE op_tipo_operacion = :tipo AND strtime('%n',op_fecha) = :mes")
-    public LiveData<List<Operaciones>> getOperationsByTypeAndMonth(String tipo, String mes);*/
+    @Query("SELECT * FROM OPERACIONES WHERE date(op_fecha) BETWEEN date(:fechaIni) AND date(:fechaFinal)")
+    public LiveData<List<Operaciones>> getOperationsByDate(String fechaIni, String fechaFinal);
 }
