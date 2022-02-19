@@ -26,11 +26,12 @@
         <entry key="..\:/Users/000905781/AndroidStudioProjects/MiPlata/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/drawable/cardviewbackground.xml" value="0.174" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/drawable/ic_paid.xml" value="0.184" />
+        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/drawable/trash_can_outline.xml" value="0.188" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_current_balance.xml" value="0.129981884057971" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_lista_operaciones.xml" value="0.1796875" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_menu.xml" value="0.1" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_registro_gasto_ingreso.xml" value="0.129981884057971" />
-        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_registro_operaciones_mensuales.xml" value="0.22" />
+        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_registro_operaciones_mensuales.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/app_bar_menu.xml" value="0.1" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/content_current_balance.xml" value="0.1" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/fragment_balance_general.xml" value="0.1796875" />

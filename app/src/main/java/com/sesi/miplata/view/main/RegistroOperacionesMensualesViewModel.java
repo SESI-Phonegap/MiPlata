@@ -16,6 +16,8 @@ public class RegistroOperacionesMensualesViewModel extends ViewModel {
         this.operacionesRepo = new OperacionesRepository(application);
     }
 
+
+
     public static class RegistroOperacionesMensualesViewModelFactory implements ViewModelProvider.Factory{
         private final Application application;
 
