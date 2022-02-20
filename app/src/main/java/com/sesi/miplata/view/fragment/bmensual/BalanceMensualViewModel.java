@@ -31,7 +31,7 @@ public class BalanceMensualViewModel extends ViewModel {
     private LiveData<List<Operaciones>> operaciones;
     private LiveData<List<GastosRecurrentes>> gastos;
     private LiveData<List<IngresosRecurrentes>> ingresos;
-    private MutableLiveData<List<String>> filterDate = new MutableLiveData<>();
+    private MutableLiveData<List<Long>> filterDate = new MutableLiveData<>();
 
     public BalanceMensualViewModel(Application application) {
         operacionesRepo = new OperacionesRepository(application);
@@ -90,6 +90,8 @@ public class BalanceMensualViewModel extends ViewModel {
             List<Operaciones> ingresos = Utils.getOperationsByType(operaciones,"Ingreso");
             total = Utils.getIngresoMesTotal(ingresos);
         }
+        List<Operaciones> opAll = operacionesRepo.getAll();
+        int size = opAll.size();
         return total;
     }
 
@@ -97,13 +99,18 @@ public class BalanceMensualViewModel extends ViewModel {
         String[] splitDate = date.split("\\|");
         String mes = splitDate[0];
         String ano = splitDate[1];
-        Calendar calendar = new GregorianCalendar(Integer.parseInt(ano), Integer.parseInt(mes), 1);
-        int ultimoDiaMes = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-        String fechaIni = ano + "-" + mes + "-01";
-        String fechaFinal = ano + "-" + mes + "-" + ultimoDiaMes;
-        List<String> filter = new ArrayList<>();
-        filter.add(fechaIni);
-        filter.add(fechaFinal);
+        mes = Utils.formatMonth(mes);
+        Calendar iniDate = Calendar.getInstance();
+        iniDate.set(Integer.parseInt(ano), Integer.parseInt(mes), 1);
+        Calendar endDate = Calendar.getInstance();
+        endDate.set(Integer.parseInt(ano), Integer.parseInt(mes), iniDate.getActualMaximum(Calendar.DAY_OF_MONTH));
+       // Calendar calendar = new GregorianCalendar(Integer.parseInt(ano), Integer.parseInt(mes), 1);
+       // int ultimoDiaMes = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        //String fechaIni = ano + "-" + mes + "-01";
+        //String fechaFinal = ano + "-" + mes + "-" + ultimoDiaMes;
+        List<Long> filter = new ArrayList<>();
+        filter.add(iniDate.getTimeInMillis());
+        filter.add(endDate.getTimeInMillis());
         filterDate.setValue(filter);
     }
 

@@ -142,4 +142,8 @@ public class Utils {
         }
         return mes;
     }
+
+    public static String formatMonth(String mes){
+        return (mes.length() == 1) ? '0' + mes : mes;
+    }
 }

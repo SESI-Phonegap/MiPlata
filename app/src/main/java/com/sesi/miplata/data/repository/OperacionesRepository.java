@@ -34,7 +34,11 @@ public class OperacionesRepository {
                 operacionesDao.delete(operacion));
     }
 
-    public LiveData<List<Operaciones>> getOperacionesByDate(String fechaIni, String fechaFinal){
+    public LiveData<List<Operaciones>> getOperacionesByDate(Long fechaIni, Long fechaFinal){
         return operacionesDao.getOperationsByDate(fechaIni, fechaFinal);
+    }
+
+    public List<Operaciones> getAll(){
+        return operacionesDao.getAll();
     }
 }

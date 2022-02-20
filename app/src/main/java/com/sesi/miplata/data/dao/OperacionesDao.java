@@ -23,6 +23,9 @@ public interface OperacionesDao {
     @Delete
     public int delete(Operaciones operacion);
 
-    @Query("SELECT * FROM OPERACIONES WHERE date(op_fecha) BETWEEN date(:fechaIni) AND date(:fechaFinal)")
-    public LiveData<List<Operaciones>> getOperationsByDate(String fechaIni, String fechaFinal);
+    @Query("SELECT * FROM OPERACIONES WHERE op_fecha BETWEEN :fechaIni AND :fechaFinal")
+    public LiveData<List<Operaciones>> getOperationsByDate(Long fechaIni, Long fechaFinal);
+
+    @Query("SELECT * FROM OPERACIONES")
+    public List<Operaciones> getAll();
 }

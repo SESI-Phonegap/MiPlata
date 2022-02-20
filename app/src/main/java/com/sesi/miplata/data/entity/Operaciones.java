@@ -6,6 +6,9 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.sesi.miplata.data.converter.Converters;
 
 import java.util.Date;
 
@@ -40,6 +43,7 @@ public class Operaciones {
     private String tipoOperacion;
 
     @ColumnInfo(name = "op_id_categoria")
+    @NonNull
     private Long idCategoria;
 
     public Long getId() {
