@@ -100,6 +100,7 @@ public class ListaOperacionesViewModel extends ViewModel {
     public List<Categorias> getCategorias(){
         return categorias;
     }
+
     public static class ListaOperacionesViewModelFactory implements ViewModelProvider.Factory {
         private final Application application;
 

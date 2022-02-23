@@ -84,7 +84,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                app:constraint_referenced_ids="cosntraintIngreso,cosntraintGastos"
+                app:constraint_referenced_ids="constraintIngreso,constraintGastos"
                 app:flow_horizontalGap="8dp"
                 app:flow_horizontalStyle="spread"
                 app:flow_verticalGap="8dp"
@@ -96,7 +96,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cosntraintIngreso"
+                android:id="@+id/constraintIngreso"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -136,7 +136,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cosntraintGastos"
+                android:id="@+id/constraintGastos"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/white">

@@ -29,13 +29,14 @@
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/drawable/trash_can_outline.xml" value="0.188" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_current_balance.xml" value="0.129981884057971" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_lista_operaciones.xml" value="0.1796875" />
+        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_lista_operaciones_mensuales.xml" value="0.1796875" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_menu.xml" value="0.1" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_registro_gasto_ingreso.xml" value="0.129981884057971" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_registro_operaciones_mensuales.xml" value="0.22" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/app_bar_menu.xml" value="0.1" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/content_current_balance.xml" value="0.1" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/fragment_balance_general.xml" value="0.1796875" />
-        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/fragment_balance_mensual.xml" value="0.1796875" />
+        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/fragment_balance_mensual.xml" value="0.1" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/fragment_first.xml" value="0.1" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/item_operacion.xml" value="0.1796875" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/menu/activity_main_drawer.xml" value="0.1796875" />

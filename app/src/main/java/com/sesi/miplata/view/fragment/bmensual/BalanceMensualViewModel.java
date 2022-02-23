@@ -95,23 +95,10 @@ public class BalanceMensualViewModel extends ViewModel {
         return total;
     }
 
-    public void setFilterDate(String date) {
-        String[] splitDate = date.split("\\|");
-        String mes = splitDate[0];
-        String ano = splitDate[1];
-        mes = Utils.formatMonth(mes);
-        Calendar iniDate = Calendar.getInstance();
-        iniDate.set(Integer.parseInt(ano), Integer.parseInt(mes), 1);
-        Calendar endDate = Calendar.getInstance();
-        endDate.set(Integer.parseInt(ano), Integer.parseInt(mes), iniDate.getActualMaximum(Calendar.DAY_OF_MONTH));
-       // Calendar calendar = new GregorianCalendar(Integer.parseInt(ano), Integer.parseInt(mes), 1);
-       // int ultimoDiaMes = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-        //String fechaIni = ano + "-" + mes + "-01";
-        //String fechaFinal = ano + "-" + mes + "-" + ultimoDiaMes;
-        List<Long> filter = new ArrayList<>();
-        filter.add(iniDate.getTimeInMillis());
-        filter.add(endDate.getTimeInMillis());
-        filterDate.setValue(filter);
+    public void setFilterDate(String mes, String ano) {
+        String formatMes = Utils.formatMonth(mes);
+        List<Long> dates = Utils.getDateInitEnd(formatMes,ano);
+        filterDate.setValue(dates);
     }
 
     public LiveData<List<GastosRecurrentes>> getGastos() {

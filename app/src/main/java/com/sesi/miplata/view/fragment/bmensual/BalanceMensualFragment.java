@@ -1,5 +1,6 @@
 package com.sesi.miplata.view.fragment.bmensual;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,7 +26,9 @@ import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.data.entity.Operaciones;
 import com.sesi.miplata.databinding.FragmentBalanceMensualBinding;
 import com.sesi.miplata.util.Utils;
+import com.sesi.miplata.view.main.ListaOperacionesMensualesActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -34,6 +37,8 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
 
     private FragmentBalanceMensualBinding binding;
     private BalanceMensualViewModel viewModel;
+    private String mes;
+    private String ano;
 
     @Override
     public View onCreateView(
@@ -47,12 +52,11 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
         binding.setBalanceMensualFragment(this);
 
         Calendar calendar = Calendar.getInstance();
-        int mes = calendar.get(Calendar.MONTH) + 1;
-        int ano = calendar.get(Calendar.YEAR);
-        String filterDate = mes+"|"+ano;
+        mes = String.valueOf(calendar.get(Calendar.MONTH) + 1);
+        ano = String.valueOf(calendar.get(Calendar.YEAR));
         String dateDisplay = Utils.getMonth(mes) + " "+ ano;
         binding.tvTitle.setText(dateDisplay);
-        viewModel.setFilterDate(filterDate);
+        viewModel.setFilterDate(mes, ano);
 
         viewModel.getGastos().observe(getViewLifecycleOwner(), new Observer<List<GastosRecurrentes>>() {
             @Override
@@ -77,7 +81,21 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
 
         configChart();
 
+        binding.constraintIngreso.setOnClickListener(v -> {
+            openList(false);
+        });
+
+        binding.constraintGastos.setOnClickListener(v -> {
+            openList(true);
+        });
         return binding.getRoot();
+    }
+
+    private void openList(boolean isGasto){
+        Intent intent = new Intent(getContext(), ListaOperacionesMensualesActivity.class);
+        intent.putExtra("isGastoView",isGasto);
+        intent.putExtra("dates",(Serializable) Utils.getDateInitEnd(Utils.formatMonth(mes),ano));
+        startActivity(intent);
     }
 
     public void updateUi(){

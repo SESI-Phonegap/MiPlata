@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MiPlata">
         <activity
+            android:name=".view.main.ListaOperacionesMensualesActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.main.RegistroOperacionesMensualesActivity"
             android:exported="false" />
         <activity

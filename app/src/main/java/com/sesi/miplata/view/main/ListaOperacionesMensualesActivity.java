@@ -5,15 +5,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.RelativeSizeSpan;
-import android.text.style.StyleSpan;
-import android.util.Log;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.components.Legend;
@@ -24,13 +17,11 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.sesi.miplata.R;
 import com.sesi.miplata.data.entity.Categorias;
-import com.sesi.miplata.data.entity.GastosRecurrentes;
-import com.sesi.miplata.data.entity.IngresosRecurrentes;
-import com.sesi.miplata.databinding.ActivityListaOperacionesBinding;
+import com.sesi.miplata.data.entity.Operaciones;
+import com.sesi.miplata.databinding.ActivityListaOperacionesMensualesBinding;
 import com.sesi.miplata.model.OperacionesModel;
 import com.sesi.miplata.util.Utils;
 import com.sesi.miplata.view.main.adapter.OperacionesAdapter;
@@ -38,68 +29,41 @@ import com.sesi.miplata.view.main.adapter.OperacionesAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaOperacionesActivity extends AppCompatActivity implements OnChartValueSelectedListener {
+public class ListaOperacionesMensualesActivity extends AppCompatActivity implements OnChartValueSelectedListener {
 
-    private ActivityListaOperacionesBinding binding;
-    private ListaOperacionesViewModel viewModel;
-    private boolean isGastosView;
+    private ActivityListaOperacionesMensualesBinding binding;
+    private  ListaOperacionesMensualesViewModel viewModel;
+    private boolean isGasto;
     private OperacionesAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityListaOperacionesBinding.inflate(getLayoutInflater());
+        binding = ActivityListaOperacionesMensualesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        ListaOperacionesViewModel.ListaOperacionesViewModelFactory factory = new ListaOperacionesViewModel.ListaOperacionesViewModelFactory(getApplication());
-        viewModel = new ViewModelProvider(this, factory).get(ListaOperacionesViewModel.class);
-        isGastosView = getIntent().getBooleanExtra("isGastoView", false);
-        Log.i("VIEW:", "Vista:" + isGastosView);
+        ListaOperacionesMensualesViewModel.ListaOperacionesMensualesViewModelFactory factory = new ListaOperacionesMensualesViewModel.ListaOperacionesMensualesViewModelFactory(getApplication());
+        viewModel = new ViewModelProvider(this, factory).get(ListaOperacionesMensualesViewModel.class);
+        isGasto = getIntent().getBooleanExtra("isGastoView", false);
+        String typeOp = isGasto ? "Gasto" : "Ingreso";
+        List<Long> dates = (List<Long>) getIntent().getSerializableExtra("dates");
         binding.setLifecycleOwner(this);
         binding.setViewModel(viewModel);
-        binding.setListaOperacionesActivity(this);
-
-        viewModel.getGastos().observe(this, new Observer<List<GastosRecurrentes>>() {
+        binding.setListaOperacionesMensualesActivity(this);
+        viewModel.setFilterDates(dates);
+        viewModel.getOperaciones().observe(this, new Observer<List<Operaciones>>() {
             @Override
-            public void onChanged(List<GastosRecurrentes> gastosRecurrentes) {
-                if (isGastosView) {
-                    adapter = new OperacionesAdapter();
-                    List<OperacionesModel> lstOp = viewModel.fillGastos();
-                    List<Categorias> categorias = viewModel.getCategorias();
-                    List<OperacionesModel> groupListOp = Utils.groupOperations(lstOp, categorias);
-                    adapter.setOperaciones(lstOp);
-                    adapter.setItemClickListener((OperacionesModel operacion) -> openEditActivity(operacion));
-                    setData(groupListOp);
-                    binding.rvList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                    binding.rvList.setAdapter(adapter);
-                }
+            public void onChanged(List<Operaciones> operaciones) {
+                adapter = new OperacionesAdapter();
+                List<OperacionesModel> operacionesFill = viewModel.fillOperaciones(dates.get(0), dates.get(1), typeOp);
+                List<Categorias> categorias = viewModel.getCategorias();
+                List<OperacionesModel> groupListOp = Utils.groupOperations(operacionesFill,categorias);
+                adapter.setOperaciones(operacionesFill);
+                setData(groupListOp);
+                binding.rvList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                binding.rvList.setAdapter(adapter);
             }
         });
-        viewModel.getIngresos().observe(this, new Observer<List<IngresosRecurrentes>>() {
-            @Override
-            public void onChanged(List<IngresosRecurrentes> ingresosRecurrentes) {
-                if (!isGastosView){
-                    binding.tvTitle.setText("Ingresos");
-                    adapter = new OperacionesAdapter();
-                    List<OperacionesModel> lstOp = viewModel.fillIngresos();
-                    List<Categorias> categorias = viewModel.getCategorias();
-                    List<OperacionesModel> groupListOp = Utils.groupOperations(lstOp, categorias);
-                    adapter.setOperaciones(lstOp);
-                    adapter.setItemClickListener((OperacionesModel operacion) -> openEditActivity(operacion));
-                    setData(groupListOp);
-                    binding.rvList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                    binding.rvList.setAdapter(adapter);
-                }
-            }
-        });
-
         configChart();
-    }
-
-    private void openEditActivity(OperacionesModel operacion){
-        Log.i("Click","Click RV");
-        Intent intent = new Intent(this, RegistroGastoIngresoActivity.class);
-        intent.putExtra("operacion", operacion);
-        startActivity(intent);
     }
 
     private void configChart() {
