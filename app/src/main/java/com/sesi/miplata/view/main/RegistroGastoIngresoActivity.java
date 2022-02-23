@@ -36,6 +36,9 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         OperacionesModel operacion = (OperacionesModel) getIntent().getSerializableExtra("operacion");
 
         isUpdate = (operacion != null) ? operacion.isUpdate() : false;
+        if(isUpdate){
+            binding.btnDelete.setVisibility(View.VISIBLE);
+        }
 
         binding.setLifecycleOwner(this);
         binding.setViewModel(viewModel);
