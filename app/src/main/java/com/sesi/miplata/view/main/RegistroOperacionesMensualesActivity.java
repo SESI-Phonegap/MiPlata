@@ -61,7 +61,7 @@ public class RegistroOperacionesMensualesActivity extends AppCompatActivity {
                 adapter = new ArrayAdapter<Categorias>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, categorias);
                 binding.spinnerCategorias.setAdapter(adapter);
                 if (isUpdate){
-                    //fillUpdateForm(operacion, categorias);
+                    fillUpdateForm(operacion, categorias);
                 }
             }
         });
@@ -83,7 +83,7 @@ public class RegistroOperacionesMensualesActivity extends AppCompatActivity {
         });
 
         binding.btnGuardar.setOnClickListener(v -> {
-            saveOperation();
+            saveOperation(operacion);
             finish();
         });
     }
@@ -93,16 +93,36 @@ public class RegistroOperacionesMensualesActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 int realMonth = month+1;
-                final String selectedDate = year + "-" + realMonth + "-" + day;
+                final String selectedDate = day + "/" + realMonth + "/" + year;
                 binding.etDate.setText(selectedDate);
             }
         });
         datePicker.show(getSupportFragmentManager(), "Date Picker");
     }
 
-    public void saveOperation(){
-        if (isUpdate){
+    public void fillUpdateForm(OperacionesModel operacion, List<Categorias> categorias){
+        binding.tvTitle.setText("Actualiza Registro");
+        binding.etNombre.setText(operacion.getName());
+        binding.etNota.setText(operacion.getNota());
+        binding.etDate.setText(operacion.getFecha());
+        binding.etMonto.setText(String.valueOf(operacion.getMonto()));
+        if (operacion.isGasto()){
+            binding.spinnerTipo.setSelection(0);
+        } else {
+            binding.spinnerTipo.setSelection(1);
+        }
+        int position = 0;
+        for(Categorias categoria : categorias){
+            if (operacion.getIdCategoria().equals(categoria.getId())){
+                position = adapter.getPosition(categoria);
+            }
+        }
+        binding.spinnerCategorias.setSelection(position);
+    }
 
+    public void saveOperation(OperacionesModel operacion){
+        if (isUpdate){
+            updateOperacion(operacion);
         } else {
             insertOperacion();
         }
@@ -110,6 +130,12 @@ public class RegistroOperacionesMensualesActivity extends AppCompatActivity {
 
     private void insertOperacion(){
         viewModel.insertOperacion(populateOperation());
+    }
+
+    private void updateOperacion(OperacionesModel operacion){
+        Operaciones operacionUpdate = populateOperation();
+        operacionUpdate.setId(operacion.getId());
+        viewModel.updateOperacion(operacionUpdate);
     }
 
     private Operaciones populateOperation(){
@@ -121,13 +147,13 @@ public class RegistroOperacionesMensualesActivity extends AppCompatActivity {
         Categorias selectCat = (Categorias) binding.spinnerCategorias.getSelectedItem();
         operacion.setIdCategoria(selectCat.getId());
         String date = binding.etDate.getText().toString();
-        String[] splitDate = date.split("\\-");
-        String ano = splitDate[0];
+        String[] splitDate = date.split("\\/");
+        String dia = splitDate[0];
         String mes = splitDate[1];
-        String dia = splitDate[2];
+        String ano = splitDate[2];
         mes = Utils.formatMonth(mes);
         Calendar c = Calendar.getInstance();
-        c.set(Integer.parseInt(ano),Integer.parseInt(mes), Integer.parseInt(dia));
+        c.set(Integer.parseInt(ano),Integer.parseInt(mes)-1, Integer.parseInt(dia));
         operacion.setFecha(c.getTime());
         return operacion;
     }

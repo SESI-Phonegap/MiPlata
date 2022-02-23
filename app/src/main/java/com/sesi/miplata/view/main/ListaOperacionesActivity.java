@@ -96,7 +96,6 @@ public class ListaOperacionesActivity extends AppCompatActivity implements OnCha
     }
 
     private void openEditActivity(OperacionesModel operacion){
-        Log.i("Click","Click RV");
         Intent intent = new Intent(this, RegistroGastoIngresoActivity.class);
         intent.putExtra("operacion", operacion);
         startActivity(intent);

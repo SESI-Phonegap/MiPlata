@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -58,6 +59,7 @@ public class ListaOperacionesMensualesActivity extends AppCompatActivity impleme
                 List<Categorias> categorias = viewModel.getCategorias();
                 List<OperacionesModel> groupListOp = Utils.groupOperations(operacionesFill,categorias);
                 adapter.setOperaciones(operacionesFill);
+                adapter.setItemClickListener((OperacionesModel operacion) -> openEditActivity(operacion));
                 setData(groupListOp);
                 binding.rvList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 binding.rvList.setAdapter(adapter);
@@ -137,6 +139,12 @@ public class ListaOperacionesMensualesActivity extends AppCompatActivity impleme
         binding.pieChart.highlightValue(null);
         binding.pieChart.invalidate();
         binding.pieChart.setCenterText(Utils.generateListCenterSpannableText(Utils.getCurrencyFormatter(total)));
+    }
+
+    private void openEditActivity(OperacionesModel operacion){
+        Intent intent = new Intent(this, RegistroOperacionesMensualesActivity.class);
+        intent.putExtra("operacion", operacion);
+        startActivity(intent);
     }
 
     @Override

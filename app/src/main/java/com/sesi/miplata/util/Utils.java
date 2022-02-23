@@ -172,9 +172,9 @@ public class Utils {
 
     public static List<Long> getDateInitEnd(String mes, String ano){
         Calendar iniDate = Calendar.getInstance();
-        iniDate.set(Integer.parseInt(ano), Integer.parseInt(mes), 1);
+        iniDate.set(Integer.parseInt(ano), Integer.parseInt(mes)-1, 1);
         Calendar endDate = Calendar.getInstance();
-        endDate.set(Integer.parseInt(ano), Integer.parseInt(mes), iniDate.getActualMaximum(Calendar.DAY_OF_MONTH));
+        endDate.set(Integer.parseInt(ano), Integer.parseInt(mes)-1, iniDate.getActualMaximum(Calendar.DAY_OF_MONTH));
         List<Long> dates = new ArrayList<>();
         dates.add(iniDate.getTimeInMillis());
         dates.add(endDate.getTimeInMillis());
