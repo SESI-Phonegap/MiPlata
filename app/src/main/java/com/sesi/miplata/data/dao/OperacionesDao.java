@@ -23,7 +23,7 @@ public interface OperacionesDao {
     @Delete
     public int delete(Operaciones operacion);
 
-    @Query("SELECT * FROM OPERACIONES WHERE op_fecha BETWEEN :fechaIni AND :fechaFinal")
+    @Query("SELECT * FROM OPERACIONES WHERE op_fecha BETWEEN :fechaIni AND :fechaFinal ORDER BY op_fecha ASC")
     public LiveData<List<Operaciones>> getOperationsByDate(Long fechaIni, Long fechaFinal);
 
     @Query("SELECT * FROM OPERACIONES")
