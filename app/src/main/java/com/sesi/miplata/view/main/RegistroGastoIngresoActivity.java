@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +17,7 @@ import com.sesi.miplata.R;
 import com.sesi.miplata.data.entity.Categorias;
 import com.sesi.miplata.data.entity.GastosRecurrentes;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
+import com.sesi.miplata.data.entity.Operaciones;
 import com.sesi.miplata.databinding.ActivityRegistroGastoIngresoBinding;
 import com.sesi.miplata.model.OperacionesModel;
 
@@ -75,6 +79,40 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+
+        binding.btnDelete.setOnClickListener(v -> {
+            confirmDeleteDialog(operacion);
+        });
+    }
+
+    private void confirmDeleteDialog(OperacionesModel operacion){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Eliminar Registro");
+        builder.setMessage("¿Estas seguro que quieres eliminar este registro?");
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String operationType = binding.spinnerTipo.getSelectedItem().toString();
+                if (operationType.equals("Gasto")){
+                    GastosRecurrentes gastoDelete = populatedGasto();
+                    gastoDelete.setId(operacion.getId());
+                    viewModel.deleteGasto(gastoDelete);
+                } else {
+                    IngresosRecurrentes ingresoDelete = populatedIngreso();
+                    ingresoDelete.setId(operacion.getId());
+                    viewModel.deleteIngreso(ingresoDelete);
+                }
+                finish();
+            }
+        });
+        builder.setNegativeButton(Html.fromHtml("<font color='#FF0000'>Cancelar</font>"), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     public void fillUpdateForm(OperacionesModel operacion, List<Categorias> categorias){

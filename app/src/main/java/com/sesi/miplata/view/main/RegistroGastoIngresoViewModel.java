@@ -43,12 +43,20 @@ public class RegistroGastoIngresoViewModel extends ViewModel {
         gastosRepo.update(gasto);
     }
 
+    public void deleteGasto(GastosRecurrentes gasto){
+        gastosRepo.delete(gasto);
+    }
+
     public void insertIngreso(IngresosRecurrentes ingreso) {
         ingresosRepo.insert(ingreso);
     }
 
     public void updateIngreso(IngresosRecurrentes ingreso) {
         ingresosRepo.update(ingreso);
+    }
+
+    public void deleteIngreso(IngresosRecurrentes ingreso){
+        ingresosRepo.delete(ingreso);
     }
 
     public void setFilterType(String type) {

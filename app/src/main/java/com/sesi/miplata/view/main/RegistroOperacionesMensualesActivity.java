@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -86,6 +89,33 @@ public class RegistroOperacionesMensualesActivity extends AppCompatActivity {
             saveOperation(operacion);
             finish();
         });
+
+        binding.btnDelete.setOnClickListener(v -> {
+            confirmDeleteDialog(operacion);
+        });
+    }
+
+    private void confirmDeleteDialog(OperacionesModel operacion){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Eliminar Registro");
+        builder.setMessage("¿Estas seguro que quieres eliminar este registro?");
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Operaciones operacionDelete = populateOperation();
+                operacionDelete.setId(operacion.getId());
+                viewModel.deleteOperacion(operacionDelete);
+                finish();
+            }
+        });
+        builder.setNegativeButton(Html.fromHtml("<font color='#FF0000'>Cancelar</font>"), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void showDatePicker(){
