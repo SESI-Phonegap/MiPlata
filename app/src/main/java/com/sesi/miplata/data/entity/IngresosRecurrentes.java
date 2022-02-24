@@ -36,11 +36,12 @@ public class IngresosRecurrentes {
 
     private Long idCategoria;
 
+    @NonNull
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(@NonNull Long id) {
         this.id = id;
     }
 
@@ -68,11 +69,12 @@ public class IngresosRecurrentes {
         this.monto = monto;
     }
 
+    @NonNull
     public Long getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(Long idCategoria) {
+    public void setIdCategoria(@NonNull Long idCategoria) {
         this.idCategoria = idCategoria;
     }
 }

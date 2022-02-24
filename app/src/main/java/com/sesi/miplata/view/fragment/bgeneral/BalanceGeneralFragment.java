@@ -2,21 +2,15 @@ package com.sesi.miplata.view.fragment.bgeneral;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.RelativeSizeSpan;
-import android.text.style.StyleSpan;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
@@ -26,17 +20,13 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.sesi.miplata.R;
-import com.sesi.miplata.data.entity.GastosRecurrentes;
-import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.databinding.FragmentBalanceGeneralBinding;
 import com.sesi.miplata.util.Utils;
 import com.sesi.miplata.view.main.ListaOperacionesActivity;
-
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 public class BalanceGeneralFragment extends Fragment implements OnChartValueSelectedListener {
 
@@ -44,9 +34,9 @@ public class BalanceGeneralFragment extends Fragment implements OnChartValueSele
     private BalanceGeneralViewModel viewModel;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        BalanceGeneralViewModel.BalanceGeneralViewModelFactory factory = new BalanceGeneralViewModel.BalanceGeneralViewModelFactory(getActivity().getApplication());
+        BalanceGeneralViewModel.BalanceGeneralViewModelFactory factory = new BalanceGeneralViewModel.BalanceGeneralViewModelFactory(requireActivity().getApplication());
         viewModel = new ViewModelProvider(this, factory).get(BalanceGeneralViewModel.class);
 
         binding = FragmentBalanceGeneralBinding.inflate(inflater, container, false);
@@ -54,28 +44,22 @@ public class BalanceGeneralFragment extends Fragment implements OnChartValueSele
         binding.setViewModel(viewModel);
         binding.setBalanceGeneralFragment(this);
 
-        viewModel.getGastos().observe(getViewLifecycleOwner(), new Observer<List<GastosRecurrentes>>() {
-            @Override
-            public void onChanged(List<GastosRecurrentes> gastosRecurrentes) {
-                double gastoTotal = viewModel.getGastoTotal();
-                double ingresoTotal = viewModel.getIngresoTotal();
-                double ingresoNeto = viewModel.getIngresoNeto();
-                binding.tvGastosGeneral.setText(Utils.getCurrencyFormatter(gastoTotal));
-                binding.tvIngresoNeto.setText(Utils.getCurrencyFormatter(ingresoNeto));
-                setData(ingresoTotal, gastoTotal, ingresoNeto);
-            }
+        viewModel.getGastos().observe(getViewLifecycleOwner(), gastosRecurrentes -> {
+            double gastoTotal = viewModel.getGastoTotal();
+            double ingresoTotal = viewModel.getIngresoTotal();
+            double ingresoNeto = viewModel.getIngresoNeto();
+            binding.tvGastosGeneral.setText(Utils.getCurrencyFormatter(gastoTotal));
+            binding.tvIngresoNeto.setText(Utils.getCurrencyFormatter(ingresoNeto));
+            setData(ingresoTotal, gastoTotal, ingresoNeto);
         });
-        viewModel.getIngresos().observe(getViewLifecycleOwner(), new Observer<List<IngresosRecurrentes>>() {
-            @Override
-            public void onChanged(List<IngresosRecurrentes> ingresosRecurrentes) {
-                double gastoTotal = viewModel.getGastoTotal();
-                double ingresoTotal = viewModel.getIngresoTotal();
-                double ingresoNeto = viewModel.getIngresoNeto();
-                binding.tvIngresosGeneral.setText(Utils.getCurrencyFormatter(ingresoTotal));
-                binding.tvIngresoNeto.setText(Utils.getCurrencyFormatter(ingresoNeto));
-                setData(ingresoTotal, gastoTotal, ingresoNeto);
-                binding.chartGeneral.setCenterText(Utils.generateCenterSpannableText(Utils.getCurrencyFormatter(ingresoTotal)));
-            }
+        viewModel.getIngresos().observe(getViewLifecycleOwner(), ingresosRecurrentes -> {
+            double gastoTotal = viewModel.getGastoTotal();
+            double ingresoTotal = viewModel.getIngresoTotal();
+            double ingresoNeto = viewModel.getIngresoNeto();
+            binding.tvIngresosGeneral.setText(Utils.getCurrencyFormatter(ingresoTotal));
+            binding.tvIngresoNeto.setText(Utils.getCurrencyFormatter(ingresoNeto));
+            setData(ingresoTotal, gastoTotal, ingresoNeto);
+            binding.chartGeneral.setCenterText(Utils.generateCenterSpannableText(Utils.getCurrencyFormatter(ingresoTotal)));
         });
 
         configChart();

@@ -1,16 +1,26 @@
 <resources>
     <string name="app_name">MiPlata</string>
-    <string name="title_activity_current_balance">CurrentBalanceActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="icono_moneda">$</string>
+    <string name="lbl_ingreso">Ingresos</string>
+    <string name="lbl_gastos">Gastos</string>
+    <string name="lbl_logo">LOGO</string>
+    <string name="lbl_nuevo_registro">Nuevo Registro</string>
+    <string name="lbl_actualiza_registro">Actualiza Registro</string>
+    <string name="lbl_nombre">Nombre</string>
+    <string name="lbl_nota">Nota</string>
+    <string name="lbl_default_monto">0.00</string>
+    <string name="lbl_guardar">Guardar</string>
+    <string name="lbl_date_format">dd/mm/yyyy</string>
+    <string name="lbl_balance_general">Balance General</string>
+    <string name="lbl_fecha_default">Enero 2022</string>
+    <string name="content_description">.</string>
+    <string name="lbl_default_item_title">Hipoteca</string>
+    <string name="lbl_default_item_nota">Descuento mensual del infonavit</string>
+    <string name="lbl_default_item_fecha">15/01/2022</string>
+    <string name="lbl_default_item_monto">$2,500.00</string>
 
     <string name="tv_ingresos">Ingresos</string>
     <string name="tv_gastos">Gastos</string>
@@ -20,8 +30,6 @@
     <string name="fab_menu_add_op_rec">Operación mensual</string>
     <string name="fab_menu_add_op_day">Operación diaria</string>
     <string name="title_activity_menu">MenuActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
@@ -29,10 +37,6 @@
 
     <string name="menu_balance_mensual">Balance Mensual</string>
     <string name="menu_balance_general">Balance General</string>
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

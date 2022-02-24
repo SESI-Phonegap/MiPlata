@@ -14,8 +14,8 @@ public enum Month {
     NOVIEMBRE(11, "Noviembre"),
     DICIEMBRE(12, "Diciembre");
 
-    private int numberFormat;
-    private String textFormat;
+    private final int numberFormat;
+    private final String textFormat;
 
     Month(int numberFormat, String textFormat){
         this.numberFormat = numberFormat;

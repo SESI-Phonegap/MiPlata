@@ -1,18 +1,10 @@
 package com.sesi.miplata.data;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
-import androidx.sqlite.db.SupportSQLiteDatabase;
-import androidx.work.Data;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.WorkManager;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.sesi.miplata.data.converter.Converters;
 import com.sesi.miplata.data.dao.CategoriasDao;
 import com.sesi.miplata.data.dao.GastosRecurrentesDao;
@@ -31,8 +23,6 @@ import java.util.concurrent.Executors;
 public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
-    private static final String KEY_FILENAME = "CATEGORIES_LIST";
-    private static final String CATEGORIES_DATA_FILENAME = "categories.json";
     private static final String DATA_BASE_NAME = "MiPlata.db";
     private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor =

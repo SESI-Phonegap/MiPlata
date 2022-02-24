@@ -6,12 +6,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
-
-import com.sesi.miplata.data.converter.Converters;
-
 import java.util.Date;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -46,11 +41,12 @@ public class Operaciones {
     @NonNull
     private Long idCategoria;
 
+    @NonNull
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(@NonNull Long id) {
         this.id = id;
     }
 
@@ -94,11 +90,12 @@ public class Operaciones {
         this.tipoOperacion = tipoOperacion;
     }
 
+    @NonNull
     public Long getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(Long idCategoria) {
+    public void setIdCategoria(@NonNull Long idCategoria) {
         this.idCategoria = idCategoria;
     }
 }

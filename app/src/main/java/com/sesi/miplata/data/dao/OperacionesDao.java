@@ -15,17 +15,17 @@ import java.util.List;
 public interface OperacionesDao {
 
     @Insert
-    public void insert(Operaciones operacion);
+    void insert(Operaciones operacion);
 
     @Update
-    public int update(Operaciones operacion);
+    void update(Operaciones operacion);
 
     @Delete
-    public int delete(Operaciones operacion);
+    void delete(Operaciones operacion);
 
     @Query("SELECT * FROM OPERACIONES WHERE op_fecha BETWEEN :fechaIni AND :fechaFinal ORDER BY op_fecha ASC")
-    public LiveData<List<Operaciones>> getOperationsByDate(Long fechaIni, Long fechaFinal);
+    LiveData<List<Operaciones>> getOperationsByDate(Long fechaIni, Long fechaFinal);
 
     @Query("SELECT * FROM OPERACIONES")
-    public List<Operaciones> getAll();
+    List<Operaciones> getAll();
 }

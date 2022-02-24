@@ -66,13 +66,13 @@ public class OperacionesAdapter extends RecyclerView.Adapter<OperacionesAdapter.
     }
 
     public static class OperacionesViewHolder extends RecyclerView.ViewHolder{
-        TextView tvName;
-        ImageView imgIcon;
-        TextView tvNota;
-        TextView tvFecha;
-        TextView tvMonto;
+        final TextView tvName;
+        final ImageView imgIcon;
+        final TextView tvNota;
+        final TextView tvFecha;
+        final TextView tvMonto;
         OperacionesModel gasto;
-        View view;
+        final View view;
 
         public OperacionesViewHolder(View view){
             super(view);

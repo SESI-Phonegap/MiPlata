@@ -1,27 +1,22 @@
 package com.sesi.miplata.view.main;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-
 import com.sesi.miplata.R;
 import com.sesi.miplata.data.entity.Categorias;
 import com.sesi.miplata.data.entity.GastosRecurrentes;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
-import com.sesi.miplata.data.entity.Operaciones;
 import com.sesi.miplata.databinding.ActivityRegistroGastoIngresoBinding;
 import com.sesi.miplata.model.OperacionesModel;
-
 import java.util.List;
+import java.util.Objects;
 
 public class RegistroGastoIngresoActivity extends AppCompatActivity {
 
@@ -51,14 +46,11 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
 
         String type = binding.spinnerTipo.getSelectedItem().toString();
         viewModel.setFilterType(type);
-        viewModel.getCategorias().observe(this, new Observer<List<Categorias>>() {
-            @Override
-            public void onChanged(List<Categorias> categorias) {
-                adapter = new ArrayAdapter<Categorias>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, categorias);
-                binding.spinnerCategorias.setAdapter(adapter);
-                if (isUpdate){
-                    fillUpdateForm(operacion, categorias);
-                }
+        viewModel.getCategorias().observe(this, categorias -> {
+            adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, categorias);
+            binding.spinnerCategorias.setAdapter(adapter);
+            if (isUpdate){
+                fillUpdateForm(operacion, categorias);
             }
         });
 
@@ -80,43 +72,33 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
             }
         });
 
-        binding.btnDelete.setOnClickListener(v -> {
-            confirmDeleteDialog(operacion);
-        });
+        binding.btnDelete.setOnClickListener(v -> confirmDeleteDialog(operacion));
     }
 
     private void confirmDeleteDialog(OperacionesModel operacion){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Eliminar Registro");
         builder.setMessage("¿Estas seguro que quieres eliminar este registro?");
-        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                String operationType = binding.spinnerTipo.getSelectedItem().toString();
-                if (operationType.equals("Gasto")){
-                    GastosRecurrentes gastoDelete = populatedGasto();
-                    gastoDelete.setId(operacion.getId());
-                    viewModel.deleteGasto(gastoDelete);
-                } else {
-                    IngresosRecurrentes ingresoDelete = populatedIngreso();
-                    ingresoDelete.setId(operacion.getId());
-                    viewModel.deleteIngreso(ingresoDelete);
-                }
-                finish();
+        builder.setPositiveButton("Aceptar", (dialogInterface, i) -> {
+            String operationType = binding.spinnerTipo.getSelectedItem().toString();
+            if (operationType.equals("Gasto")){
+                GastosRecurrentes gastoDelete = populatedGasto();
+                gastoDelete.setId(operacion.getId());
+                viewModel.deleteGasto(gastoDelete);
+            } else {
+                IngresosRecurrentes ingresoDelete = populatedIngreso();
+                ingresoDelete.setId(operacion.getId());
+                viewModel.deleteIngreso(ingresoDelete);
             }
+            finish();
         });
-        builder.setNegativeButton(Html.fromHtml("<font color='#FF0000'>Cancelar</font>"), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
+        builder.setNegativeButton(Html.fromHtml("<font color='#FF0000'>Cancelar</font>"), (dialogInterface, i) -> dialogInterface.cancel());
         AlertDialog dialog = builder.create();
         dialog.show();
     }
 
     public void fillUpdateForm(OperacionesModel operacion, List<Categorias> categorias){
-        binding.tvTitle.setText("Actualiza Registro");
+        binding.tvTitle.setText(getString(R.string.lbl_actualiza_registro));
         binding.etName.setText(operacion.getName());
         binding.etNota.setText(operacion.getNota());
         binding.etMonto.setText(String.valueOf(operacion.getMonto()));
@@ -155,8 +137,8 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
     private GastosRecurrentes populatedGasto(){
         GastosRecurrentes gasto = new GastosRecurrentes();
         gasto.setNombre(binding.etName.getText().toString());
-        gasto.setNota(binding.etNota.getText().toString());
-        gasto.setMonto(Double.parseDouble(binding.etMonto.getText().toString()));
+        gasto.setNota(Objects.requireNonNull(binding.etNota.getText()).toString());
+        gasto.setMonto(Double.parseDouble(Objects.requireNonNull(binding.etMonto.getText()).toString()));
         Categorias slectCat = (Categorias) binding.spinnerCategorias.getSelectedItem();
         gasto.setIdCategoria(slectCat.getId());
         return gasto;
@@ -176,8 +158,8 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
     private IngresosRecurrentes populatedIngreso(){
         IngresosRecurrentes ingreso = new IngresosRecurrentes();
         ingreso.setNombre(binding.etName.getText().toString());
-        ingreso.setNota(binding.etNota.getText().toString());
-        ingreso.setMonto(Double.parseDouble(binding.etMonto.getText().toString()));
+        ingreso.setNota(Objects.requireNonNull(binding.etNota.getText()).toString());
+        ingreso.setMonto(Double.parseDouble(Objects.requireNonNull(binding.etMonto.getText()).toString()));
         Categorias slectCat = (Categorias) binding.spinnerCategorias.getSelectedItem();
         ingreso.setIdCategoria(slectCat.getId());
         return ingreso;

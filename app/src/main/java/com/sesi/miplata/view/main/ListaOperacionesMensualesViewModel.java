@@ -18,11 +18,11 @@ import java.util.List;
 
 public class ListaOperacionesMensualesViewModel extends ViewModel {
 
-    private OperacionesRepository operacionesRepo;
-    private LiveData<List<Operaciones>> operaciones;
-    private CategoriasRepository categoriasRepo;
+    private final OperacionesRepository operacionesRepo;
+    private final LiveData<List<Operaciones>> operaciones;
+    private final CategoriasRepository categoriasRepo;
     private List<Categorias> categorias;
-    private MutableLiveData<List<Long>> filterDates = new MutableLiveData<>();
+    private final MutableLiveData<List<Long>> filterDates = new MutableLiveData<>();
 
     public ListaOperacionesMensualesViewModel(Application application){
         operacionesRepo = new OperacionesRepository(application);

@@ -18,17 +18,16 @@ import java.util.List;
 
 public class RegistroOperacionesMensualesViewModel extends ViewModel {
 
-    private OperacionesRepository operacionesRepo;
-    private CategoriasRepository categoriasRepository;
-    private LiveData<List<Categorias>> categorias;
-    private MutableLiveData<String> filterType = new MutableLiveData<>();
+    private final OperacionesRepository operacionesRepo;
+    private final LiveData<List<Categorias>> categorias;
+    private final MutableLiveData<String> filterType = new MutableLiveData<>();
 
 
     public RegistroOperacionesMensualesViewModel(Application application){
         this.operacionesRepo = new OperacionesRepository(application);
-        categoriasRepository = new CategoriasRepository(application);
+        CategoriasRepository categoriasRepository = new CategoriasRepository(application);
         categorias = Transformations.switchMap(filterType,
-                type -> categoriasRepository.getCategoriesByType(type));
+                categoriasRepository::getCategoriesByType);
     }
 
     public void insertOperacion(Operaciones operacion){

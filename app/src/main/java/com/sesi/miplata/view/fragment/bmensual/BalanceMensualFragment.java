@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -21,9 +22,6 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.sesi.miplata.R;
-import com.sesi.miplata.data.entity.GastosRecurrentes;
-import com.sesi.miplata.data.entity.IngresosRecurrentes;
-import com.sesi.miplata.data.entity.Operaciones;
 import com.sesi.miplata.databinding.FragmentBalanceMensualBinding;
 import com.sesi.miplata.util.Utils;
 import com.sesi.miplata.view.main.ListaOperacionesMensualesActivity;
@@ -31,7 +29,7 @@ import com.sesi.miplata.view.main.ListaOperacionesMensualesActivity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
+import java.util.Objects;
 
 public class BalanceMensualFragment extends Fragment implements OnChartValueSelectedListener {
 
@@ -42,9 +40,9 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        BalanceMensualViewModel.BalanceMensualViewModelFactory factory = new BalanceMensualViewModel.BalanceMensualViewModelFactory(getActivity().getApplication());
+        BalanceMensualViewModel.BalanceMensualViewModelFactory factory = new BalanceMensualViewModel.BalanceMensualViewModelFactory(requireActivity().getApplication());
         viewModel = new ViewModelProvider(this, factory).get(BalanceMensualViewModel.class);
         binding = FragmentBalanceMensualBinding.inflate(inflater, container, false);
         binding.setLifecycleOwner(this);
@@ -58,36 +56,17 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
         binding.tvTitle.setText(dateDisplay);
         viewModel.setFilterDate(mes, ano);
 
-        viewModel.getGastos().observe(getViewLifecycleOwner(), new Observer<List<GastosRecurrentes>>() {
-            @Override
-            public void onChanged(List<GastosRecurrentes> gastosRecurrentes) {
-                updateUi();
-            }
-        });
+        viewModel.getGastos().observe(getViewLifecycleOwner(), gastosRecurrentes -> updateUi());
 
-        viewModel.getIngresos().observe(getViewLifecycleOwner(), new Observer<List<IngresosRecurrentes>>() {
-            @Override
-            public void onChanged(List<IngresosRecurrentes> ingresosRecurrentes) {
-                updateUi();
-            }
-        });
+        viewModel.getIngresos().observe(getViewLifecycleOwner(), ingresosRecurrentes -> updateUi());
 
-        viewModel.getOperacionesByMonth().observe(getViewLifecycleOwner(), new Observer<List<Operaciones>>() {
-            @Override
-            public void onChanged(List<Operaciones> operaciones) {
-                updateUi();
-            }
-        });
+        viewModel.getOperacionesByMonth().observe(getViewLifecycleOwner(), operaciones -> updateUi());
 
         configChart();
 
-        binding.constraintIngreso.setOnClickListener(v -> {
-            openList(false);
-        });
+        binding.constraintIngreso.setOnClickListener(v -> openList(false));
 
-        binding.constraintGastos.setOnClickListener(v -> {
-            openList(true);
-        });
+        binding.constraintGastos.setOnClickListener(v -> openList(true));
         return binding.getRoot();
     }
 

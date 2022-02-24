@@ -12,8 +12,8 @@ import java.util.List;
 
 public class GastosRecurrentesRepository {
 
-    private GastosRecurrentesDao gastosRecurrentesDao;
-    private LiveData<List<GastosRecurrentes>> gastosTodos;
+    private final GastosRecurrentesDao gastosRecurrentesDao;
+    private final LiveData<List<GastosRecurrentes>> gastosTodos;
 
     public GastosRecurrentesRepository(Application application) {
         AppDatabase db = AppDatabase.getInstance(application);

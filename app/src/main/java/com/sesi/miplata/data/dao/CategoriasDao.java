@@ -16,20 +16,20 @@ import java.util.List;
 public interface CategoriasDao {
 
     @Query("SELECT * FROM CATEGORIAS WHERE cat_tipo = :tipo")
-    public LiveData<List<Categorias>> getCategoriesByType(String tipo);
+    LiveData<List<Categorias>> getCategoriesByType(String tipo);
 
     @Query("SELECT * FROM CATEGORIAS")
-    public List<Categorias> getAll();
+    List<Categorias> getAll();
 
     @Insert
-    public void insertCategory(Categorias categoria);
+    void insertCategory(Categorias categoria);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public void insertAll(List<Categorias> categoriasList);
+    void insertAll(List<Categorias> categoriasList);
 
     @Update
-    public int updateCategory(Categorias categoria);
+    void updateCategory(Categorias categoria);
 
     @Delete
-    public int deleteCategory(Categorias categoria);
+    void deleteCategory(Categorias categoria);
 }

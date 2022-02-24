@@ -1,20 +1,16 @@
 package com.sesi.miplata.data.repository;
 
 import android.app.Application;
-
 import androidx.lifecycle.LiveData;
-
 import com.sesi.miplata.data.AppDatabase;
 import com.sesi.miplata.data.dao.CategoriasDao;
 import com.sesi.miplata.data.entity.Categorias;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriasRepository {
 
-    private CategoriasDao categoriasDao;
-    private List<Categorias> categories;
+    private final CategoriasDao categoriasDao;
+    private final List<Categorias> categories;
 
     public CategoriasRepository(Application application) {
         AppDatabase db = AppDatabase.getInstance(application);
@@ -23,9 +19,7 @@ public class CategoriasRepository {
     }
 
     public void insert(Categorias categoria) {
-        AppDatabase.databaseWriteExecutor.execute(() -> {
-            categoriasDao.insertCategory(categoria);
-        });
+        AppDatabase.databaseWriteExecutor.execute(() -> categoriasDao.insertCategory(categoria));
     }
 
     public void update(Categorias categoria){

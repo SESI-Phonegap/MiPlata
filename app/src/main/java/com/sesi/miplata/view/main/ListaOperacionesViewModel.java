@@ -20,16 +20,14 @@ import java.util.List;
 
 public class ListaOperacionesViewModel extends ViewModel {
 
-    private GastosRecurrentesRepository gastosRepo;
-    private IngresosRecurrentesRepository ingresosRepo;
-    private CategoriasRepository categoriasRepo;
-    private LiveData<List<GastosRecurrentes>> gastos;
-    private LiveData<List<IngresosRecurrentes>> ingresos;
+    private final CategoriasRepository categoriasRepo;
+    private final LiveData<List<GastosRecurrentes>> gastos;
+    private final LiveData<List<IngresosRecurrentes>> ingresos;
     private List<Categorias> categorias;
 
     public ListaOperacionesViewModel(Application application) {
-        gastosRepo = new GastosRecurrentesRepository(application);
-        ingresosRepo = new IngresosRecurrentesRepository(application);
+        GastosRecurrentesRepository gastosRepo = new GastosRecurrentesRepository(application);
+        IngresosRecurrentesRepository ingresosRepo = new IngresosRecurrentesRepository(application);
         categoriasRepo = new CategoriasRepository(application);
         gastos = gastosRepo.getAll();
         ingresos = ingresosRepo.getAll();

@@ -37,21 +37,18 @@ public class MenuActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.FirstFragment,R.id.SecondFragment)
+                R.id.FirstFragment)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_current_balance);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        binding.appBarMenu.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!isFABOpen){
-                    showFabMenu();
-                } else {
-                    hideFabMenu();
-                }
+        binding.appBarMenu.fab.setOnClickListener(view -> {
+            if (!isFABOpen){
+                showFabMenu();
+            } else {
+                hideFabMenu();
             }
         });
 

@@ -1,15 +1,12 @@
 package com.sesi.miplata.view.fragment.bmensual;
 
 import android.app.Application;
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.sesi.miplata.data.entity.GastosRecurrentes;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.data.entity.Operaciones;
@@ -17,26 +14,20 @@ import com.sesi.miplata.data.repository.GastosRecurrentesRepository;
 import com.sesi.miplata.data.repository.IngresosRecurrentesRepository;
 import com.sesi.miplata.data.repository.OperacionesRepository;
 import com.sesi.miplata.util.Utils;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 public class BalanceMensualViewModel extends ViewModel {
 
-    private OperacionesRepository operacionesRepo;
-    private GastosRecurrentesRepository gastosRepo;
-    private IngresosRecurrentesRepository ingresosRepo;
-    private LiveData<List<Operaciones>> operaciones;
-    private LiveData<List<GastosRecurrentes>> gastos;
-    private LiveData<List<IngresosRecurrentes>> ingresos;
-    private MutableLiveData<List<Long>> filterDate = new MutableLiveData<>();
+    private final OperacionesRepository operacionesRepo;
+    private final LiveData<List<Operaciones>> operaciones;
+    private final LiveData<List<GastosRecurrentes>> gastos;
+    private final LiveData<List<IngresosRecurrentes>> ingresos;
+    private final MutableLiveData<List<Long>> filterDate = new MutableLiveData<>();
 
     public BalanceMensualViewModel(Application application) {
         operacionesRepo = new OperacionesRepository(application);
-        gastosRepo = new GastosRecurrentesRepository(application);
-        ingresosRepo = new IngresosRecurrentesRepository(application);
+        GastosRecurrentesRepository gastosRepo = new GastosRecurrentesRepository(application);
+        IngresosRecurrentesRepository ingresosRepo = new IngresosRecurrentesRepository(application);
         gastos = gastosRepo.getAll();
         ingresos = ingresosRepo.getAll();
         operaciones = Transformations.switchMap(filterDate,

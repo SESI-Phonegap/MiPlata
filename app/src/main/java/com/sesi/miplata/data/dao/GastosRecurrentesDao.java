@@ -15,20 +15,20 @@ import java.util.List;
 public interface GastosRecurrentesDao {
 
     @Insert
-    public void insert(GastosRecurrentes gasto);
+    void insert(GastosRecurrentes gasto);
 
     @Update
-    public int update(GastosRecurrentes gasto);
+    void update(GastosRecurrentes gasto);
 
     @Delete
-    public int delete(GastosRecurrentes gasto);
+    void delete(GastosRecurrentes gasto);
 
     @Query("SELECT * FROM GASTOS_RECURRENTES")
-    public LiveData<List<GastosRecurrentes>> getAll();
+    LiveData<List<GastosRecurrentes>> getAll();
 
     @Query("SELECT * FROM GASTOS_RECURRENTES")
-    public List<GastosRecurrentes> getAllMain();
+    List<GastosRecurrentes> getAllMain();
 
     @Query("SELECT * FROM GASTOS_RECURRENTES WHERE gr_id = :id")
-    public GastosRecurrentes getById(Long id);
+    GastosRecurrentes getById(Long id);
 }

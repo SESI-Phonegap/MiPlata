@@ -1,7 +1,6 @@
 package com.sesi.miplata.view.main;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -21,7 +20,6 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.sesi.miplata.R;
 import com.sesi.miplata.data.entity.Categorias;
-import com.sesi.miplata.data.entity.Operaciones;
 import com.sesi.miplata.databinding.ActivityListaOperacionesMensualesBinding;
 import com.sesi.miplata.model.OperacionesModel;
 import com.sesi.miplata.util.Utils;
@@ -34,7 +32,6 @@ public class ListaOperacionesMensualesActivity extends AppCompatActivity impleme
 
     private ActivityListaOperacionesMensualesBinding binding;
     private  ListaOperacionesMensualesViewModel viewModel;
-    private boolean isGasto;
     private OperacionesAdapter adapter;
 
     @Override
@@ -44,26 +41,23 @@ public class ListaOperacionesMensualesActivity extends AppCompatActivity impleme
         setContentView(binding.getRoot());
         ListaOperacionesMensualesViewModel.ListaOperacionesMensualesViewModelFactory factory = new ListaOperacionesMensualesViewModel.ListaOperacionesMensualesViewModelFactory(getApplication());
         viewModel = new ViewModelProvider(this, factory).get(ListaOperacionesMensualesViewModel.class);
-        isGasto = getIntent().getBooleanExtra("isGastoView", false);
+        boolean isGasto = getIntent().getBooleanExtra("isGastoView", false);
         String typeOp = isGasto ? "Gasto" : "Ingreso";
         List<Long> dates = (List<Long>) getIntent().getSerializableExtra("dates");
         binding.setLifecycleOwner(this);
         binding.setViewModel(viewModel);
         binding.setListaOperacionesMensualesActivity(this);
         viewModel.setFilterDates(dates);
-        viewModel.getOperaciones().observe(this, new Observer<List<Operaciones>>() {
-            @Override
-            public void onChanged(List<Operaciones> operaciones) {
-                adapter = new OperacionesAdapter();
-                List<OperacionesModel> operacionesFill = viewModel.fillOperaciones(dates.get(0), dates.get(1), typeOp);
-                List<Categorias> categorias = viewModel.getCategorias();
-                List<OperacionesModel> groupListOp = Utils.groupOperations(operacionesFill,categorias);
-                adapter.setOperaciones(operacionesFill);
-                adapter.setItemClickListener((OperacionesModel operacion) -> openEditActivity(operacion));
-                setData(groupListOp);
-                binding.rvList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                binding.rvList.setAdapter(adapter);
-            }
+        viewModel.getOperaciones().observe(this, operaciones -> {
+            adapter = new OperacionesAdapter();
+            List<OperacionesModel> operacionesFill = viewModel.fillOperaciones(dates.get(0), dates.get(1), typeOp);
+            List<Categorias> categorias = viewModel.getCategorias();
+            List<OperacionesModel> groupListOp = Utils.groupOperations(operacionesFill,categorias);
+            adapter.setOperaciones(operacionesFill);
+            adapter.setItemClickListener(this::openEditActivity);
+            setData(groupListOp);
+            binding.rvList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            binding.rvList.setAdapter(adapter);
         });
         configChart();
     }

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class OperacionesRepository {
 
-    private OperacionesDao operacionesDao;
+    private final OperacionesDao operacionesDao;
 
     public OperacionesRepository(Application application) {
         AppDatabase db = AppDatabase.getInstance(application);

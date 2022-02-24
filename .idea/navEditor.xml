@@ -90,13 +90,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="balanceGeneralFragment2">
+                  <entry key="nav_balance_general">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="129" />
-                            <option name="y" value="314" />
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
                           </Point>
                         </option>
                       </LayoutPositions>

@@ -1,11 +1,9 @@
 package com.sesi.miplata.data.entity;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,11 +26,12 @@ public class Categorias {
     @ColumnInfo(name = "cat_tipo")
     private String tipoCategoria;
 
+    @NonNull
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(@NonNull Long id) {
         this.id = id;
     }
 

@@ -1,18 +1,13 @@
 package com.sesi.miplata.view.main;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 
 import com.sesi.miplata.R;
 import com.sesi.miplata.data.entity.Categorias;
@@ -21,12 +16,7 @@ import com.sesi.miplata.databinding.ActivityRegistroOperacionesMensualesBinding;
 import com.sesi.miplata.model.OperacionesModel;
 import com.sesi.miplata.util.Utils;
 import com.sesi.miplata.view.fragment.datepicker.DatePickerFragment;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class RegistroOperacionesMensualesActivity extends AppCompatActivity {
@@ -58,14 +48,11 @@ public class RegistroOperacionesMensualesActivity extends AppCompatActivity {
         String type = binding.spinnerTipo.getSelectedItem().toString();
         viewModel.setFilterType(type);
 
-        viewModel.getCategorias().observe(this, new Observer<List<Categorias>>() {
-            @Override
-            public void onChanged(List<Categorias> categorias) {
-                adapter = new ArrayAdapter<Categorias>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, categorias);
-                binding.spinnerCategorias.setAdapter(adapter);
-                if (isUpdate){
-                    fillUpdateForm(operacion, categorias);
-                }
+        viewModel.getCategorias().observe(this, categorias -> {
+            adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, categorias);
+            binding.spinnerCategorias.setAdapter(adapter);
+            if (isUpdate){
+                fillUpdateForm(operacion, categorias);
             }
         });
 
@@ -81,57 +68,42 @@ public class RegistroOperacionesMensualesActivity extends AppCompatActivity {
 
             }
         });
-        binding.etDate.setOnClickListener(v -> {
-            showDatePicker();
-        });
+        binding.etDate.setOnClickListener(v -> showDatePicker());
 
         binding.btnGuardar.setOnClickListener(v -> {
             saveOperation(operacion);
             finish();
         });
 
-        binding.btnDelete.setOnClickListener(v -> {
-            confirmDeleteDialog(operacion);
-        });
+        binding.btnDelete.setOnClickListener(v -> confirmDeleteDialog(operacion));
     }
 
     private void confirmDeleteDialog(OperacionesModel operacion){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Eliminar Registro");
         builder.setMessage("¿Estas seguro que quieres eliminar este registro?");
-        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Operaciones operacionDelete = populateOperation();
-                operacionDelete.setId(operacion.getId());
-                viewModel.deleteOperacion(operacionDelete);
-                finish();
-            }
+        builder.setPositiveButton("Aceptar", (dialogInterface, i) -> {
+            Operaciones operacionDelete = populateOperation();
+            operacionDelete.setId(operacion.getId());
+            viewModel.deleteOperacion(operacionDelete);
+            finish();
         });
-        builder.setNegativeButton(Html.fromHtml("<font color='#FF0000'>Cancelar</font>"), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
+        builder.setNegativeButton(Html.fromHtml("<font color='#FF0000'>Cancelar</font>"), (dialogInterface, i) -> dialogInterface.cancel());
         AlertDialog dialog = builder.create();
         dialog.show();
     }
 
     private void showDatePicker(){
-        DatePickerFragment datePicker = DatePickerFragment.getInstance(new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                int realMonth = month+1;
-                final String selectedDate = day + "/" + realMonth + "/" + year;
-                binding.etDate.setText(selectedDate);
-            }
+        DatePickerFragment datePicker = DatePickerFragment.getInstance((datePicker1, year, month, day) -> {
+            int realMonth = month+1;
+            final String selectedDate = day + "/" + realMonth + "/" + year;
+            binding.etDate.setText(selectedDate);
         });
         datePicker.show(getSupportFragmentManager(), "Date Picker");
     }
 
     public void fillUpdateForm(OperacionesModel operacion, List<Categorias> categorias){
-        binding.tvTitle.setText("Actualiza Registro");
+        binding.tvTitle.setText(getString(R.string.lbl_actualiza_registro));
         binding.etNombre.setText(operacion.getName());
         binding.etNota.setText(operacion.getNota());
         binding.etDate.setText(operacion.getFecha());
@@ -177,7 +149,7 @@ public class RegistroOperacionesMensualesActivity extends AppCompatActivity {
         Categorias selectCat = (Categorias) binding.spinnerCategorias.getSelectedItem();
         operacion.setIdCategoria(selectCat.getId());
         String date = binding.etDate.getText().toString();
-        String[] splitDate = date.split("\\/");
+        String[] splitDate = date.split("/");
         String dia = splitDate[0];
         String mes = splitDate[1];
         String ano = splitDate[2];
