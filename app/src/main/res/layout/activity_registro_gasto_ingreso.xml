@@ -97,6 +97,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
             android:ems="10"
+            android:drawableStart="@drawable/ic_paid"
             android:inputType="numberDecimal"
             android:hint="@string/lbl_default_monto"
             android:textSize="20sp"

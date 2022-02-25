@@ -1,5 +1,6 @@
 package com.sesi.miplata.view.main;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.components.Legend;
@@ -27,6 +29,7 @@ import com.sesi.miplata.view.main.adapter.OperacionesAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ListaOperacionesMensualesActivity extends AppCompatActivity implements OnChartValueSelectedListener {
 
@@ -47,6 +50,7 @@ public class ListaOperacionesMensualesActivity extends AppCompatActivity impleme
         binding.setLifecycleOwner(this);
         binding.setViewModel(viewModel);
         binding.setListaOperacionesMensualesActivity(this);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         viewModel.setFilterDates(dates);
         viewModel.getOperaciones().observe(this, operaciones -> {
             adapter = new OperacionesAdapter();
@@ -149,5 +153,11 @@ public class ListaOperacionesMensualesActivity extends AppCompatActivity impleme
     @Override
     public void onNothingSelected() {
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 }

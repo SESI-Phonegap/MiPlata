@@ -1,11 +1,13 @@
 package com.sesi.miplata.view.main;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -43,7 +45,7 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         binding.setViewModel(viewModel);
         binding.setRegistroGastoIngresoActivity(this);
 
-
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         String type = binding.spinnerTipo.getSelectedItem().toString();
         viewModel.setFilterType(type);
         viewModel.getCategorias().observe(this, categorias -> {
@@ -174,5 +176,11 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         IngresosRecurrentes ingresoUpdate = populatedIngreso();
         ingresoUpdate.setId(ingreso.getId());
         viewModel.updateIngreso(ingresoUpdate);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 }

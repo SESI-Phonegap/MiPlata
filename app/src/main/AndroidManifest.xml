@@ -16,15 +16,13 @@
             android:name=".view.main.RegistroOperacionesMensualesActivity"
             android:exported="false" />
         <activity
+            android:name=".view.main.RegistroGastoIngresoActivity"
+            android:exported="false"/>
+        <activity
             android:name=".view.main.ListaOperacionesActivity"
             android:exported="false" />
         <activity
             android:name=".view.main.MenuActivity"
-            android:exported="false"
-            android:label="@string/title_activity_menu"
-            android:theme="@style/Theme.MiPlata.NoActionBar" />
-        <activity
-            android:name=".view.main.RegistroGastoIngresoActivity"
             android:exported="false"
             android:theme="@style/Theme.MiPlata.NoActionBar" />
         <activity

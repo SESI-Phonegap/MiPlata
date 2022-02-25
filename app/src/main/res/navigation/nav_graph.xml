@@ -8,11 +8,9 @@
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.sesi.miplata.view.fragment.bmensual.BalanceMensualFragment"
-        android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_balance_mensual"/>
     <fragment
         android:id="@+id/nav_balance_general"
         android:name="com.sesi.miplata.view.fragment.bgeneral.BalanceGeneralFragment"
-        android:label="fragment_balance_general"
         tools:layout="@layout/fragment_balance_general" />
 </navigation>

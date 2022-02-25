@@ -1,14 +1,15 @@
 package com.sesi.miplata.view.main;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-
 import com.sesi.miplata.R;
 import com.sesi.miplata.data.entity.Categorias;
 import com.sesi.miplata.data.entity.Operaciones;
@@ -18,6 +19,7 @@ import com.sesi.miplata.util.Utils;
 import com.sesi.miplata.view.fragment.datepicker.DatePickerFragment;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 public class RegistroOperacionesMensualesActivity extends AppCompatActivity {
 
@@ -44,7 +46,7 @@ public class RegistroOperacionesMensualesActivity extends AppCompatActivity {
         binding.setLifecycleOwner(this);
         binding.setViewModel(viewModel);
         binding.setRegistroOperacionesMensualesActivity(this);
-
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         String type = binding.spinnerTipo.getSelectedItem().toString();
         viewModel.setFilterType(type);
 
@@ -158,5 +160,11 @@ public class RegistroOperacionesMensualesActivity extends AppCompatActivity {
         c.set(Integer.parseInt(ano),Integer.parseInt(mes)-1, Integer.parseInt(dia));
         operacion.setFecha(c.getTime());
         return operacion;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 }

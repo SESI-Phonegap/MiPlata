@@ -1,5 +1,6 @@
 package com.sesi.miplata.view.main;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +8,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
@@ -25,6 +28,7 @@ import com.sesi.miplata.util.Utils;
 import com.sesi.miplata.view.main.adapter.OperacionesAdapter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ListaOperacionesActivity extends AppCompatActivity implements OnChartValueSelectedListener {
 
@@ -45,6 +49,7 @@ public class ListaOperacionesActivity extends AppCompatActivity implements OnCha
         binding.setLifecycleOwner(this);
         binding.setViewModel(viewModel);
         binding.setListaOperacionesActivity(this);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         viewModel.getGastos().observe(this, gastosRecurrentes -> {
             if (isGastosView) {
@@ -75,6 +80,12 @@ public class ListaOperacionesActivity extends AppCompatActivity implements OnCha
         });
 
         configChart();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 
     private void openEditActivity(OperacionesModel operacion){
