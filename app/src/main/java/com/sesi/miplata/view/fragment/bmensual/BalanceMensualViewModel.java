@@ -92,6 +92,14 @@ public class BalanceMensualViewModel extends ViewModel {
         filterDate.setValue(dates);
     }
 
+    public void setFilterDateRango(String diaInit, String mesInit, String anoInit,
+                                   String diaFin, String mesFin, String anoFin) {
+        String formatMesIni = Utils.formatMonth(mesInit);
+        String formatMesFin = Utils.formatMonth(mesFin);
+        List<Long> dates = Utils.getDateInitEnd(diaInit,formatMesIni,anoInit,diaFin,formatMesFin,anoFin);
+        filterDate.setValue(dates);
+    }
+
     public LiveData<List<GastosRecurrentes>> getGastos() {
         return gastos;
     }

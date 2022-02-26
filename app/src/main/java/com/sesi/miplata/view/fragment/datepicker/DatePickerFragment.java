@@ -12,6 +12,7 @@ import java.util.Calendar;
 public class DatePickerFragment extends DialogFragment {
 
     private DatePickerDialog.OnDateSetListener listener;
+    private DatePickerDialog pickerDialog;
 
     public static DatePickerFragment getInstance(DatePickerDialog.OnDateSetListener listener){
         DatePickerFragment fragment = new DatePickerFragment();
@@ -26,11 +27,16 @@ public class DatePickerFragment extends DialogFragment {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        return new DatePickerDialog(getActivity(),listener, year, month, day);
+        pickerDialog = new DatePickerDialog(getActivity(),listener, year, month, day);
+        return pickerDialog;
     }
 
 
     public void setListener(DatePickerDialog.OnDateSetListener listener) {
         this.listener = listener;
+    }
+
+    public DatePickerDialog getPickerDialog(){
+        return this.pickerDialog;
     }
 }

@@ -34,6 +34,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="lbl_subheader_menu">Organiza tus finanzas.</string>
     <string name="splash">MiPlata Administra tus finanzas.</string>
+    <string name="dialog_fechas_title">Seleccione las fechas que desea buscar.</string>
+    <string name="fecha_inicial">Fecha Inicial</string>
+    <string name="fecha_final">Fecha Final</string>
+    <string name="btn_buscar">Buscar</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="msg_fechaini_required">Indique la fecha inical.</string>
+    <string name="msg_fechas_required">Las fechas son requridas.</string>
     
     //admob
     <string name="id_app">ca-app-pub-2449148181464779~5726548361</string>

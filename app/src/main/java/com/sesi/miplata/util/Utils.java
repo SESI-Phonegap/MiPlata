@@ -181,6 +181,18 @@ public class Utils {
         return dates;
     }
 
+    public static List<Long> getDateInitEnd(String diaIni, String mesIni, String anoIni,
+                                            String diaFin, String mesFin, String anoFin){
+        Calendar iniDate = Calendar.getInstance();
+        iniDate.set(Integer.parseInt(anoIni), Integer.parseInt(mesIni)-1, Integer.parseInt(diaIni));
+        Calendar endDate = Calendar.getInstance();
+        endDate.set(Integer.parseInt(anoFin), Integer.parseInt(mesFin)-1, Integer.parseInt(diaFin));
+        List<Long> dates = new ArrayList<>();
+        dates.add(iniDate.getTimeInMillis());
+        dates.add(endDate.getTimeInMillis());
+        return dates;
+    }
+
     public static List<OperacionesModel> groupOperations(List<OperacionesModel> operaciones, List<Categorias> categorias){
         List<OperacionesModel> filterOperations = new ArrayList<>();
         for(Categorias categoria: categorias){
