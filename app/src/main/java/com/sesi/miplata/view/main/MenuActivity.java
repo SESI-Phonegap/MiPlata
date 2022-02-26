@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -31,6 +35,13 @@ public class MenuActivity extends AppCompatActivity {
         binding = ActivityMenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        loadAds();
         setSupportActionBar(binding.appBarMenu.toolbar);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -61,6 +72,11 @@ public class MenuActivity extends AppCompatActivity {
             Intent intent = new Intent(this, RegistroGastoIngresoActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void loadAds(){
+        AdRequest adRequest = new AdRequest.Builder().build();
+        binding.appBarMenu.content.adViewBanner.loadAd(adRequest);
     }
 
     @Override

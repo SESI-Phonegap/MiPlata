@@ -20,6 +20,10 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.MPPointF;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.sesi.miplata.R;
 import com.sesi.miplata.data.entity.Categorias;
 import com.sesi.miplata.databinding.ActivityListaOperacionesBinding;
@@ -42,6 +46,14 @@ public class ListaOperacionesActivity extends AppCompatActivity implements OnCha
         super.onCreate(savedInstanceState);
         binding = ActivityListaOperacionesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        loadAds();
         ListaOperacionesViewModel.ListaOperacionesViewModelFactory factory = new ListaOperacionesViewModel.ListaOperacionesViewModelFactory(getApplication());
         viewModel = new ViewModelProvider(this, factory).get(ListaOperacionesViewModel.class);
         isGastosView = getIntent().getBooleanExtra("isGastoView", false);
@@ -80,6 +92,10 @@ public class ListaOperacionesActivity extends AppCompatActivity implements OnCha
         });
 
         configChart();
+    }
+    private void loadAds() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        binding.adViewBanner.loadAd(adRequest);
     }
 
     @Override

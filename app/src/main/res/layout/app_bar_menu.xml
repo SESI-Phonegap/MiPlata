@@ -20,7 +20,9 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_current_balance" />
+    <include
+        android:id="@+id/content"
+        layout="@layout/content_current_balance" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/fabLayoutOpRec"

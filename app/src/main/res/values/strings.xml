@@ -33,5 +33,12 @@
     <string name="menu_balance_general">Balance General</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="lbl_subheader_menu">Organiza tus finanzas.</string>
+    
+    //admob
+    <string name="id_app">ca-app-pub-2449148181464779~5726548361</string>
+    <string name="banner">ca-app-pub-2449148181464779/1241380584</string>
+    <string name="interesticial">ca-app-pub-2449148181464779/7995287355</string>
+    <string name="prueba">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="pruebaInteresticial">ca-app-pub-3940256099942544/1033173712</string>
 
 </resources>

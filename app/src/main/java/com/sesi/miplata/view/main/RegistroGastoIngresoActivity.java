@@ -11,6 +11,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.sesi.miplata.R;
 import com.sesi.miplata.data.entity.Categorias;
 import com.sesi.miplata.data.entity.GastosRecurrentes;
@@ -26,12 +36,21 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
     private boolean isUpdate;
     private RegistroGastoIngresoViewModel viewModel;
     private ArrayAdapter<Categorias> adapter;
+    private InterstitialAd mInterstitialAd;
+    private AdRequest adRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityRegistroGastoIngresoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        loadAds();
         RegistroGastoIngresoViewModel.RegistroGastoIngresoViewModelFactory factory = new RegistroGastoIngresoViewModel.RegistroGastoIngresoViewModelFactory(getApplication());
         viewModel = new ViewModelProvider(this, factory).get(RegistroGastoIngresoViewModel.class);
         OperacionesModel operacion = (OperacionesModel) getIntent().getSerializableExtra("operacion");
@@ -59,7 +78,6 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
 
         binding.btnGuardar.setOnClickListener(v -> {
             saveOperation(operacion);
-            finish();
         });
 
         binding.spinnerTipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -75,6 +93,49 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         });
 
         binding.btnDelete.setOnClickListener(v -> confirmDeleteDialog(operacion));
+    }
+
+    private void loadAds(){
+        adRequest = new AdRequest.Builder().build();
+        binding.adViewBanner.loadAd(adRequest);
+        InterstitialAd.load(this, getString(R.string.pruebaInteresticial), adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                mInterstitialAd = null;
+            }
+
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                mInterstitialAd = interstitialAd;
+            }
+        });
+    }
+
+    private void loadInterestecialAd(){
+
+        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+            @Override
+            public void onAdDismissedFullScreenContent() {
+                finish();
+            }
+
+            @Override
+            public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                finish();
+            }
+
+            @Override
+            public void onAdShowedFullScreenContent() {
+                mInterstitialAd = null;
+                finish();
+            }
+        });
+
+        if (mInterstitialAd != null) {
+            mInterstitialAd.show(this);
+        } else {
+            Log.d("TAG", "The interstitial ad wasn't ready yet.");
+        }
     }
 
     private void confirmDeleteDialog(OperacionesModel operacion){
@@ -134,6 +195,7 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
                 insertIngreso();
             }
         }
+        loadInterestecialAd();
     }
 
     private GastosRecurrentes populatedGasto(){
