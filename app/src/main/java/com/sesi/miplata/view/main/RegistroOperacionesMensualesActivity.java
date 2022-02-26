@@ -149,7 +149,7 @@ public class RegistroOperacionesMensualesActivity extends AppCompatActivity {
             Operaciones operacionDelete = populateOperation();
             operacionDelete.setId(operacion.getId());
             viewModel.deleteOperacion(operacionDelete);
-            finish();
+            loadInterestecialAd();
         });
         builder.setNegativeButton(Html.fromHtml("<font color='#FF0000'>Cancelar</font>"), (dialogInterface, i) -> dialogInterface.cancel());
         AlertDialog dialog = builder.create();

@@ -153,7 +153,7 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
                 ingresoDelete.setId(operacion.getId());
                 viewModel.deleteIngreso(ingresoDelete);
             }
-            finish();
+            loadInterestecialAd();
         });
         builder.setNegativeButton(Html.fromHtml("<font color='#FF0000'>Cancelar</font>"), (dialogInterface, i) -> dialogInterface.cancel());
         AlertDialog dialog = builder.create();
