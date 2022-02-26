@@ -33,6 +33,7 @@
     <string name="menu_balance_general">Balance General</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="lbl_subheader_menu">Organiza tus finanzas.</string>
+    <string name="splash">MiPlata Administra tus finanzas.</string>
     
     //admob
     <string name="id_app">ca-app-pub-2449148181464779~5726548361</string>
