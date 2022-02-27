@@ -70,6 +70,7 @@ public class Utils {
         s.setSpan(new RelativeSizeSpan(2.0f), 0, s.length()-13, 0);
         s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 13, s.length(), 0);
         s.setSpan(new RelativeSizeSpan(1.5f),s.length()-13,s.length(),0);
+        s.setSpan(new ForegroundColorSpan(ColorTemplate.rgb("FF0000")), 0, s.length() - 14,0);
         s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 13, s.length(), 0);
         return s;
     }
@@ -80,6 +81,7 @@ public class Utils {
         s.setSpan(new RelativeSizeSpan(2.0f), 0, s.length()-5, 0);
         s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 5, s.length(), 0);
         s.setSpan(new RelativeSizeSpan(1.5f),s.length()-5,s.length(),0);
+        s.setSpan(new ForegroundColorSpan(ColorTemplate.rgb("FF0000")), 0, s.length() - 6,0);
         s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 5, s.length(), 0);
         return s;
     }
@@ -172,9 +174,9 @@ public class Utils {
 
     public static List<Long> getDateInitEnd(String mes, String ano){
         Calendar iniDate = Calendar.getInstance();
-        iniDate.set(Integer.parseInt(ano), Integer.parseInt(mes)-1, 1);
+        iniDate.set(Integer.parseInt(ano), Integer.parseInt(mes)-1, 1, 0, 0, 0);
         Calendar endDate = Calendar.getInstance();
-        endDate.set(Integer.parseInt(ano), Integer.parseInt(mes)-1, iniDate.getActualMaximum(Calendar.DAY_OF_MONTH));
+        endDate.set(Integer.parseInt(ano), Integer.parseInt(mes)-1, iniDate.getActualMaximum(Calendar.DAY_OF_MONTH),23,59,59);
         List<Long> dates = new ArrayList<>();
         dates.add(iniDate.getTimeInMillis());
         dates.add(endDate.getTimeInMillis());
@@ -184,9 +186,9 @@ public class Utils {
     public static List<Long> getDateInitEnd(String diaIni, String mesIni, String anoIni,
                                             String diaFin, String mesFin, String anoFin){
         Calendar iniDate = Calendar.getInstance();
-        iniDate.set(Integer.parseInt(anoIni), Integer.parseInt(mesIni)-1, Integer.parseInt(diaIni));
+        iniDate.set(Integer.parseInt(anoIni), Integer.parseInt(mesIni) - 1, Integer.parseInt(diaIni), 0, 0, 0);
         Calendar endDate = Calendar.getInstance();
-        endDate.set(Integer.parseInt(anoFin), Integer.parseInt(mesFin)-1, Integer.parseInt(diaFin));
+        endDate.set(Integer.parseInt(anoFin), Integer.parseInt(mesFin) - 1, Integer.parseInt(diaFin), 23, 59, 59);
         List<Long> dates = new ArrayList<>();
         dates.add(iniDate.getTimeInMillis());
         dates.add(endDate.getTimeInMillis());

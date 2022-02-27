@@ -52,6 +52,8 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
     private String fechaRango;
     private Long fechaIni;
     private String[] dates;
+    private List<Long> datesInMilis;
+    private boolean isDateRange;
 
     @Override
     public View onCreateView(
@@ -65,6 +67,7 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
         binding.setBalanceMensualFragment(this);
 
         fechaIni = null;
+        isDateRange = false;
         dates = new String[6];
         Calendar calendar = Calendar.getInstance();
         mes = String.valueOf(calendar.get(Calendar.MONTH) + 1);
@@ -104,6 +107,7 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
         String dateDisplay = Utils.getMonth(this.mes) + " "+ this.ano;
         binding.tvTitle.setText(dateDisplay);
         viewModel.setFilterDate(this.mes, this.ano);
+        isDateRange = false;
     }
 
     private void mesSiguiente() {
@@ -120,12 +124,16 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
         String dateDisplay = Utils.getMonth(this.mes) + " "+ this.ano;
         binding.tvTitle.setText(dateDisplay);
         viewModel.setFilterDate(this.mes, this.ano);
+        isDateRange = false;
     }
 
     private void openList(boolean isGasto){
         Intent intent = new Intent(getContext(), ListaOperacionesMensualesActivity.class);
         intent.putExtra("isGastoView",isGasto);
-        intent.putExtra("dates",(Serializable) Utils.getDateInitEnd(Utils.formatMonth(mes),ano));
+        datesInMilis = (isDateRange) ?
+                Utils.getDateInitEnd(dates[0], dates[1], dates[2], dates[3], dates[4], dates[5]) :
+                Utils.getDateInitEnd(Utils.formatMonth(mes),ano);
+        intent.putExtra("dates",(Serializable) datesInMilis);
         startActivity(intent);
     }
 
@@ -171,7 +179,6 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
 
         binding.chart1.invalidate();
     }
-
 
     private void configChart() {
         binding.chart1.setUsePercentValues(true);
@@ -240,6 +247,7 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
                 binding.tvTitle.setTextSize(15);
                 viewModel.setFilterDateRango(dates[0], dates[1], dates[2],
                         dates[3], dates[4], dates[5]);
+                isDateRange = true;
                 dialog.dismiss();
             }
         });

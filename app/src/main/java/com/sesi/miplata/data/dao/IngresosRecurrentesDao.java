@@ -23,10 +23,10 @@ public interface IngresosRecurrentesDao {
     @Delete
     void delete(IngresosRecurrentes ingreso);
 
-    @Query("SELECT * FROM INGRESOS_RECURRENTES")
+    @Query("SELECT * FROM INGRESOS_RECURRENTES ORDER BY ir_monto DESC")
     LiveData<List<IngresosRecurrentes>> getAll();
 
-    @Query("SELECT * FROM INGRESOS_RECURRENTES")
+    @Query("SELECT * FROM INGRESOS_RECURRENTES ORDER BY ir_monto DESC")
     List<IngresosRecurrentes> getAllMain();
 
     @Query("SELECT * FROM INGRESOS_RECURRENTES WHERE ir_id = :id")

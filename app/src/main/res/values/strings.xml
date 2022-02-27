@@ -41,6 +41,7 @@
     <string name="btn_cancelar">Cancelar</string>
     <string name="msg_fechaini_required">Indique la fecha inical.</string>
     <string name="msg_fechas_required">Las fechas son requridas.</string>
+    <string name="categoria">categoria</string>
     
     //admob
     <string name="id_app">ca-app-pub-2449148181464779~5726548361</string>

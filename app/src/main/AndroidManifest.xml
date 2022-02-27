@@ -11,23 +11,29 @@
         android:theme="@style/Theme.MiPlata">
         <activity
             android:name=".view.main.ListaOperacionesMensualesActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.main.RegistroOperacionesMensualesActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.main.RegistroGastoIngresoActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.main.ListaOperacionesActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.main.MenuActivity"
             android:exported="false"
-            android:theme="@style/Theme.MiPlata.NoActionBar" />
+            android:theme="@style/Theme.MiPlata.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

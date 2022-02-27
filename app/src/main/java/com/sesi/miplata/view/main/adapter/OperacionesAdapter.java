@@ -41,6 +41,7 @@ public class OperacionesAdapter extends RecyclerView.Adapter<OperacionesAdapter.
         holder.tvMonto.setText(Utils.getCurrencyFormatter(gasto.getMonto()));
         //holder.imgIcon.setImageResource(gasto.getIcono());
         holder.tvFecha.setText(gasto.getFecha());
+        holder.tvCategoria.setText(gasto.getCatNombre());
         holder.view.setOnClickListener(v -> {
             if (null != itemClickListener){
                 itemClickListener.onItemClick(gasto);
@@ -71,6 +72,7 @@ public class OperacionesAdapter extends RecyclerView.Adapter<OperacionesAdapter.
         final TextView tvNota;
         final TextView tvFecha;
         final TextView tvMonto;
+        final TextView tvCategoria;
         OperacionesModel gasto;
         final View view;
 
@@ -81,6 +83,7 @@ public class OperacionesAdapter extends RecyclerView.Adapter<OperacionesAdapter.
             this.tvFecha = view.findViewById(R.id.tv_fecha);
             this.tvMonto = view.findViewById(R.id.tv_monto);
             this.imgIcon = view.findViewById(R.id.img_icon);
+            this.tvCategoria = view.findViewById(R.id.tv_categoria);
             this.view = view;
         }
     }

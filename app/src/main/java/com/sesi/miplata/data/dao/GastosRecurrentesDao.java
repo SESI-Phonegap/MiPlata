@@ -23,10 +23,10 @@ public interface GastosRecurrentesDao {
     @Delete
     void delete(GastosRecurrentes gasto);
 
-    @Query("SELECT * FROM GASTOS_RECURRENTES")
+    @Query("SELECT * FROM GASTOS_RECURRENTES ORDER BY gr_monto DESC")
     LiveData<List<GastosRecurrentes>> getAll();
 
-    @Query("SELECT * FROM GASTOS_RECURRENTES")
+    @Query("SELECT * FROM GASTOS_RECURRENTES ORDER BY gr_monto DESC")
     List<GastosRecurrentes> getAllMain();
 
     @Query("SELECT * FROM GASTOS_RECURRENTES WHERE gr_id = :id")

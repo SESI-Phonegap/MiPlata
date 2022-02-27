@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="48dp"
             android:text="@string/lbl_nuevo_registro"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -139,8 +139,8 @@
              android:layout_centerHorizontal="true"
              app:adSize="BANNER"
              app:adUnitId="@string/prueba"
-             app:layout_constraintBottom_toTopOf="@+id/btn_guardar"
-             app:layout_constraintStart_toStartOf="parent" />
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_guardar"
