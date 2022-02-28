@@ -101,7 +101,7 @@ public class RegistroOperacionesMensualesActivity extends AppCompatActivity {
     private void loadAds(){
         AdRequest adRequest = new AdRequest.Builder().build();
         binding.adViewBanner.loadAd(adRequest);
-        InterstitialAd.load(this, getString(R.string.pruebaInteresticial), adRequest, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(this, getString(R.string.interesticial), adRequest, new InterstitialAdLoadCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 mInterstitialAd = null;
