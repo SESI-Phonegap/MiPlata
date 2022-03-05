@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MiPlata</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="icono_moneda">$</string>
+    <string name="lbl_ingreso">Income</string>
+    <string name="lbl_gastos">Expenses</string>
+    <string name="lbl_logo">LOGO</string>
+    <string name="lbl_nuevo_registro">New Operation</string>
+    <string name="lbl_actualiza_registro">Update Operation</string>
+    <string name="lbl_nombre">Name</string>
+    <string name="lbl_nota">Note</string>
+    <string name="lbl_default_monto">0.00</string>
+    <string name="lbl_guardar">Save</string>
+    <string name="lbl_date_format">dd/mm/yyyy</string>
+    <string name="lbl_balance_general">Balance Sheet</string>
+    <string name="lbl_fecha_default">January 2022</string>
+    <string name="content_description">.</string>
+    <string name="lbl_default_item_title">Mortgage</string>
+    <string name="lbl_default_item_nota">Descuento mensual del infonavit</string>
+    <string name="lbl_default_item_fecha">15/01/2022</string>
+    <string name="lbl_default_item_monto">$2,500.00</string>
+
+    <string name="tv_ingresos">Income</string>
+    <string name="tv_gastos">Expenses</string>
+    <string name="tv_ingreso_neto">Net Income</string>
+    <string name="tv_monto_default">$5,000.00</string>
+
+    <string name="fab_menu_add_op_rec">Monthly Operation</string>
+    <string name="fab_menu_add_op_day">Daily Operation</string>
+    <string name="title_activity_menu">MenuActivity</string>
+
+    <string name="menu_balance_mensual">Monthly Balance</string>
+    <string name="menu_balance_general">Balance Sheet</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="lbl_subheader_menu">Organize Your Finances.</string>
+    <string name="splash">MiPlata Manage your finances.</string>
+    <string name="dialog_fechas_title">Select the dates you want to search.</string>
+    <string name="fecha_inicial">Initial date</string>
+    <string name="fecha_final">Final date</string>
+    <string name="btn_buscar">Search</string>
+    <string name="btn_cancelar">Cancel</string>
+    <string name="msg_fechaini_required">Indicate the start date.</string>
+    <string name="msg_fechas_required">Dates are required.</string>
+    <string name="categoria">Category</string>
+
+    //admob
+    <string name="id_app">ca-app-pub-2449148181464779~5726548361</string>
+    <string name="banner">ca-app-pub-2449148181464779/1241380584</string>
+    <string name="interesticial">ca-app-pub-2449148181464779/7995287355</string>
+    <string name="prueba">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="pruebaInteresticial">ca-app-pub-3940256099942544/1033173712</string>
+
+</resources>
