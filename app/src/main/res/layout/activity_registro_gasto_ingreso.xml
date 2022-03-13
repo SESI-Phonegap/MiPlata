@@ -116,7 +116,12 @@
             app:layout_constraintStart_toStartOf="parent"
             android:textAlignment="center"
             android:entries="@array/spinnerItems"
-            app:layout_constraintTop_toBottomOf="@+id/et_monto" />
+            app:layout_constraintTop_toBottomOf="@+id/et_monto"
+            android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+            android:popupBackground="@android:color/white"
+            android:popupElevation="3dp"
+            android:stateListAnimator="@drawable/spinner_sla"
+            android:background="@drawable/spinner_bg"/>
 
 
         <androidx.appcompat.widget.AppCompatSpinner
@@ -129,7 +134,12 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_tipo" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner_tipo"
+            android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+            android:popupBackground="@android:color/white"
+            android:popupElevation="3dp"
+            android:stateListAnimator="@drawable/spinner_sla"
+            android:background="@drawable/spinner_bg"/>
 
          <com.google.android.gms.ads.AdView
              android:id="@+id/adViewBanner"

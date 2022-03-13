@@ -14,5 +14,10 @@
             android:icon="@drawable/ic_cash_check"
             android:iconTint="@color/black"
             android:title="@string/menu_balance_general"/>
+        <item
+            android:id="@+id/nav_categorias"
+            android:icon="@android:drawable/btn_star"
+            android:iconTint="@color/black"
+            android:title="@string/lbl_categorias"/>
     </group>
 </menu>

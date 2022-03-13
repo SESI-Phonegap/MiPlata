@@ -28,24 +28,30 @@
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/drawable/arrow_left_box.xml" value="0.147" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/drawable/arrow_right_box.xml" value="0.147" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/drawable/cardviewbackground.xml" value="0.174" />
+        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/drawable/green_outline.xml" value="0.1" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1065" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/drawable/ic_paid.xml" value="0.184" />
+        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/drawable/spinner_bg.xml" value="0.1" />
+        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/drawable/spinner_sla.xml" value="0.1" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/drawable/trash_can_outline.xml" value="0.188" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_current_balance.xml" value="0.129981884057971" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_lista_operaciones.xml" value="0.1" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_lista_operaciones_mensuales.xml" value="0.1796875" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_menu.xml" value="0.1" />
-        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_registro_gasto_ingreso.xml" value="0.12" />
-        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_registro_operaciones_mensuales.xml" value="0.1" />
+        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_registro_gasto_ingreso.xml" value="0.22" />
+        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/activity_registro_operaciones_mensuales.xml" value="0.22" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/app_bar_menu.xml" value="0.22" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/content_current_balance.xml" value="0.22" />
+        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/dialog_categoria.xml" value="0.22" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/dialog_rango_fechas.xml" value="0.22" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/fragment_balance_general.xml" value="0.1796875" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/fragment_balance_mensual.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/fragment_categorias.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/fragment_first.xml" value="0.1" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/fragment_second.xml" value="0.1" />
-        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/item_operacion.xml" value="0.1796875" />
+        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/item_categoria.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/item_operacion.xml" value="0.1" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/layout/nav_header_menu.xml" value="0.1" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/menu/activity_main_drawer.xml" value="0.1796875" />
         <entry key="..\:/Users/000905781/Documents/GitHub/MiPlata/app/src/main/res/menu/menu.xml" value="0.1796875" />
@@ -59,5 +65,8 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="SuppressKotlinCodeStyleNotification">
+    <option name="disableForAll" value="true" />
   </component>
 </project>

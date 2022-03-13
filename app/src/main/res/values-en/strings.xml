@@ -34,7 +34,7 @@
     <string name="menu_balance_general">Balance Sheet</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="lbl_subheader_menu">Organize Your Finances.</string>
-    <string name="splash">MiPlata Manage your finances.</string>
+    <string name="splash">MiPlata \n Manage your finances.</string>
     <string name="dialog_fechas_title">Select the dates you want to search.</string>
     <string name="fecha_inicial">Initial date</string>
     <string name="fecha_final">Final date</string>
@@ -43,6 +43,7 @@
     <string name="msg_fechaini_required">Indicate the start date.</string>
     <string name="msg_fechas_required">Dates are required.</string>
     <string name="categoria">Category</string>
+    <string name="lbl_categorias">Categories</string>
 
     //admob
     <string name="id_app">ca-app-pub-2449148181464779~5726548361</string>

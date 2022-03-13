@@ -111,7 +111,7 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         });
     }
 
-    private void loadInterestecialAd(){
+    private void loadInterestecialAd() {
 
         mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
             @Override
