@@ -72,6 +72,7 @@ public class RegistroOperacionesMensualesActivity extends AppCompatActivity {
         viewModel.getCategorias().observe(this, categorias -> {
             adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, categorias);
             binding.spinnerCategorias.setAdapter(adapter);
+            binding.spinnerCategorias.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             if (isUpdate){
                 fillUpdateForm(operacion, categorias);
             }

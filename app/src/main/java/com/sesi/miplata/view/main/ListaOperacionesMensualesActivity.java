@@ -73,6 +73,9 @@ public class ListaOperacionesMensualesActivity extends AppCompatActivity impleme
             setData(groupListOp);
             binding.rvList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             binding.rvList.setAdapter(adapter);
+            if (!isGasto) {
+                binding.tvTitle.setText(getString(R.string.lbl_ingreso));
+            }
         });
         configChart();
     }
