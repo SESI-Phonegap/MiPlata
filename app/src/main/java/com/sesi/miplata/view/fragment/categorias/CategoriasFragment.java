@@ -99,7 +99,6 @@ public class CategoriasFragment extends Fragment {
 
             @Override
             public void onAdShowedFullScreenContent() {
-                mInterstitialAd = null;
             }
         });
 
@@ -151,4 +150,5 @@ public class CategoriasFragment extends Fragment {
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
     }
+
 }

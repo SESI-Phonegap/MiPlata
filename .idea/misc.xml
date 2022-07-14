@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Proyectos/Android/MiPlata/app/src/main/res/layout/activity_lista_operaciones.xml" value="0.55" />
+        <entry key="..\:/Proyectos/Android/MiPlata/app/src/main/res/layout/activity_menu.xml" value="0.12037037037037036" />
+        <entry key="..\:/Proyectos/Android/MiPlata/app/src/main/res/layout/activity_registro_gasto_ingreso.xml" value="0.25" />
+        <entry key="..\:/Proyectos/Android/MiPlata/app/src/main/res/layout/activity_registro_operaciones_mensuales.xml" value="0.25" />
+        <entry key="..\:/Proyectos/Android/MiPlata/app/src/main/res/layout/app_bar_menu.xml" value="0.25" />
+        <entry key="..\:/Proyectos/Android/MiPlata/app/src/main/res/layout/content_current_balance.xml" value="0.25" />
+        <entry key="..\:/Proyectos/Android/MiPlata/app/src/main/res/layout/fragment_balance_general.xml" value="0.25" />
+        <entry key="..\:/Proyectos/Android/MiPlata/app/src/main/res/layout/item_categoria.xml" value="0.25" />
+        <entry key="..\:/Proyectos/Android/MiPlata/app/src/main/res/layout/item_operacion.xml" value="0.1" />
         <entry key="..\:/Users/000905781/AndroidStudioProjects/MiPlata/app/src/main/res/drawable/ic_cash_check.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/000905781/AndroidStudioProjects/MiPlata/app/src/main/res/drawable/ic_cash_plus.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/000905781/AndroidStudioProjects/MiPlata/app/src/main/res/drawable/ic_cash_remove.xml" value="0.19583333333333333" />
@@ -60,7 +69,8 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
