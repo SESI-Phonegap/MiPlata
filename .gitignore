@@ -66,3 +66,10 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+.idea/misc.xml
+.idea/compiler.xml
+.idea/deploymentTargetDropDown.xml
+.idea/compiler.xml
+.idea/kotlinc.xml
+.idea/compiler.xml
+.idea/misc.xml
