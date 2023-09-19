@@ -34,6 +34,9 @@ public class GastosRecurrentes {
     @NonNull
     private Long idCategoria;
 
+    @ColumnInfo(name = "gr_dia_pago")
+    private Integer diaPago;
+
     @NonNull
     public Long getId() {
         return id;
@@ -74,5 +77,13 @@ public class GastosRecurrentes {
 
     public void setIdCategoria(@NonNull Long idCategoria) {
         this.idCategoria = idCategoria;
+    }
+
+    public Integer getDiaPago() {
+        return diaPago;
+    }
+
+    public void setDiaPago(Integer diaPago) {
+        this.diaPago = diaPago;
     }
 }

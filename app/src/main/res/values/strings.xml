@@ -44,13 +44,14 @@
     <string name="categoria">categoria</string>
     <string name="lbl_categorias">Categorias</string>
 
+    <string name="notify_title">Recordatorio de pago</string>
+    <string name="notify_content">Recuerda realizar tus pagos</string>
+
     //admob
     <string name="id_app">ca-app-pub-2449148181464779~5726548361</string>
     <string name="banner">ca-app-pub-2449148181464779/1241380584</string>
     <string name="interesticial">ca-app-pub-2449148181464779/7995287355</string>
     <string name="prueba">ca-app-pub-3940256099942544/6300978111</string>
     <string name="pruebaInteresticial">ca-app-pub-3940256099942544/1033173712</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

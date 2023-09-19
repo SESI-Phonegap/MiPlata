@@ -31,4 +31,7 @@ public interface GastosRecurrentesDao {
 
     @Query("SELECT * FROM GASTOS_RECURRENTES WHERE gr_id = :id")
     GastosRecurrentes getById(Long id);
+
+    @Query("SELECT * FROM GASTOS_RECURRENTES WHERE gr_dia_pago = :diaPago")
+    List<GastosRecurrentes> getByDate(Integer diaPago);
 }

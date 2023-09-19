@@ -1,0 +1,272 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "8c0161a5cc3a2e3ac2a95572fc2cc2ed",
+    "entities": [
+      {
+        "tableName": "CATEGORIAS",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cat_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `cat_nombre` TEXT, `cat_icono` INTEGER NOT NULL DEFAULT 0, `cat_tipo` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "cat_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nombre",
+            "columnName": "cat_nombre",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "icono",
+            "columnName": "cat_icono",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "tipoCategoria",
+            "columnName": "cat_tipo",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "cat_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "GASTOS_RECURRENTES",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`gr_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gr_nombre` TEXT, `gr_nota` TEXT, `gr_monto` REAL NOT NULL DEFAULT 0, `gr_id_categoria` INTEGER NOT NULL, `gr_dia_pago` INTEGER, FOREIGN KEY(`gr_id_categoria`) REFERENCES `CATEGORIAS`(`cat_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "gr_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nombre",
+            "columnName": "gr_nombre",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nota",
+            "columnName": "gr_nota",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "monto",
+            "columnName": "gr_monto",
+            "affinity": "REAL",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "idCategoria",
+            "columnName": "gr_id_categoria",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "diaPago",
+            "columnName": "gr_dia_pago",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "gr_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_GASTOS_RECURRENTES_gr_id_categoria",
+            "unique": false,
+            "columnNames": [
+              "gr_id_categoria"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_GASTOS_RECURRENTES_gr_id_categoria` ON `${TABLE_NAME}` (`gr_id_categoria`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "CATEGORIAS",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "gr_id_categoria"
+            ],
+            "referencedColumns": [
+              "cat_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "INGRESOS_RECURRENTES",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ir_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ir_nombre` TEXT, `ir_nota` TEXT, `ir_monto` REAL NOT NULL DEFAULT 0, `ir_id_categoria` INTEGER NOT NULL, FOREIGN KEY(`ir_id_categoria`) REFERENCES `CATEGORIAS`(`cat_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "ir_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nombre",
+            "columnName": "ir_nombre",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nota",
+            "columnName": "ir_nota",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "monto",
+            "columnName": "ir_monto",
+            "affinity": "REAL",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "idCategoria",
+            "columnName": "ir_id_categoria",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "ir_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_INGRESOS_RECURRENTES_ir_id_categoria",
+            "unique": false,
+            "columnNames": [
+              "ir_id_categoria"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_INGRESOS_RECURRENTES_ir_id_categoria` ON `${TABLE_NAME}` (`ir_id_categoria`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "CATEGORIAS",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "ir_id_categoria"
+            ],
+            "referencedColumns": [
+              "cat_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "OPERACIONES",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`op_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `op_nombre` TEXT, `op_nota` TEXT, `op_fecha` INTEGER, `op_monto` REAL NOT NULL DEFAULT 0, `op_tipo_operacion` TEXT, `op_id_categoria` INTEGER NOT NULL, FOREIGN KEY(`op_id_categoria`) REFERENCES `CATEGORIAS`(`cat_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "op_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nombre",
+            "columnName": "op_nombre",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nota",
+            "columnName": "op_nota",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fecha",
+            "columnName": "op_fecha",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "monto",
+            "columnName": "op_monto",
+            "affinity": "REAL",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "tipoOperacion",
+            "columnName": "op_tipo_operacion",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idCategoria",
+            "columnName": "op_id_categoria",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "op_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_OPERACIONES_op_id",
+            "unique": false,
+            "columnNames": [
+              "op_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_OPERACIONES_op_id` ON `${TABLE_NAME}` (`op_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "CATEGORIAS",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "op_id_categoria"
+            ],
+            "referencedColumns": [
+              "cat_id"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8c0161a5cc3a2e3ac2a95572fc2cc2ed')"
+    ]
+  }
+}

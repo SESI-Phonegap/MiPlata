@@ -45,6 +45,9 @@
     <string name="categoria">Category</string>
     <string name="lbl_categorias">Categories</string>
 
+    <string name="notify_title">Payment reminder</string>
+    <string name="notify_content">Remember to make your payment</string>
+
     //admob
     <string name="id_app">ca-app-pub-2449148181464779~5726548361</string>
     <string name="banner">ca-app-pub-2449148181464779/1241380584</string>

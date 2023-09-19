@@ -1,7 +1,10 @@
 package com.sesi.miplata.view.main;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -12,6 +15,10 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -21,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.sesi.miplata.R;
 import com.sesi.miplata.databinding.ActivityMenuBinding;
+import com.sesi.miplata.notificaction.MiPlataNotification;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -40,8 +48,10 @@ public class MenuActivity extends AppCompatActivity {
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
-
         loadAds();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestNotificationPermission();
+        }
         setSupportActionBar(binding.appBarMenu.toolbar);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -124,5 +134,26 @@ public class MenuActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private ActivityResultLauncher<String> requestNotification = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            result -> {
+                if (result){
+                    MiPlataNotification notification = new MiPlataNotification();
+                    notification.sendPaymentNotification(this, "Pago de la luz $800.00 Internet $500.00 Agua $400.00 Sky $700.00");
+                } else {
+
+                }
+            });
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
+    private void requestNotificationPermission(){
+        int[] permissions = {ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.POST_NOTIFICATIONS)};
+        if (permissions[0] != PackageManager.PERMISSION_GRANTED) {
+            requestNotification.launch(Manifest.permission.POST_NOTIFICATIONS);
+        } else {
+            MiPlataNotification notification = new MiPlataNotification();
+            notification.sendPaymentNotification(this, "Pago de la luz $800.00 Internet $500.00 Agua $400.00 Sky $700.00");
+        }
     }
 }
