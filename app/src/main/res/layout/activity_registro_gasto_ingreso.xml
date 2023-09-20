@@ -152,6 +152,78 @@
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toTopOf="parent" />
 
+         <androidx.cardview.widget.CardView
+             android:id="@+id/cardViewNotificationDay"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="16dp"
+             android:layout_marginTop="16dp"
+             android:layout_marginEnd="16dp"
+             app:cardCornerRadius="15dp"
+             app:cardElevation="3dp"
+             android:visibility="gone"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@+id/spinner_categorias" >
+             <androidx.constraintlayout.widget.ConstraintLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent">
+
+                 <TextView
+                     android:id="@+id/textView7"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="8dp"
+                     android:elevation="3dp"
+                     android:text="@string/lbl_recordatorio_title"
+                     android:textColor="@color/black"
+                     android:textStyle="bold"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toTopOf="parent" />
+                 <TextView
+                     android:id="@+id/textView8"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="8dp"
+                     android:elevation="3dp"
+                     android:text="@string/lbl_recordatorio_pago"
+                     android:textColor="@color/black"
+                     android:textSize="11sp"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="8dp"
+                     android:elevation="3dp"
+                     android:text="@string/lbl_recordatorio_note"
+                     android:textColor="@color/blue_436CFF"
+                     android:textSize="10sp"
+                     app:layout_constraintBottom_toBottomOf="@+id/spinner_notification_day"
+                     app:layout_constraintStart_toEndOf="@+id/spinner_notification_day"
+                     app:layout_constraintTop_toTopOf="@+id/spinner_notification_day" />
+
+                 <androidx.appcompat.widget.AppCompatSpinner
+                     android:id="@+id/spinner_notification_day"
+                     android:layout_width="80dp"
+                     android:layout_height="50dp"
+                     android:layout_marginTop="8dp"
+                     android:layout_marginBottom="16dp"
+                     android:background="@drawable/spinner_bg"
+                     android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+                     android:elevation="3dp"
+                     android:popupBackground="@android:color/white"
+                     android:stateListAnimator="@drawable/spinner_sla"
+                     android:textAlignment="center"
+                     app:layout_constraintBottom_toBottomOf="parent"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toBottomOf="@+id/textView8" />
+             </androidx.constraintlayout.widget.ConstraintLayout>
+         </androidx.cardview.widget.CardView>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_guardar"
             android:layout_width="0dp"

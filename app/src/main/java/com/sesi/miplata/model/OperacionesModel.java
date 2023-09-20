@@ -15,6 +15,16 @@ public class OperacionesModel implements Serializable {
     private boolean isGasto;
     private boolean isUpdate;
 
+    public int getPayDay() {
+        return payDay;
+    }
+
+    public void setPayDay(int payDay) {
+        this.payDay = payDay;
+    }
+
+    private int payDay;
+
     public Long getId() {
         return id;
     }

@@ -53,6 +53,7 @@ public class ListaOperacionesViewModel extends ViewModel {
                         operacion.setCatNombre(categoria.getNombre());
                         operacion.setGasto(true);
                         operacion.setUpdate(true);
+                        operacion.setPayDay(gasto.getDiaPago());
                         lstOperaciones.add(operacion);
                     }
                 }

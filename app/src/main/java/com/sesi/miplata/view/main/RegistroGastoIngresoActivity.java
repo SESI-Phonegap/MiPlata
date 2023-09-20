@@ -2,6 +2,7 @@ package com.sesi.miplata.view.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -27,6 +28,9 @@ import com.sesi.miplata.data.entity.GastosRecurrentes;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.databinding.ActivityRegistroGastoIngresoBinding;
 import com.sesi.miplata.model.OperacionesModel;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,6 +42,7 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
     private ArrayAdapter<Categorias> adapter;
     private InterstitialAd mInterstitialAd;
     private AdRequest adRequest;
+    private ArrayAdapter<Integer> daysAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +56,14 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         });
 
         loadAds();
+
+
+
         RegistroGastoIngresoViewModel.RegistroGastoIngresoViewModelFactory factory = new RegistroGastoIngresoViewModel.RegistroGastoIngresoViewModelFactory(getApplication());
         viewModel = new ViewModelProvider(this, factory).get(RegistroGastoIngresoViewModel.class);
         OperacionesModel operacion = (OperacionesModel) getIntent().getSerializableExtra("operacion");
 
-        isUpdate = (operacion != null) ? operacion.isUpdate() : false;
+        isUpdate = operacion != null && operacion.isUpdate();
         if(isUpdate){
             binding.btnDelete.setVisibility(View.VISIBLE);
         }
@@ -68,7 +76,7 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         String type = binding.spinnerTipo.getSelectedItem().toString();
         viewModel.setFilterType(type);
         viewModel.getCategorias().observe(this, categorias -> {
-            adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, categorias);
+            adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.item_spinner, categorias);
             binding.spinnerCategorias.setAdapter(adapter);
             binding.spinnerCategorias.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             if (isUpdate){
@@ -86,6 +94,11 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
                 String selectedType = adapterView.getItemAtPosition(pos).toString();
                 viewModel.setFilterType(selectedType);
+                if (selectedType.equals("Gasto")){
+                    binding.cardViewNotificationDay.setVisibility(View.VISIBLE);
+                } else {
+                    binding.cardViewNotificationDay.setVisibility(View.GONE);
+                }
             }
 
             @Override
@@ -94,6 +107,18 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         });
 
         binding.btnDelete.setOnClickListener(v -> confirmDeleteDialog(operacion));
+        initDaysSpinner();
+    }
+
+    private void initDaysSpinner(){
+        int[] days = getResources().getIntArray(R.array.days);
+        List<Integer> listDays = new ArrayList<>();
+        for (int day : days){
+            listDays.add(day);
+        }
+        daysAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.item_spinner, listDays);
+        binding.spinnerNotificationDay.setAdapter(daysAdapter);
+        binding.spinnerNotificationDay.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
     }
 
     private void loadAds(){
@@ -177,6 +202,7 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
                 position = adapter.getPosition(categoria);
             }
         }
+        binding.spinnerNotificationDay.setSelection(operacion.getPayDay());
         binding.spinnerCategorias.setSelection(position);
     }
 
@@ -204,6 +230,7 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         gasto.setNombre(binding.etName.getText().toString());
         gasto.setNota(Objects.requireNonNull(binding.etNota.getText()).toString());
         gasto.setMonto(Double.parseDouble(Objects.requireNonNull(binding.etMonto.getText()).toString()));
+        gasto.setDiaPago(binding.spinnerNotificationDay.getSelectedItemPosition());
         Categorias slectCat = (Categorias) binding.spinnerCategorias.getSelectedItem();
         gasto.setIdCategoria(slectCat.getId());
         return gasto;
