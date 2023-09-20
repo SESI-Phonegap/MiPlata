@@ -219,4 +219,9 @@ public class Utils {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         return simpleDateFormat.format(date);
     }
+
+    public static int getCurrentDay() {
+        Calendar calendar = Calendar.getInstance();
+        return calendar.get(Calendar.DAY_OF_MONTH);
+    }
 }

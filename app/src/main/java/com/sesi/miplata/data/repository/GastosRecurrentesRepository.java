@@ -1,6 +1,6 @@
 package com.sesi.miplata.data.repository;
 
-import android.app.Application;
+import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
@@ -15,8 +15,8 @@ public class GastosRecurrentesRepository {
     private final GastosRecurrentesDao gastosRecurrentesDao;
     private final LiveData<List<GastosRecurrentes>> gastosTodos;
 
-    public GastosRecurrentesRepository(Application application) {
-        AppDatabase db = AppDatabase.getInstance(application);
+    public GastosRecurrentesRepository(Context context) {
+        AppDatabase db = AppDatabase.getInstance(context);
         gastosRecurrentesDao = db.getGastosRecurrentesDao();
         gastosTodos = gastosRecurrentesDao.getAll();
     }

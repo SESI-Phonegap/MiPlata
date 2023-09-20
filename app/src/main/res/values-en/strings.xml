@@ -47,6 +47,11 @@
 
     <string name="notify_title">Payment reminder</string>
     <string name="notify_content">Remember to make your payment</string>
+    <string name="dialog_notify_title">¡ Get notifications!</string>
+    <string name="dialog_notify_desc">Activate notifications to \nreceive reminders of your recurring payments</string>
+    <string name="dialog_notify_desc2">Never forget to make your payments again.</string>
+    <string name="dialog_notify_skip">Skip</string>
+    <string name="dialog_notify_continue">I´m in</string>
 
     //admob
     <string name="id_app">ca-app-pub-2449148181464779~5726548361</string>

@@ -29,8 +29,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.sesi.miplata.R;
 import com.sesi.miplata.databinding.ActivityMenuBinding;
 import com.sesi.miplata.notificaction.MiPlataNotification;
+import com.sesi.miplata.view.dialog.DialogNotification;
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity implements DialogNotification.OnAction {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMenuBinding binding;
@@ -136,24 +137,21 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
-    private ActivityResultLauncher<String> requestNotification = registerForActivityResult(
+    private final ActivityResultLauncher<String> requestNotification = registerForActivityResult(
             new ActivityResultContracts.RequestPermission(),
             result -> {
-                if (result){
-                    MiPlataNotification notification = new MiPlataNotification();
-                    notification.sendPaymentNotification(this, "Pago de la luz $800.00 Internet $500.00 Agua $400.00 Sky $700.00");
-                } else {
-
-                }
             });
+
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     private void requestNotificationPermission(){
         int[] permissions = {ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.POST_NOTIFICATIONS)};
         if (permissions[0] != PackageManager.PERMISSION_GRANTED) {
-            requestNotification.launch(Manifest.permission.POST_NOTIFICATIONS);
-        } else {
-            MiPlataNotification notification = new MiPlataNotification();
-            notification.sendPaymentNotification(this, "Pago de la luz $800.00 Internet $500.00 Agua $400.00 Sky $700.00");
+            DialogNotification.INSTANCE.createDialog(getLayoutInflater(), this);
         }
+    }
+
+    @Override
+    public void onAccept() {
+        requestNotification.launch(Manifest.permission.POST_NOTIFICATIONS);
     }
 }
