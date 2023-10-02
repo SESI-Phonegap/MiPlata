@@ -139,28 +139,28 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
 
     private void loadInterestecialAd() {
 
-        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-            @Override
-            public void onAdDismissedFullScreenContent() {
-                finish();
-            }
-
-            @Override
-            public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
-                finish();
-            }
-
-            @Override
-            public void onAdShowedFullScreenContent() {
-                mInterstitialAd = null;
-                finish();
-            }
-        });
-
         if (mInterstitialAd != null) {
+            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                    finish();
+                }
+
+                @Override
+                public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                    finish();
+                }
+
+                @Override
+                public void onAdShowedFullScreenContent() {
+                    mInterstitialAd = null;
+                    finish();
+                }
+            });
             mInterstitialAd.show(this);
         } else {
             Log.d("TAG", "The interstitial ad wasn't ready yet.");
+            loadAds();
         }
     }
 
@@ -272,5 +272,11 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         finish();
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadAds();
     }
 }

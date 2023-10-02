@@ -87,25 +87,25 @@ public class CategoriasFragment extends Fragment {
     }
 
     private void loadInterestecialAd() {
-
-        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-            @Override
-            public void onAdDismissedFullScreenContent() {
-            }
-
-            @Override
-            public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
-            }
-
-            @Override
-            public void onAdShowedFullScreenContent() {
-            }
-        });
-
         if (mInterstitialAd != null) {
+            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                }
+
+                @Override
+                public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                }
+
+                @Override
+                public void onAdShowedFullScreenContent() {
+                }
+            });
+
             mInterstitialAd.show(requireActivity());
         } else {
             Log.d("TAG", "The interstitial ad wasn't ready yet.");
+            loadAds();
         }
     }
 
@@ -151,4 +151,9 @@ public class CategoriasFragment extends Fragment {
         dialog.show();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadAds();
+    }
 }
