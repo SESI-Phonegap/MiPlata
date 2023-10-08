@@ -18,14 +18,15 @@ import com.sesi.miplata.data.dao.IngresosRecurrentesDao;
 import com.sesi.miplata.data.dao.OperacionesDao;
 import com.sesi.miplata.data.entity.Categorias;
 import com.sesi.miplata.data.entity.GastosRecurrentes;
+import com.sesi.miplata.data.entity.GastosRecurrentesV2;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.data.entity.Operaciones;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Categorias.class, GastosRecurrentes.class, IngresosRecurrentes.class, Operaciones.class},
-        version = 2,
-        autoMigrations = { @AutoMigration(from = 1, to = 2)}
+@Database(entities = {Categorias.class, GastosRecurrentes.class, IngresosRecurrentes.class, Operaciones.class, GastosRecurrentesV2.class},
+        version = 3,
+        autoMigrations = { @AutoMigration(from = 2, to = 3)}
 )
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
@@ -46,7 +47,7 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATA_BASE_NAME)
-                            .addMigrations(MIGRATION_1_2)
+                            .addMigrations(MIGRATION_2_3)
                             .createFromAsset("miplata.db")
                             .allowMainThreadQueries()
                             .build();
@@ -60,6 +61,15 @@ public abstract class AppDatabase extends RoomDatabase {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL("ALTER TABLE GASTOS_RECURRENTES ADD COLUMN gr_dia_pago INTEGER");
+        }
+    };
+
+    static final Migration MIGRATION_2_3 = new Migration(2,3) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("INSERT INTO GASTOS_RECURRENTES_2 (gr_id, gr_nombre, gr_nota, gr_monto, gr_id_categoria) SELECT gr_id, gr_nombre, gr_nota, gr_monto, gr_id_categoria FROM GASTOS_RECURRENTES");
+            database.execSQL("DROP TABLE GASTOS_RECURRENTES");
+            //database.execSQL("ALTER TABLE GASTOS_RECURRENTES ADD COLUMN gr_dia_pago INTEGER");
         }
     };
 

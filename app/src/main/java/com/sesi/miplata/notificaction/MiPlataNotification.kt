@@ -3,6 +3,7 @@ package com.sesi.miplata.notificaction
 import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
@@ -14,7 +15,7 @@ import com.sesi.miplata.R
 
 class MiPlataNotification {
 
-    fun sendPaymentNotification(context: Context, contentText: String) {
+    fun sendPaymentNotification(context: Context, contentText: String, pendingIntent: PendingIntent) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 NOTIFICATION_ID,
@@ -36,6 +37,7 @@ class MiPlataNotification {
                 NotificationCompat.BigTextStyle()
                     .bigText(contentText)
             )
+            .setContentIntent(pendingIntent)
             .build()
         with(NotificationManagerCompat.from(context)) {
             if (ActivityCompat.checkSelfPermission(

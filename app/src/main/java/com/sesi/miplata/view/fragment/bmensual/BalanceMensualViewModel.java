@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import com.sesi.miplata.data.entity.GastosRecurrentes;
+import com.sesi.miplata.data.entity.GastosRecurrentesV2;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.data.entity.Operaciones;
 import com.sesi.miplata.data.repository.GastosRecurrentesRepository;
@@ -20,7 +20,7 @@ public class BalanceMensualViewModel extends ViewModel {
 
     private final OperacionesRepository operacionesRepo;
     private final LiveData<List<Operaciones>> operaciones;
-    private final LiveData<List<GastosRecurrentes>> gastos;
+    private final LiveData<List<GastosRecurrentesV2>> gastos;
     private final LiveData<List<IngresosRecurrentes>> ingresos;
     private final MutableLiveData<List<Long>> filterDate = new MutableLiveData<>();
 
@@ -44,7 +44,7 @@ public class BalanceMensualViewModel extends ViewModel {
 
     private double getGastoRecurrentesTotal() {
         double total = 0;
-        List<GastosRecurrentes> gastos = this.gastos.getValue();
+        List<GastosRecurrentesV2> gastos = this.gastos.getValue();
         if (gastos != null) {
             total = Utils.getGastoTotal(gastos);
         }
@@ -100,7 +100,7 @@ public class BalanceMensualViewModel extends ViewModel {
         filterDate.setValue(dates);
     }
 
-    public LiveData<List<GastosRecurrentes>> getGastos() {
+    public LiveData<List<GastosRecurrentesV2>> getGastos() {
         return gastos;
     }
 

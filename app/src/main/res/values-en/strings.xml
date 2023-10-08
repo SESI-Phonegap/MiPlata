@@ -52,6 +52,8 @@
     <string name="dialog_notify_desc2">Never forget to make your payments again.</string>
     <string name="dialog_notify_skip">Skip</string>
     <string name="dialog_notify_continue">I´m in</string>
+    <string name="dialog_dayli_message">¡Hello!, remember to record all your payments for the day, \nwe are here to help you.</string>
+
 
     //admob
     <string name="id_app">ca-app-pub-2449148181464779~5726548361</string>

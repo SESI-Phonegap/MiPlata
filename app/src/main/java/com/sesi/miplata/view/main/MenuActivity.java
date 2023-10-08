@@ -29,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.sesi.miplata.R;
 import com.sesi.miplata.databinding.ActivityMenuBinding;
 import com.sesi.miplata.notificaction.MiPlataNotification;
+import com.sesi.miplata.schedule.JobManager;
 import com.sesi.miplata.view.dialog.DialogNotification;
 
 public class MenuActivity extends AppCompatActivity implements DialogNotification.OnAction {
@@ -140,6 +141,11 @@ public class MenuActivity extends AppCompatActivity implements DialogNotificatio
     private final ActivityResultLauncher<String> requestNotification = registerForActivityResult(
             new ActivityResultContracts.RequestPermission(),
             result -> {
+                if (result){
+                    JobManager jobManager = new JobManager();
+                    jobManager.createNotificationJob(getApplicationContext());
+                    jobManager.createDailyNotificationJob(getApplicationContext());
+                }
             });
 
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)

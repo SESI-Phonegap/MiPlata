@@ -9,7 +9,7 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.sesi.miplata.data.entity.Categorias;
-import com.sesi.miplata.data.entity.GastosRecurrentes;
+import com.sesi.miplata.data.entity.GastosRecurrentesV2;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.data.repository.CategoriasRepository;
 import com.sesi.miplata.data.repository.GastosRecurrentesRepository;
@@ -31,15 +31,15 @@ public class RegistroGastoIngresoViewModel extends ViewModel {
                 categoriasRepository::getCategoriesByType);
     }
 
-    public void insertGasto(GastosRecurrentes gasto) {
+    public void insertGasto(GastosRecurrentesV2 gasto) {
         gastosRepo.insert(gasto);
     }
 
-    public void updateGasto(GastosRecurrentes gasto) {
+    public void updateGasto(GastosRecurrentesV2 gasto) {
         gastosRepo.update(gasto);
     }
 
-    public void deleteGasto(GastosRecurrentes gasto){
+    public void deleteGasto(GastosRecurrentesV2 gasto){
         gastosRepo.delete(gasto);
     }
 

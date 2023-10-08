@@ -9,7 +9,7 @@ import android.text.style.StyleSpan;
 
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.sesi.miplata.data.entity.Categorias;
-import com.sesi.miplata.data.entity.GastosRecurrentes;
+import com.sesi.miplata.data.entity.GastosRecurrentesV2;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.data.entity.Operaciones;
 import com.sesi.miplata.model.OperacionesModel;
@@ -24,9 +24,9 @@ import java.util.Locale;
 
 public class Utils {
 
-    public static double getGastoTotal(List<GastosRecurrentes> gastos) {
+    public static double getGastoTotal(List<GastosRecurrentesV2> gastos) {
         double total = 0;
-        for (GastosRecurrentes gasto : gastos) {
+        for (GastosRecurrentesV2 gasto : gastos) {
             total += gasto.getMonto();
         }
         return total;

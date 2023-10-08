@@ -9,6 +9,7 @@ import androidx.room.PrimaryKey;
 import lombok.Getter;
 import lombok.Setter;
 
+@Deprecated
 @Getter
 @Setter
 @Entity(tableName = "GASTOS_RECURRENTES",
@@ -34,8 +35,6 @@ public class GastosRecurrentes {
     @NonNull
     private Long idCategoria;
 
-    @ColumnInfo(name = "gr_dia_pago")
-    private Integer diaPago;
 
     @NonNull
     public Long getId() {
@@ -79,11 +78,4 @@ public class GastosRecurrentes {
         this.idCategoria = idCategoria;
     }
 
-    public Integer getDiaPago() {
-        return diaPago;
-    }
-
-    public void setDiaPago(Integer diaPago) {
-        this.diaPago = diaPago;
-    }
 }

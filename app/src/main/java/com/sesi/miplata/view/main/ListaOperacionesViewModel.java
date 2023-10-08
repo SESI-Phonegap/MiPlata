@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.sesi.miplata.data.entity.Categorias;
-import com.sesi.miplata.data.entity.GastosRecurrentes;
+import com.sesi.miplata.data.entity.GastosRecurrentesV2;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.data.repository.CategoriasRepository;
 import com.sesi.miplata.data.repository.GastosRecurrentesRepository;
@@ -21,7 +21,7 @@ import java.util.List;
 public class ListaOperacionesViewModel extends ViewModel {
 
     private final CategoriasRepository categoriasRepo;
-    private final LiveData<List<GastosRecurrentes>> gastos;
+    private final LiveData<List<GastosRecurrentesV2>> gastos;
     private final LiveData<List<IngresosRecurrentes>> ingresos;
     private List<Categorias> categorias;
 
@@ -37,12 +37,12 @@ public class ListaOperacionesViewModel extends ViewModel {
     public List<OperacionesModel> fillGastos() {
         categorias = categoriasRepo.getAll();
         List<OperacionesModel> lstOperaciones = new ArrayList<>();
-        List<GastosRecurrentes> lstGastos = gastos.getValue();
+        List<GastosRecurrentesV2> lstGastos = gastos.getValue();
         List<Categorias> lstCategorias = categorias;
         if (lstGastos != null && lstCategorias != null) {
-            for (GastosRecurrentes gasto : lstGastos) {
+            for (GastosRecurrentesV2 gasto : lstGastos) {
                 for (Categorias categoria : lstCategorias) {
-                    if (gasto.getIdCategoria().equals(categoria.getId())) {
+                    if (gasto.getIdCategoria() == categoria.getId()) {
                         OperacionesModel operacion = new OperacionesModel();
                         operacion.setId(gasto.getId());
                         operacion.setName(gasto.getNombre());
@@ -88,7 +88,7 @@ public class ListaOperacionesViewModel extends ViewModel {
         return lstOperaciones;
     }
 
-    public LiveData<List<GastosRecurrentes>> getGastos() {
+    public LiveData<List<GastosRecurrentesV2>> getGastos() {
         return gastos;
     }
 

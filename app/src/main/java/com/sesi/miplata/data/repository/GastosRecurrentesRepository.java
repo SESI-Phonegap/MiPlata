@@ -6,14 +6,14 @@ import androidx.lifecycle.LiveData;
 
 import com.sesi.miplata.data.AppDatabase;
 import com.sesi.miplata.data.dao.GastosRecurrentesDao;
-import com.sesi.miplata.data.entity.GastosRecurrentes;
+import com.sesi.miplata.data.entity.GastosRecurrentesV2;
 
 import java.util.List;
 
 public class GastosRecurrentesRepository {
 
     private final GastosRecurrentesDao gastosRecurrentesDao;
-    private final LiveData<List<GastosRecurrentes>> gastosTodos;
+    private final LiveData<List<GastosRecurrentesV2>> gastosTodos;
 
     public GastosRecurrentesRepository(Context context) {
         AppDatabase db = AppDatabase.getInstance(context);
@@ -21,31 +21,31 @@ public class GastosRecurrentesRepository {
         gastosTodos = gastosRecurrentesDao.getAll();
     }
 
-    public void insert(GastosRecurrentes gasto){
+    public void insert(GastosRecurrentesV2 gasto){
         AppDatabase.databaseWriteExecutor.execute(() ->
                 gastosRecurrentesDao.insert(gasto));
     }
 
-    public void update(GastosRecurrentes gasto){
+    public void update(GastosRecurrentesV2 gasto){
         AppDatabase.databaseWriteExecutor.execute(() ->
                 gastosRecurrentesDao.update(gasto));
     }
 
-    public void delete(GastosRecurrentes gasto){
+    public void delete(GastosRecurrentesV2 gasto){
         AppDatabase.databaseWriteExecutor.execute(() ->
                 gastosRecurrentesDao.delete(gasto));
     }
 
-    public LiveData<List<GastosRecurrentes>> getAll(){
+    public LiveData<List<GastosRecurrentesV2>> getAll(){
         return gastosTodos;
     }
 
-    public List<GastosRecurrentes> getByDate(Integer diaPago){
+    public List<GastosRecurrentesV2> getByDate(Integer diaPago){
         return gastosRecurrentesDao.getByDate(diaPago);
     }
 
-    public List<GastosRecurrentes> getAllMain(){ return gastosRecurrentesDao.getAllMain();}
-    public GastosRecurrentes getById(Long id){
+    public List<GastosRecurrentesV2> getAllMain(){ return gastosRecurrentesDao.getAllMain();}
+    public GastosRecurrentesV2 getById(Long id){
         return gastosRecurrentesDao.getById(id);
     }
 }

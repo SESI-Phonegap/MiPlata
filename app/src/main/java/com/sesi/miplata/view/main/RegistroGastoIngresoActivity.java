@@ -2,7 +2,6 @@ package com.sesi.miplata.view.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -24,13 +23,12 @@ import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.sesi.miplata.R;
 import com.sesi.miplata.data.entity.Categorias;
-import com.sesi.miplata.data.entity.GastosRecurrentes;
+import com.sesi.miplata.data.entity.GastosRecurrentesV2;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.databinding.ActivityRegistroGastoIngresoBinding;
 import com.sesi.miplata.model.OperacionesModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -171,7 +169,7 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         builder.setPositiveButton("Aceptar", (dialogInterface, i) -> {
             String operationType = binding.spinnerTipo.getSelectedItem().toString();
             if (operationType.equals("Gasto")){
-                GastosRecurrentes gastoDelete = populatedGasto();
+                GastosRecurrentesV2 gastoDelete = populatedGasto();
                 gastoDelete.setId(operacion.getId());
                 viewModel.deleteGasto(gastoDelete);
             } else {
@@ -225,8 +223,8 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
         loadInterestecialAd();
     }
 
-    private GastosRecurrentes populatedGasto(){
-        GastosRecurrentes gasto = new GastosRecurrentes();
+    private GastosRecurrentesV2 populatedGasto(){
+        GastosRecurrentesV2 gasto = new GastosRecurrentesV2();
         gasto.setNombre(binding.etName.getText().toString());
         gasto.setNota(Objects.requireNonNull(binding.etNota.getText()).toString());
         gasto.setMonto(Double.parseDouble(Objects.requireNonNull(binding.etMonto.getText()).toString()));
@@ -242,7 +240,7 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
     }
 
     private void updateGasto(OperacionesModel gasto){
-        GastosRecurrentes gastoUpdate = populatedGasto();
+        GastosRecurrentesV2 gastoUpdate = populatedGasto();
         gastoUpdate.setId(gasto.getId());
         viewModel.updateGasto(gastoUpdate);
     }

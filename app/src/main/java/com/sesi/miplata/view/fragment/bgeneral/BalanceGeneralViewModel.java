@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import com.sesi.miplata.data.entity.GastosRecurrentes;
+import com.sesi.miplata.data.entity.GastosRecurrentesV2;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.data.repository.GastosRecurrentesRepository;
 import com.sesi.miplata.data.repository.IngresosRecurrentesRepository;
@@ -14,7 +14,7 @@ import java.util.List;
 
 public class BalanceGeneralViewModel extends ViewModel {
 
-    private final LiveData<List<GastosRecurrentes>> gastos;
+    private final LiveData<List<GastosRecurrentesV2>> gastos;
     private final LiveData<List<IngresosRecurrentes>> ingresos;
 
     public BalanceGeneralViewModel(Application application) {
@@ -26,7 +26,7 @@ public class BalanceGeneralViewModel extends ViewModel {
 
     public double getGastoTotal() {
         double total = 0;
-        List<GastosRecurrentes> gastos = this.gastos.getValue();
+        List<GastosRecurrentesV2> gastos = this.gastos.getValue();
         if (gastos != null) {
             total = Utils.getGastoTotal(gastos);
         }
@@ -50,7 +50,7 @@ public class BalanceGeneralViewModel extends ViewModel {
         return total;
     }
 
-    public LiveData<List<GastosRecurrentes>> getGastos() {
+    public LiveData<List<GastosRecurrentesV2>> getGastos() {
         return gastos;
     }
 
