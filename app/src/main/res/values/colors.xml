@@ -11,9 +11,10 @@
     <color name="blue">#0000FF</color>
     <color name="blue_436CFF">#436CFF</color>
 
-    <color name="primaryColor">#43a047</color>
+    <color name="primaryColor">#3C9640</color>
     <color name="primaryLightColor">#76d275</color>
+    <color name="green_FFA4FFA3">#A4FFA3</color>
     <color name="primaryDarkColor">#00701a</color>
     <color name="gray">#BFBFBF</color>
-    <color name="graylow">#E4E4E4</color>
+    <color name="graylow">#F8F8F8</color>
 </resources>

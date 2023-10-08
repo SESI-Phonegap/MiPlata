@@ -27,7 +27,7 @@ class MiPlataNotification {
             notificationManager.createNotificationChannel(channel)
         }
         val logoBitmap =
-            BitmapFactory.decodeResource(context.resources, R.drawable.ic_launcher_round)
+            BitmapFactory.decodeResource(context.resources, R.drawable.miplataicon)
         var notification = NotificationCompat.Builder(context, NOTIFICATION_ID)
             .setSmallIcon(R.drawable.ic_launcher_round)
             .setContentTitle(context.getString(R.string.notify_title))

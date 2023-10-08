@@ -87,6 +87,9 @@ dependencies {
     kapt  "androidx.room:room-compiler:2.5.2"
     annotationProcessor "androidx.room:room-compiler:2.5.2"
 
+    implementation 'com.intuit.sdp:sdp-android:1.1.0'
+    implementation 'com.intuit.ssp:ssp-android:1.1.0'
+
     //Crashlytics
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:30.1.0')
