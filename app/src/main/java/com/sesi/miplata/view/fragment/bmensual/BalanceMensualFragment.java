@@ -152,10 +152,10 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
 
     public void updateUi(){
         double gastoTotal = viewModel.getGastoTotal();
-        double ingresoTotal = viewModel.getIngresoTotal();
-        double ingresoNeto = ingresoTotal - gastoTotal;
         binding.tvGastos.setText(Utils.getCurrencyFormatter(gastoTotal));
+        double ingresoTotal = viewModel.getIngresoTotal();
         binding.tvIngreso.setText(Utils.getCurrencyFormatter(ingresoTotal));
+        double ingresoNeto = ingresoTotal - gastoTotal;
         binding.tvIngresoNeto.setText(Utils.getCurrencyFormatter(ingresoNeto));
         setData(ingresoTotal,gastoTotal,ingresoNeto);
         binding.chart1.setCenterText(Utils.generateCenterSpannableText(Utils.getCurrencyFormatter(ingresoTotal)));
