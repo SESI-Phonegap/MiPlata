@@ -33,59 +33,88 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintChart"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_380sdp"
+                android:layout_height="@dimen/_350sdp"
                 android:background="@drawable/shape_main_drawable"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <TextView
+                    android:id="@+id/tv_main_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/lbl_gasto_mes"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_20ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <ImageView
                     android:id="@+id/btn_mes_anterior"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
                     android:src="@drawable/ic_arrow"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@id/tv_title"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_title"/>
 
                 <ImageView
                     android:id="@+id/btn_mes_siguiente"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:rotation="180"
                     android:src="@drawable/ic_arrow"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@id/tv_title"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_title"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/lbl_fecha_default"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
+                    android:textSize="@dimen/_20ssp"
+                    android:textStyle="italic"
                     app:layout_constraintEnd_toStartOf="@+id/btn_mes_siguiente"
                     app:layout_constraintStart_toEndOf="@+id/btn_mes_anterior"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_main_title" />
 
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/chart1"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/check_fijos"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_title"/>
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/check_fijos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="40dp"
+                    android:text="@string/lbl_check_text_fijo"
+                    android:textColor="@color/green_1B4544"
+                    android:textStyle="italic"
+                    android:theme="@style/checkboxCustom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/chart1" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -113,7 +142,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintIngreso"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:background="@color/white">
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -127,28 +156,33 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tv_ingreso"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/appCompatTextView"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginEnd="8dp"
-                            android:text="@string/tv_monto_default"
+                            android:text="@string/tv_ingresos"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13ssp"
+                            android:textAlignment="center"
+                            android:textStyle="italic|bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/appCompatImageView"
                             app:layout_constraintTop_toTopOf="@id/appCompatImageView" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_ingreso"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:text="@string/tv_ingresos"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_13ssp"
+                            android:text="@string/tv_monto_default"
+                            android:textColor="@color/green_1B4544"
+                            android:textSize="@dimen/_11ssp"
+                            android:textAlignment="center"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="@id/tv_ingreso"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_ingreso" />
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
+                            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
+
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -179,28 +213,33 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tvGastos"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/appCompatTextView3"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginEnd="8dp"
-                            android:text="@string/tv_monto_default"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_13ssp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/imgGastos"
-                            app:layout_constraintTop_toTopOf="@+id/imgGastos" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
                             android:text="@string/tv_gastos"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13ssp"
+                            android:textAlignment="center"
+                            android:textStyle="italic|bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/imgGastos"
+                            app:layout_constraintTop_toTopOf="@id/imgGastos" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvGastos"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:text="@string/tv_monto_default"
+                            android:textAlignment="center"
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/_11ssp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="@id/tvGastos"
-                            app:layout_constraintTop_toBottomOf="@+id/tvGastos" />
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/imgGastos"
+                            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView3" />
+
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </com.google.android.material.card.MaterialCardView>
@@ -234,7 +273,7 @@
                         android:id="@+id/appCompatImageView2"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:layout_marginStart="32dp"
+                        android:layout_marginStart="16dp"
                         android:src="@drawable/ic_cash_check"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -260,9 +299,11 @@
                             android:text="@string/tv_ingreso_neto"
                             android:textColor="@color/black"
                             android:textSize="20sp"
+                            android:textStyle="italic|bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tv_ingreso_neto"
@@ -272,8 +313,8 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
                             android:text="@string/tv_monto_default"
-                            android:textColor="@color/black"
-                            android:textSize="20sp"
+                            android:textColor="@color/green_1B4544"
+                            android:textSize="@dimen/_15ssp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/appCompatTextView2" />
@@ -282,13 +323,6 @@
 
 
             </com.google.android.material.card.MaterialCardView>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintIngresoNeto"></androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>

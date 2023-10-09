@@ -20,6 +20,11 @@
     <string name="lbl_default_item_nota">Descuento mensual del infonavit</string>
     <string name="lbl_default_item_fecha">15/01/2022</string>
     <string name="lbl_default_item_monto">$2,500.00</string>
+    <string name="lbl_recordatorio_title">¿Quieres que te recordemos cuando realizar tu pago?</string>
+    <string name="lbl_recordatorio_pago">Selecciona el dia que quieras recibir la notificacion:</string>
+    <string name="lbl_recordatorio_note">0 = no recordarme</string>
+    <string name="lbl_gasto_mes">Monthly Balance</string>
+    <string name="lbl_check_text_fijo">Incluir ingresos y gastos fijos</string>
 
     <string name="tv_ingresos">Income</string>
     <string name="tv_gastos">Expenses</string>

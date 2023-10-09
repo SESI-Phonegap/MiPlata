@@ -89,7 +89,7 @@ public class BalanceGeneralFragment extends Fragment implements OnChartValueSele
         entries.add(new PieEntry(porcentajeIngreso, "Ingreso Neto", R.drawable.ic_cash_check));
         entries.add(new PieEntry(porcentajeGasto, "Gastos", R.drawable.ic_cash_remove));
 
-        PieDataSet dataSet = new PieDataSet(entries, "Balance General");
+        PieDataSet dataSet = new PieDataSet(entries, "");
         dataSet.setDrawIcons(false);
         dataSet.setSliceSpace(3f);
         dataSet.setIconsOffset(new MPPointF(0, 40));

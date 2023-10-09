@@ -3,6 +3,7 @@ package com.sesi.miplata.data.repository;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.sesi.miplata.data.AppDatabase;
 import com.sesi.miplata.data.dao.GastosRecurrentesDao;
@@ -13,7 +14,7 @@ import java.util.List;
 public class GastosRecurrentesRepository {
 
     private final GastosRecurrentesDao gastosRecurrentesDao;
-    private final LiveData<List<GastosRecurrentesV2>> gastosTodos;
+    private final List<GastosRecurrentesV2> gastosTodos;
 
     public GastosRecurrentesRepository(Context context) {
         AppDatabase db = AppDatabase.getInstance(context);
@@ -36,7 +37,7 @@ public class GastosRecurrentesRepository {
                 gastosRecurrentesDao.delete(gasto));
     }
 
-    public LiveData<List<GastosRecurrentesV2>> getAll(){
+    public List<GastosRecurrentesV2> getAll(){
         return gastosTodos;
     }
 

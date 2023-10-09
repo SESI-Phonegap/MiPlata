@@ -12,7 +12,7 @@
     <string name="lbl_default_monto">0.00</string>
     <string name="lbl_guardar">Guardar</string>
     <string name="lbl_date_format">dd/mm/yyyy</string>
-    <string name="lbl_balance_general">Balance General</string>
+    <string name="lbl_balance_general">Balance \noperaciones fijas</string>
     <string name="lbl_fecha_default">Enero 2022</string>
     <string name="content_description">.</string>
     <string name="lbl_default_item_title">Hipoteca</string>
@@ -22,6 +22,8 @@
     <string name="lbl_recordatorio_title">¿Quieres que te recordemos cuando realizar tu pago?</string>
     <string name="lbl_recordatorio_pago">Selecciona el dia que quieras recibir la notificacion:</string>
     <string name="lbl_recordatorio_note">0 = no recordarme</string>
+    <string name="lbl_gasto_mes">Balance por mes</string>
+    <string name="lbl_check_text_fijo">Incluir ingresos y gastos fijos</string>
 
     <string name="tv_ingresos">Ingresos</string>
     <string name="tv_gastos">Gastos</string>
@@ -32,8 +34,8 @@
     <string name="fab_menu_add_op_day">Operación diaria</string>
     <string name="title_activity_menu">MenuActivity</string>
 
-    <string name="menu_balance_mensual">Balance Mensual</string>
-    <string name="menu_balance_general">Balance General</string>
+    <string name="menu_balance_mensual">Balance mensual</string>
+    <string name="menu_balance_general">Balance de operaciones fijas</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="lbl_subheader_menu">Organiza tus finanzas.</string>
     <string name="splash">MiPlata \n Administra tus finanzas.</string>

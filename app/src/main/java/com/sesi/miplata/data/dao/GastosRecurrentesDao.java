@@ -1,6 +1,7 @@
 package com.sesi.miplata.data.dao;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -24,7 +25,7 @@ public interface GastosRecurrentesDao {
     void delete(GastosRecurrentesV2 gasto);
 
     @Query("SELECT * FROM GASTOS_RECURRENTES_2 ORDER BY gr_monto DESC")
-    LiveData<List<GastosRecurrentesV2>> getAll();
+    List<GastosRecurrentesV2> getAll();
 
     @Query("SELECT * FROM GASTOS_RECURRENTES_2 ORDER BY gr_monto DESC")
     List<GastosRecurrentesV2> getAllMain();

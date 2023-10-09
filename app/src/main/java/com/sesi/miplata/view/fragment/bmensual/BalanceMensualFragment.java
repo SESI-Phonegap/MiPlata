@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -90,7 +91,19 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
         binding.btnMesAnterior.setOnClickListener(v -> mesAnterior());
         binding.btnMesSiguiente.setOnClickListener(v -> mesSiguiente());
         binding.tvTitle.setOnClickListener(v -> showDateDialog());
+        checkListener();
         return binding.getRoot();
+    }
+
+    private void checkListener() {
+        binding.checkFijos.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                viewModel.getGastosFijos();
+                viewModel.getIngresosFijos();
+            } else {
+                viewModel.resetFijos();
+            }
+        });
     }
 
     private void mesAnterior() {
@@ -159,7 +172,7 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
         entries.add(new PieEntry(porcentajeIngreso, "Ingreso Neto", R.drawable.ic_cash_check));
         entries.add(new PieEntry(porcentajeGasto, "Gastos", R.drawable.ic_cash_remove));
 
-        PieDataSet dataSet = new PieDataSet(entries, "Balance General");
+        PieDataSet dataSet = new PieDataSet(entries, "");
         dataSet.setDrawIcons(false);
         dataSet.setSliceSpace(3f);
         dataSet.setIconsOffset(new MPPointF(0, 40));

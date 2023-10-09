@@ -3,6 +3,7 @@ package com.sesi.miplata.view.fragment.bgeneral;
 import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.sesi.miplata.data.entity.GastosRecurrentesV2;
@@ -14,14 +15,14 @@ import java.util.List;
 
 public class BalanceGeneralViewModel extends ViewModel {
 
-    private final LiveData<List<GastosRecurrentesV2>> gastos;
-    private final LiveData<List<IngresosRecurrentes>> ingresos;
+    private final MutableLiveData<List<GastosRecurrentesV2>> gastos = new MutableLiveData<>();
+    private final MutableLiveData<List<IngresosRecurrentes>> ingresos = new MutableLiveData<>();
 
     public BalanceGeneralViewModel(Application application) {
         GastosRecurrentesRepository gastosRepo = new GastosRecurrentesRepository(application);
         IngresosRecurrentesRepository ingresosRepo = new IngresosRecurrentesRepository(application);
-        gastos = gastosRepo.getAll();
-        ingresos = ingresosRepo.getAll();
+        gastos.setValue(gastosRepo.getAll());
+        ingresos.setValue(ingresosRepo.getAll());
     }
 
     public double getGastoTotal() {

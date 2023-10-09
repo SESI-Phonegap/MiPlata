@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -21,16 +22,16 @@ import java.util.List;
 public class ListaOperacionesViewModel extends ViewModel {
 
     private final CategoriasRepository categoriasRepo;
-    private final LiveData<List<GastosRecurrentesV2>> gastos;
-    private final LiveData<List<IngresosRecurrentes>> ingresos;
+    private final MutableLiveData<List<GastosRecurrentesV2>> gastos = new MutableLiveData<>();
+    private final MutableLiveData<List<IngresosRecurrentes>> ingresos = new MutableLiveData<>();
     private List<Categorias> categorias;
 
     public ListaOperacionesViewModel(Application application) {
         GastosRecurrentesRepository gastosRepo = new GastosRecurrentesRepository(application);
         IngresosRecurrentesRepository ingresosRepo = new IngresosRecurrentesRepository(application);
         categoriasRepo = new CategoriasRepository(application);
-        gastos = gastosRepo.getAll();
-        ingresos = ingresosRepo.getAll();
+        gastos.setValue(gastosRepo.getAll());
+        ingresos.setValue(ingresosRepo.getAll());
         categorias = null;
     }
 

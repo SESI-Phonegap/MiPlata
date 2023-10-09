@@ -19,19 +19,34 @@ import java.util.List;
 public class BalanceMensualViewModel extends ViewModel {
 
     private final OperacionesRepository operacionesRepo;
+    private final GastosRecurrentesRepository gastosRepo;
+    private final IngresosRecurrentesRepository ingresosRepo;
     private final LiveData<List<Operaciones>> operaciones;
-    private final LiveData<List<GastosRecurrentesV2>> gastos;
-    private final LiveData<List<IngresosRecurrentes>> ingresos;
+    private MutableLiveData<List<GastosRecurrentesV2>> gastos;
+    private MutableLiveData<List<IngresosRecurrentes>> ingresos;
     private final MutableLiveData<List<Long>> filterDate = new MutableLiveData<>();
 
     public BalanceMensualViewModel(Application application) {
+        gastos = new MutableLiveData<>();
+        ingresos = new MutableLiveData<>();
         operacionesRepo = new OperacionesRepository(application);
-        GastosRecurrentesRepository gastosRepo = new GastosRecurrentesRepository(application);
-        IngresosRecurrentesRepository ingresosRepo = new IngresosRecurrentesRepository(application);
-        gastos = gastosRepo.getAll();
-        ingresos = ingresosRepo.getAll();
+        gastosRepo = new GastosRecurrentesRepository(application);
+        ingresosRepo = new IngresosRecurrentesRepository(application);
         operaciones = Transformations.switchMap(filterDate,
                 date -> operacionesRepo.getOperacionesByDate(date.get(0), date.get(1)));
+    }
+
+    public void getGastosFijos() {
+        gastos.setValue(gastosRepo.getAll());
+    }
+
+    public void getIngresosFijos() {
+        ingresos.setValue(ingresosRepo.getAll());
+    }
+
+    public void resetFijos() {
+        ingresos.setValue(null);
+        gastos.setValue(null);
     }
 
     public LiveData<List<Operaciones>> getOperacionesByMonth() {
@@ -100,11 +115,11 @@ public class BalanceMensualViewModel extends ViewModel {
         filterDate.setValue(dates);
     }
 
-    public LiveData<List<GastosRecurrentesV2>> getGastos() {
+    public MutableLiveData<List<GastosRecurrentesV2>> getGastos() {
         return gastos;
     }
 
-    public LiveData<List<IngresosRecurrentes>> getIngresos() {
+    public MutableLiveData<List<IngresosRecurrentes>> getIngresos() {
         return ingresos;
     }
 
