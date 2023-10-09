@@ -9,4 +9,8 @@
         <item name="colorControlNormal">@color/green_1B4544</item>
         <item name="colorControlActivated">@color/green_1B4544</item>
     </style>
+
+    <style name="ImageViewRoundedCorners20" parent="">
+        <item name="cornerSize">20%</item>
+    </style>
 </resources>

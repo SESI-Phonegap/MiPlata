@@ -15,6 +15,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/shape_main_drawable"
     tools:context=".view.fragment.categorias.CategoriasFragment">
 
     <TextView
@@ -32,17 +33,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/btn_agregar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/graylow"
+        android:background="@color/primaryLightColor"
         android:minWidth="48dp"
         android:minHeight="48dp"
-        android:src="@android:drawable/ic_input_add"
+        app:shapeAppearance="@style/ImageViewRoundedCorners20"
+        android:src="@drawable/ic_plus_p"
+        app:tint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
@@ -70,6 +73,7 @@
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold"
+            android:textAlignment="center"
             android:layout_marginEnd="8dp"/>
 
         <TextView
@@ -77,10 +81,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/lbl_ingreso"
+            android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="17sp"
-            android:textStyle="bold"
-            android:layout_marginStart="8dp"/>
+            android:textStyle="bold"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -102,13 +106,20 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            tools:layout_editor_absoluteY="172dp" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_categoria"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_ingresos"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_categoria"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
