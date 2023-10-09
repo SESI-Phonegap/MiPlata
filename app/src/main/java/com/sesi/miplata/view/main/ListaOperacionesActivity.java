@@ -152,7 +152,7 @@ public class ListaOperacionesActivity extends AppCompatActivity implements OnCha
         // entry label styling
         binding.pieChart.setEntryLabelColor(Color.WHITE);
         //binding.pieChart.setEntryLabelTypeface(tfRegular);
-        binding.pieChart.setEntryLabelTextSize(12f);
+        binding.pieChart.setEntryLabelTextSize(10f);
     }
 
     private void setData(List<OperacionesModel> operaciones){
@@ -174,7 +174,7 @@ public class ListaOperacionesActivity extends AppCompatActivity implements OnCha
 
         PieData data = new PieData(dataSet);
         data.setValueFormatter(new PercentFormatter());
-        data.setValueTextSize(17f);
+        data.setValueTextSize(12f);
         data.setValueTextColor(Color.WHITE);
         //data.setValueTypeface(tfLight);
         binding.pieChart.setData(data);

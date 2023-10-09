@@ -183,7 +183,7 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
 
         PieData data = new PieData(dataSet);
         data.setValueFormatter(new PercentFormatter());
-        data.setValueTextSize(17f);
+        data.setValueTextSize(12f);
         data.setValueTextColor(Color.WHITE);
         //data.setValueTypeface(tfLight);
         binding.chart1.setData(data);
@@ -235,7 +235,7 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
         // entry label styling
         binding.chart1.setEntryLabelColor(Color.WHITE);
         //binding.chart1.setEntryLabelTypeface(tfRegular);
-        binding.chart1.setEntryLabelTextSize(12f);
+        binding.chart1.setEntryLabelTextSize(10f);
     }
 
     public void showDateDialog(){
@@ -333,5 +333,11 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
     @Override
     public void onNothingSelected() {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getParentFragment().onAttach(requireContext());
     }
 }

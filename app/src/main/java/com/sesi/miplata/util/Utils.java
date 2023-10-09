@@ -67,9 +67,9 @@ public class Utils {
     public static SpannableString generateCenterSpannableText(String ingresoTotal) {
 
         SpannableString s = new SpannableString(ingresoTotal + "\nIngreso Bruto");
-        s.setSpan(new RelativeSizeSpan(2.0f), 0, s.length()-13, 0);
+        s.setSpan(new RelativeSizeSpan(1.5f), 0, s.length()-13, 0);
         s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 13, s.length(), 0);
-        s.setSpan(new RelativeSizeSpan(1.5f),s.length()-13,s.length(),0);
+        s.setSpan(new RelativeSizeSpan(1f),s.length()-13,s.length(),0);
         s.setSpan(new ForegroundColorSpan(ColorTemplate.rgb("FF0000")), 0, s.length() - 14,0);
         s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 13, s.length(), 0);
         return s;
@@ -78,9 +78,9 @@ public class Utils {
     public static SpannableString generateListCenterSpannableText(String total) {
 
         SpannableString s = new SpannableString(total + "\nTotal");
-        s.setSpan(new RelativeSizeSpan(2.0f), 0, s.length()-5, 0);
+        s.setSpan(new RelativeSizeSpan(1f), 0, s.length()-5, 0);
         s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 5, s.length(), 0);
-        s.setSpan(new RelativeSizeSpan(1.5f),s.length()-5,s.length(),0);
+        s.setSpan(new RelativeSizeSpan(1f),s.length()-5,s.length(),0);
         s.setSpan(new ForegroundColorSpan(ColorTemplate.rgb("FF0000")), 0, s.length() - 6,0);
         s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 5, s.length(), 0);
         return s;
