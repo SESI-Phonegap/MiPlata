@@ -25,7 +25,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = {Categorias.class, GastosRecurrentes.class, IngresosRecurrentes.class, Operaciones.class, GastosRecurrentesV2.class},
-        version = 3
+        version = 2
 )
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
