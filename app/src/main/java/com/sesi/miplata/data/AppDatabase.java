@@ -25,8 +25,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = {Categorias.class, GastosRecurrentes.class, IngresosRecurrentes.class, Operaciones.class, GastosRecurrentesV2.class},
-        version = 3,
-        autoMigrations = { @AutoMigration(from = 2, to = 3)}
+        version = 3
 )
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
@@ -47,7 +46,7 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATA_BASE_NAME)
-                            .addMigrations(MIGRATION_2_3)
+                            .addMigrations(MIGRATION_1_2)
                             .createFromAsset("miplata.db")
                             .allowMainThreadQueries()
                             .build();
@@ -57,14 +56,14 @@ public abstract class AppDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    static final Migration MIGRATION_1_2 = new Migration(1,2) {
+   /* static final Migration MIGRATION_1_2 = new Migration(1,2) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL("ALTER TABLE GASTOS_RECURRENTES ADD COLUMN gr_dia_pago INTEGER");
         }
-    };
+    };*/
 
-    static final Migration MIGRATION_2_3 = new Migration(2,3) {
+    static final Migration MIGRATION_1_2 = new Migration(1,2) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL("INSERT INTO GASTOS_RECURRENTES_2 (gr_id, gr_nombre, gr_nota, gr_monto, gr_id_categoria) SELECT gr_id, gr_nombre, gr_nota, gr_monto, gr_id_categoria FROM GASTOS_RECURRENTES");
