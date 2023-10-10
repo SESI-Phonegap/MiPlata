@@ -17,10 +17,12 @@ public class BalanceGeneralViewModel extends ViewModel {
 
     private final MutableLiveData<List<GastosRecurrentesV2>> gastos = new MutableLiveData<>();
     private final MutableLiveData<List<IngresosRecurrentes>> ingresos = new MutableLiveData<>();
+    private GastosRecurrentesRepository gastosRepo;
+    private IngresosRecurrentesRepository ingresosRepo;
 
     public BalanceGeneralViewModel(Application application) {
-        GastosRecurrentesRepository gastosRepo = new GastosRecurrentesRepository(application);
-        IngresosRecurrentesRepository ingresosRepo = new IngresosRecurrentesRepository(application);
+        gastosRepo = new GastosRecurrentesRepository(application);
+        ingresosRepo = new IngresosRecurrentesRepository(application);
         gastos.setValue(gastosRepo.getAll());
         ingresos.setValue(ingresosRepo.getAll());
     }
@@ -32,6 +34,14 @@ public class BalanceGeneralViewModel extends ViewModel {
             total = Utils.getGastoTotal(gastos);
         }
         return total;
+    }
+
+    public void getAllGastos() {
+        gastos.setValue(gastosRepo.getAll());
+    }
+
+    public void getAllIngresos() {
+        ingresos.setValue(ingresosRepo.getAll());
     }
 
     public double getIngresoTotal() {

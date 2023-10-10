@@ -178,6 +178,7 @@ public class BalanceGeneralFragment extends Fragment implements OnChartValueSele
     @Override
     public void onResume() {
         super.onResume();
-        getParentFragment().onAttach(requireContext());
+        viewModel.getAllGastos();
+        viewModel.getAllIngresos();
     }
 }
