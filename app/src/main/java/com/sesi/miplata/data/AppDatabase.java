@@ -66,9 +66,9 @@ public abstract class AppDatabase extends RoomDatabase {
     static final Migration MIGRATION_1_2 = new Migration(1,2) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE GASTOS_RECURRENTES_2 (gr_id INTEGER NOT NULL, gr_nombre	TEXT, gr_nota	TEXT, gr_monto	REAL NOT NULL DEFAULT 0, gr_id_categoria	INTEGER NOT NULL, PRIMARY KEY(gr_id), FOREIGN KEY(gr_id_categoria) REFERENCES CATEGORIAS(cat_id))");
             database.execSQL("INSERT INTO GASTOS_RECURRENTES_2 (gr_id, gr_nombre, gr_nota, gr_monto, gr_id_categoria) SELECT gr_id, gr_nombre, gr_nota, gr_monto, gr_id_categoria FROM GASTOS_RECURRENTES");
             database.execSQL("DROP TABLE GASTOS_RECURRENTES");
-            //database.execSQL("ALTER TABLE GASTOS_RECURRENTES ADD COLUMN gr_dia_pago INTEGER");
         }
     };
 
