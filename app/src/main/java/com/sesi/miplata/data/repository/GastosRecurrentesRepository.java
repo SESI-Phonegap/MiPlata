@@ -14,12 +14,10 @@ import java.util.List;
 public class GastosRecurrentesRepository {
 
     private final GastosRecurrentesDao gastosRecurrentesDao;
-    private final List<GastosRecurrentesV2> gastosTodos;
 
     public GastosRecurrentesRepository(Context context) {
         AppDatabase db = AppDatabase.getInstance(context);
         gastosRecurrentesDao = db.getGastosRecurrentesDao();
-        gastosTodos = gastosRecurrentesDao.getAll();
     }
 
     public void insert(GastosRecurrentesV2 gasto){
@@ -38,7 +36,7 @@ public class GastosRecurrentesRepository {
     }
 
     public List<GastosRecurrentesV2> getAll(){
-        return gastosTodos;
+        return gastosRecurrentesDao.getAll();
     }
 
     public List<GastosRecurrentesV2> getByDate(Integer diaPago){

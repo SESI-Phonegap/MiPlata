@@ -14,12 +14,10 @@ import java.util.List;
 public class IngresosRecurrentesRepository {
 
     private final IngresosRecurrentesDao ingresosRecurrentesDao;
-    private final List<IngresosRecurrentes> ingresosTodos;
 
     public IngresosRecurrentesRepository(Application application) {
         AppDatabase db = AppDatabase.getInstance(application);
         ingresosRecurrentesDao = db.getIngresosRecurrentesDao();
-        ingresosTodos = ingresosRecurrentesDao.getAll();
     }
 
     public void insert(IngresosRecurrentes ingreso) {
@@ -38,7 +36,7 @@ public class IngresosRecurrentesRepository {
     }
 
     public List<IngresosRecurrentes> getAll() {
-        return ingresosTodos;
+        return ingresosRecurrentesDao.getAll();
     }
 
     public List<IngresosRecurrentes> getAllMain(){ return  ingresosRecurrentesDao.getAllMain();}
