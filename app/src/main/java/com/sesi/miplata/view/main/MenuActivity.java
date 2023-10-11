@@ -27,6 +27,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.sesi.miplata.R;
+import com.sesi.miplata.data.preference.StoragePreference;
 import com.sesi.miplata.databinding.ActivityMenuBinding;
 import com.sesi.miplata.notificaction.MiPlataNotification;
 import com.sesi.miplata.schedule.JobManager;
@@ -53,6 +54,11 @@ public class MenuActivity extends AppCompatActivity implements DialogNotificatio
         loadAds();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             requestNotificationPermission();
+        } else {
+            if (StoragePreference.INSTANCE.isFirstTime(getApplicationContext())) {
+                createNotificationJobs();
+                StoragePreference.INSTANCE.setData(StoragePreference.FIRST_TIME, false, getApplicationContext());
+            }
         }
         setSupportActionBar(binding.appBarMenu.toolbar);
         DrawerLayout drawer = binding.drawerLayout;
@@ -141,10 +147,8 @@ public class MenuActivity extends AppCompatActivity implements DialogNotificatio
     private final ActivityResultLauncher<String> requestNotification = registerForActivityResult(
             new ActivityResultContracts.RequestPermission(),
             result -> {
-                if (result){
-                    JobManager jobManager = new JobManager();
-                    jobManager.createNotificationJob(getApplicationContext());
-                    jobManager.createDailyNotificationJob(getApplicationContext());
+                if (result) {
+                    createNotificationJobs();
                 }
             });
 
@@ -159,5 +163,11 @@ public class MenuActivity extends AppCompatActivity implements DialogNotificatio
     @Override
     public void onAccept() {
         requestNotification.launch(Manifest.permission.POST_NOTIFICATIONS);
+    }
+
+    public void createNotificationJobs() {
+        JobManager jobManager = new JobManager();
+        jobManager.createNotificationJob(getApplicationContext());
+        jobManager.createDailyNotificationJob(getApplicationContext());
     }
 }
