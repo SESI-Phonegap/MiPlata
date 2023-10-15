@@ -159,7 +159,7 @@ public class ListaOperacionesMensualesActivity extends AppCompatActivity impleme
     }
 
     private void openEditActivity(OperacionesModel operacion){
-        Intent intent = new Intent(this, RegistroOperacionesMensualesActivity.class);
+        Intent intent = new Intent(this, RegistroOperacionesDayliActivity.class);
         intent.putExtra("operacion", operacion);
         startActivity(intent);
     }

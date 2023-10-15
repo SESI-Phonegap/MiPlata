@@ -16,13 +16,15 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".view.main.RegistroOperacionesMensualesActivity"
+            android:name=".view.main.RegistroOperacionesDayliActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".view.main.RegistroGastoIngresoActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".view.main.ListaOperacionesActivity"
             android:exported="false"

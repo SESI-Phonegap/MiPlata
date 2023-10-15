@@ -23,8 +23,10 @@ import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.sesi.miplata.R;
 import com.sesi.miplata.data.entity.Categorias;
+import com.sesi.miplata.databinding.DialogCategoriaBinding;
 import com.sesi.miplata.databinding.FragmentCategoriasBinding;
 import com.sesi.miplata.view.main.adapter.CategoriasAdapter;
 
@@ -110,25 +112,23 @@ public class CategoriasFragment extends Fragment {
     }
 
     public void showDialogCategory(Categorias categoria) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        View view = requireActivity().getLayoutInflater().inflate(R.layout.dialog_categoria, null);
-        EditText etName = view.findViewById(R.id.et_nombre);
-        Spinner spinner = view.findViewById(R.id.spinner_categoriass);
-        TextView tvGuardar = view.findViewById(R.id.btn_guardar);
-        TextView tvCancelar = view.findViewById(R.id.btn_cancelar);
+        BottomSheetDialog bsd =new BottomSheetDialog(getContext(), R.style.BottomSheetDialogStyle_2);
+        DialogCategoriaBinding bindingCat = DialogCategoriaBinding.inflate(getLayoutInflater());
+        bsd.setContentView(bindingCat.getRoot());
+        bsd.show();
 
         if (categoria != null){
-            etName.setText(categoria.getNombre());
+            bindingCat.etNombre.setText(categoria.getNombre());
             if (categoria.getTipoCategoria().equals("Gasto")){
-                spinner.setSelection(0);
+                bindingCat.spinnerCategoriass.setSelection(0);
             } else {
-                spinner.setSelection(1);
+                bindingCat.spinnerCategoriass.setSelection(1);
             }
         }
 
-        tvGuardar.setOnClickListener(v -> {
-            String tipoCat = spinner.getSelectedItem().toString();
-            String nombre = etName.getText().toString();
+        bindingCat.btnGuardar.setOnClickListener(v -> {
+            String tipoCat = bindingCat.spinnerCategoriass.getSelectedItem().toString();
+            String nombre = bindingCat.etNombre.getText().toString();
             if (categoria != null){
                 Categorias categoriaUpdate = new Categorias();
                 categoriaUpdate.setId(categoria.getId());
@@ -140,15 +140,10 @@ public class CategoriasFragment extends Fragment {
                 viewModel.addCategory(nombre, tipoCat);
             }
             loadInterestecialAd();
-            dialog.dismiss();
+            bsd.dismiss();
         });
 
-        tvCancelar.setOnClickListener(v -> dialog.dismiss());
-
-        builder.setView(view);
-        dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
+        bindingCat.btnCancelar.setOnClickListener(v -> bsd.dismiss());
     }
 
     @Override

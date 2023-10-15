@@ -157,6 +157,7 @@
                             android:id="@+id/imgGastosGeneral"
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
+                            android:layout_marginStart="16dp"
                             android:src="@drawable/ic_cash_remove"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"

@@ -13,4 +13,13 @@
     <style name="ImageViewRoundedCorners20" parent="">
         <item name="cornerSize">20%</item>
     </style>
+    <style name="BottomSheetDialogStyle_2" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/bottomSheetBackground</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+    <style name="bottomSheetBackground" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_top_corners</item>
+    </style>
+
 </resources>

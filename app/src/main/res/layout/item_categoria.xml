@@ -11,6 +11,7 @@
         android:layout_marginBottom="4dp"
         android:layout_marginTop="4dp"
         app:cardElevation="2dp"
+        app:cardCornerRadius="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +27,7 @@
             android:textColor="@color/black"
             android:textStyle="italic|bold"
             android:textSize="15sp"
+            android:layout_gravity="center"
             android:layout_margin="8dp"/>
 
     </androidx.cardview.widget.CardView>

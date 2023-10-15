@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Menu;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
@@ -29,7 +28,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.sesi.miplata.R;
 import com.sesi.miplata.data.preference.StoragePreference;
 import com.sesi.miplata.databinding.ActivityMenuBinding;
-import com.sesi.miplata.notificaction.MiPlataNotification;
 import com.sesi.miplata.schedule.JobManager;
 import com.sesi.miplata.view.dialog.DialogNotification;
 
@@ -82,7 +80,7 @@ public class MenuActivity extends AppCompatActivity implements DialogNotificatio
         });
 
         binding.appBarMenu.fabAddOpDay.setOnClickListener(v ->{
-            Intent intent = new Intent(this, RegistroOperacionesMensualesActivity.class);
+            Intent intent = new Intent(this, RegistroOperacionesDayliActivity.class);
             startActivity(intent);
         });
 

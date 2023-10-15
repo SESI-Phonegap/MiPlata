@@ -49,7 +49,7 @@
                     android:textStyle="bold"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_20ssp"
+                    android:textSize="@dimen/_17ssp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
