@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
@@ -129,18 +130,22 @@ public class CategoriasFragment extends Fragment {
         bindingCat.btnGuardar.setOnClickListener(v -> {
             String tipoCat = bindingCat.spinnerCategoriass.getSelectedItem().toString();
             String nombre = bindingCat.etNombre.getText().toString();
-            if (categoria != null){
-                Categorias categoriaUpdate = new Categorias();
-                categoriaUpdate.setId(categoria.getId());
-                categoriaUpdate.setTipoCategoria(tipoCat);
-                categoriaUpdate.setNombre(nombre);
-                categoriaUpdate.setIcono(0);
-                viewModel.updateCategory(categoriaUpdate);
+            if (!nombre.isEmpty()) {
+                if (categoria != null) {
+                    Categorias categoriaUpdate = new Categorias();
+                    categoriaUpdate.setId(categoria.getId());
+                    categoriaUpdate.setTipoCategoria(tipoCat);
+                    categoriaUpdate.setNombre(nombre);
+                    categoriaUpdate.setIcono(0);
+                    viewModel.updateCategory(categoriaUpdate);
+                } else {
+                    viewModel.addCategory(nombre, tipoCat);
+                }
+                loadInterestecialAd();
+                bsd.dismiss();
             } else {
-                viewModel.addCategory(nombre, tipoCat);
+                Toast.makeText(getContext(), "El nombre de la categoria es requerido", Toast.LENGTH_LONG).show();
             }
-            loadInterestecialAd();
-            bsd.dismiss();
         });
 
         bindingCat.btnCancelar.setOnClickListener(v -> bsd.dismiss());

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
@@ -84,7 +85,13 @@ public class RegistroGastoIngresoActivity extends AppCompatActivity {
 
 
         binding.btnGuardar.setOnClickListener(v -> {
-            saveOperation(operacion);
+            if (!binding.etMonto.getText().toString().isEmpty()
+                    && !binding.etName.getText().toString().isEmpty()
+                    && !binding.etNota.getText().toString().isEmpty()) {
+                saveOperation(operacion);
+            } else {
+                Toast.makeText(getApplicationContext(), "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
+            }
         });
 
         binding.spinnerTipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
