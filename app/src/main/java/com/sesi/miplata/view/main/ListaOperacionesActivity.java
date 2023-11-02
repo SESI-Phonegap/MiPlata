@@ -47,12 +47,6 @@ public class ListaOperacionesActivity extends AppCompatActivity implements OnCha
         binding = ActivityListaOperacionesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-
         loadAds();
         ListaOperacionesViewModel.ListaOperacionesViewModelFactory factory = new ListaOperacionesViewModel.ListaOperacionesViewModelFactory(getApplication());
         viewModel = new ViewModelProvider(this, factory).get(ListaOperacionesViewModel.class);

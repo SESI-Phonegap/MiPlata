@@ -46,11 +46,6 @@ public class RegistroOperacionesDayliActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityRegistroOperacionesMensualesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
 
         loadAds();
         RegistroOperacionesMensualesViewModel.RegistroOperacionesMensualesViewModelFactory factory = new RegistroOperacionesMensualesViewModel.RegistroOperacionesMensualesViewModelFactory(getApplication());
@@ -96,16 +91,17 @@ public class RegistroOperacionesDayliActivity extends AppCompatActivity {
         binding.btnGuardar.setOnClickListener(v -> {
             if (!binding.etDate.getText().toString().isEmpty()
                     && !binding.etMonto.getText().toString().isEmpty()
-                    && !binding.etNombre.getText().toString().isEmpty()
-                    && !binding.etNota.getText().toString().isEmpty()) {
+                    && !binding.etNombre.getText().toString().isEmpty()) {
                 saveOperation(operacion);
             } else {
-                Toast.makeText(getApplicationContext(), "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "valida los campos obligatorios", Toast.LENGTH_LONG).show();
             }
         });
 
         binding.btnDelete.setOnClickListener(v -> confirmDeleteDialog(operacion));
     }
+
+
 
     private void loadAds(){
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -147,7 +143,7 @@ public class RegistroOperacionesDayliActivity extends AppCompatActivity {
             mInterstitialAd.show(this);
         } else {
             Log.d("TAG", "The interstitial ad wasn't ready yet.");
-            loadAds();
+            finish();
         }
     }
 
@@ -201,6 +197,7 @@ public class RegistroOperacionesDayliActivity extends AppCompatActivity {
         } else {
             insertOperacion();
         }
+        Toast.makeText(getApplicationContext(), "Se ha guardado exitosamente", Toast.LENGTH_LONG).show();
         loadInterestecialAd();
     }
 

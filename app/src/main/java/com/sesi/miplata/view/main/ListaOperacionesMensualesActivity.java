@@ -46,11 +46,6 @@ public class ListaOperacionesMensualesActivity extends AppCompatActivity impleme
         super.onCreate(savedInstanceState);
         binding = ActivityListaOperacionesMensualesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
 
         loadAds();
         ListaOperacionesMensualesViewModel.ListaOperacionesMensualesViewModelFactory factory = new ListaOperacionesMensualesViewModel.ListaOperacionesMensualesViewModelFactory(getApplication());
