@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import android.util.Log;
@@ -86,11 +87,11 @@ public class BalanceGeneralFragment extends Fragment implements OnChartValueSele
         float porcentajeIngreso = (ingresoNetoF / ingresoBrutoF) * 100;
         float porcentajeGasto = (gastoF / ingresoBrutoF) * 100;
         //ingreso
-        entries.add(new PieEntry(porcentajeIngreso, "Ingreso Neto", R.drawable.ic_cash_check));
-        entries.add(new PieEntry(porcentajeGasto, "Gastos", R.drawable.ic_cash_remove));
+        entries.add(new PieEntry(ingresoNetoF, "Ingreso Neto", ContextCompat.getDrawable(requireContext(),R.drawable.ic_cash_check_white)));
+        entries.add(new PieEntry(gastoF, "Gastos", ContextCompat.getDrawable(requireContext(),R.drawable.ic_cash_remove_white)));
 
         PieDataSet dataSet = new PieDataSet(entries, "");
-        dataSet.setDrawIcons(false);
+        dataSet.setDrawIcons(true);
         dataSet.setSliceSpace(3f);
         dataSet.setIconsOffset(new MPPointF(0, 40));
         dataSet.setSelectionShift(5f);
