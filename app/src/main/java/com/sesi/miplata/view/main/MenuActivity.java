@@ -92,7 +92,7 @@ public class MenuActivity extends AppCompatActivity implements DialogNotificatio
 
     private void loadAds(){
         AdRequest adRequest = new AdRequest.Builder().build();
-        binding.appBarMenu.content.adViewBanner.loadAd(adRequest);
+        binding.adViewBanner.loadAd(adRequest);
     }
 
     @Override
