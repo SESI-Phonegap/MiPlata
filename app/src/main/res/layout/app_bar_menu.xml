@@ -32,7 +32,7 @@
         android:layout_marginEnd="16dp"
         android:gravity="center_vertical"
         android:layout_marginBottom="23dp"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="center|end"
         android:visibility="gone">
 
         <TextView
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:padding="7dp"
             android:background="@color/primaryLightColor"
-            android:textColor="@color/black"
+            android:textColor="@color/green_1B4544"
             android:text="@string/fab_menu_add_op_rec"
             android:textSize="15sp"
             android:textStyle="bold"/>
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             app:fabSize="mini"
-            android:tint="@color/black"
+            app:tint="@color/white"
             app:srcCompat="@drawable/ic_paid"
             android:contentDescription="@string/content_description"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -64,14 +64,14 @@
         android:layout_marginEnd="16dp"
         android:gravity="center_vertical"
         android:layout_marginBottom="23dp"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="center|end"
         android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/primaryLightColor"
-            android:textColor="@color/black"
+            android:textColor="@color/green_1B4544"
             android:text="@string/fab_menu_add_op_day"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -80,10 +80,10 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fab_add_op_day"
             android:layout_marginStart="10dp"
+            android:id="@+id/fab_add_op_day"
             app:fabSize="mini"
-            android:tint="@color/black"
+            app:tint="@color/white"
             app:srcCompat="@drawable/ic_cash_check"
             android:contentDescription="@string/content_description"/>
 
@@ -93,11 +93,12 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="center|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
         app:fabSize="mini"
-        app:srcCompat="@android:drawable/ic_input_add"
+        app:tint="@color/white"
+        android:src="@drawable/ic_plus"
         android:contentDescription="@string/content_description"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
