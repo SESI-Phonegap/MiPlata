@@ -169,29 +169,31 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
         float ingresoNetoF = Float.parseFloat(String.valueOf(ingresoNeto));
         float porcentajeIngreso = (ingresoNetoF / ingresoBrutoF) * 100;
         float porcentajeGasto = (gastoF / ingresoBrutoF) * 100;
-        //ingreso
-        entries.add(new PieEntry(ingresoNetoF, "Ingreso Neto", ContextCompat.getDrawable(requireContext(),R.drawable.ic_cash_check_white)));
-        entries.add(new PieEntry(gastoF, "Gastos", ContextCompat.getDrawable(requireContext(),R.drawable.ic_cash_remove_white)));
+        if (ingresoNetoF >= 0) {
+            //ingreso
+            entries.add(new PieEntry(ingresoNetoF, "Ingreso Neto", ContextCompat.getDrawable(requireContext(), R.drawable.ic_cash_check_white)));
+            entries.add(new PieEntry(gastoF, "Gastos", ContextCompat.getDrawable(requireContext(), R.drawable.ic_cash_remove_white)));
 
-        PieDataSet dataSet = new PieDataSet(entries, "");
-        dataSet.setDrawIcons(true);
-        dataSet.setSliceSpace(3f);
-        dataSet.setIconsOffset(new MPPointF(0, 40));
-        dataSet.setSelectionShift(5f);
+            PieDataSet dataSet = new PieDataSet(entries, "");
+            dataSet.setDrawIcons(true);
+            dataSet.setSliceSpace(3f);
+            dataSet.setIconsOffset(new MPPointF(0, 40));
+            dataSet.setSelectionShift(5f);
 
-        dataSet.setColors(Utils.getColors());
-        //dataSet.setSelectionShift(0f);
+            dataSet.setColors(Utils.getColors());
+            //dataSet.setSelectionShift(0f);
 
-        PieData data = new PieData(dataSet);
-        data.setValueFormatter(new PercentFormatter());
-        data.setValueTextSize(12f);
-        data.setValueTextColor(Color.WHITE);
-        //data.setValueTypeface(tfLight);
-        binding.chart1.setData(data);
-        // undo all highlights
-        binding.chart1.highlightValues(null);
+            PieData data = new PieData(dataSet);
+            data.setValueFormatter(new PercentFormatter());
+            data.setValueTextSize(12f);
+            data.setValueTextColor(Color.WHITE);
+            //data.setValueTypeface(tfLight);
+            binding.chart1.setData(data);
+            // undo all highlights
+            binding.chart1.highlightValues(null);
 
-        binding.chart1.invalidate();
+            binding.chart1.invalidate();
+        }
     }
 
     private void configChart() {

@@ -86,6 +86,7 @@ public class BalanceGeneralFragment extends Fragment implements OnChartValueSele
         float ingresoNetoF = Float.parseFloat(String.valueOf(ingresoNeto));
         float porcentajeIngreso = (ingresoNetoF / ingresoBrutoF) * 100;
         float porcentajeGasto = (gastoF / ingresoBrutoF) * 100;
+        if (ingresoNetoF >= 0) {
         //ingreso
         entries.add(new PieEntry(ingresoNetoF, "Ingreso Neto", ContextCompat.getDrawable(requireContext(),R.drawable.ic_cash_check_white)));
         entries.add(new PieEntry(gastoF, "Gastos", ContextCompat.getDrawable(requireContext(),R.drawable.ic_cash_remove_white)));
@@ -104,11 +105,12 @@ public class BalanceGeneralFragment extends Fragment implements OnChartValueSele
         data.setValueTextSize(12f);
         data.setValueTextColor(Color.WHITE);
         //data.setValueTypeface(tfLight);
-        binding.chartGeneral.setData(data);
-        // undo all highlights
-        binding.chartGeneral.highlightValues(null);
+            binding.chartGeneral.setData(data);
+            // undo all highlights
+            binding.chartGeneral.highlightValues(null);
 
-        binding.chartGeneral.invalidate();
+            binding.chartGeneral.invalidate();
+        }
     }
 
     private void configChart() {
