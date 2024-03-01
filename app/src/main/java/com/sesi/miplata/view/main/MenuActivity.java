@@ -45,11 +45,6 @@ public class MenuActivity extends BaseActivity implements DialogNotification.OnA
         binding = ActivityMenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
         loadAds();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             requestNotificationPermission();
@@ -93,7 +88,7 @@ public class MenuActivity extends BaseActivity implements DialogNotification.OnA
 
     private void loadAds(){
         AdRequest adRequest = new AdRequest.Builder().build();
-        binding.appBarMenu.content.adViewBanner.loadAd(adRequest);
+        binding.adViewBanner.loadAd(adRequest);
     }
 
     @Override

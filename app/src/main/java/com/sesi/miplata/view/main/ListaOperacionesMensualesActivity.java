@@ -2,6 +2,7 @@ package com.sesi.miplata.view.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -47,11 +48,6 @@ public class ListaOperacionesMensualesActivity extends BaseActivity implements O
         super.onCreate(savedInstanceState);
         binding = ActivityListaOperacionesMensualesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
 
         loadAds();
         ListaOperacionesMensualesViewModel.ListaOperacionesMensualesViewModelFactory factory = new ListaOperacionesMensualesViewModel.ListaOperacionesMensualesViewModelFactory(getApplication());
@@ -137,7 +133,7 @@ public class ListaOperacionesMensualesActivity extends BaseActivity implements O
         for(OperacionesModel operacion : operaciones){
             double porcentaje = (operacion.getMonto() / total) * 100;
             float fPorcent = Float.parseFloat(String.valueOf(porcentaje));
-            entries.add(new PieEntry(fPorcent, operacion.getCatNombre(), R.drawable.ic_cash_remove));
+            entries.add(new PieEntry(fPorcent, operacion.getCatNombre(), ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_cash_remove_white)));
         }
         PieDataSet dataSet = new PieDataSet(entries, "Balance");
         dataSet.setDrawIcons(false);

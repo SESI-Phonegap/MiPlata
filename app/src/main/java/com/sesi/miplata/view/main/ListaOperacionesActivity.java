@@ -2,6 +2,7 @@ package com.sesi.miplata.view.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
@@ -47,12 +48,6 @@ public class ListaOperacionesActivity extends BaseActivity implements OnChartVal
         super.onCreate(savedInstanceState);
         binding = ActivityListaOperacionesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
 
         loadAds();
         ListaOperacionesViewModel.ListaOperacionesViewModelFactory factory = new ListaOperacionesViewModel.ListaOperacionesViewModelFactory(getApplication());
@@ -162,10 +157,10 @@ public class ListaOperacionesActivity extends BaseActivity implements OnChartVal
         for(OperacionesModel operacion : operaciones){
             double porcentaje = (operacion.getMonto() / total) * 100;
             float fPorcent = Float.parseFloat(String.valueOf(porcentaje));
-            entries.add(new PieEntry(fPorcent, operacion.getCatNombre(), R.drawable.ic_cash_remove));
+            entries.add(new PieEntry(fPorcent, operacion.getCatNombre(), ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_cash_remove_white)));
         }
         PieDataSet dataSet = new PieDataSet(entries, "Balance");
-        dataSet.setDrawIcons(false);
+        dataSet.setDrawIcons(true);
         dataSet.setSliceSpace(3f);
         dataSet.setIconsOffset(new MPPointF(0, 40));
         dataSet.setSelectionShift(5f);

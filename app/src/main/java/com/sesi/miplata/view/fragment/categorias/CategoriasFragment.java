@@ -1,6 +1,7 @@
 package com.sesi.miplata.view.fragment.categorias;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -113,9 +114,10 @@ public class CategoriasFragment extends Fragment {
     }
 
     public void showDialogCategory(Categorias categoria) {
-        BottomSheetDialog bsd =new BottomSheetDialog(getContext(), R.style.BottomSheetDialogStyle_2);
+        Dialog bsd =new Dialog(getContext(), R.style.BottomSheetDialogStyle_2);
         DialogCategoriaBinding bindingCat = DialogCategoriaBinding.inflate(getLayoutInflater());
         bsd.setContentView(bindingCat.getRoot());
+        bsd.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         bsd.show();
 
         if (categoria != null){

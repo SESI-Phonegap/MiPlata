@@ -49,16 +49,7 @@ public class RegistroGastoIngresoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityRegistroGastoIngresoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-
         loadAds();
-
-
-
         RegistroGastoIngresoViewModel.RegistroGastoIngresoViewModelFactory factory = new RegistroGastoIngresoViewModel.RegistroGastoIngresoViewModelFactory(getApplication());
         viewModel = new ViewModelProvider(this, factory).get(RegistroGastoIngresoViewModel.class);
         OperacionesModel operacion = (OperacionesModel) getIntent().getSerializableExtra("operacion");
@@ -87,11 +78,10 @@ public class RegistroGastoIngresoActivity extends BaseActivity {
 
         binding.btnGuardar.setOnClickListener(v -> {
             if (!binding.etMonto.getText().toString().isEmpty()
-                    && !binding.etName.getText().toString().isEmpty()
-                    && !binding.etNota.getText().toString().isEmpty()) {
+                    && !binding.etName.getText().toString().isEmpty()) {
                 saveOperation(operacion);
             } else {
-                Toast.makeText(getApplicationContext(), "Todos los campos son requeridos", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "valida los campos obligatorios", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -166,7 +156,7 @@ public class RegistroGastoIngresoActivity extends BaseActivity {
             mInterstitialAd.show(this);
         } else {
             Log.d("TAG", "The interstitial ad wasn't ready yet.");
-            loadAds();
+            finish();
         }
     }
 
@@ -228,6 +218,7 @@ public class RegistroGastoIngresoActivity extends BaseActivity {
                 insertIngreso();
             }
         }
+        Toast.makeText(getApplicationContext(), "Se ha guardado exitosamente", Toast.LENGTH_LONG).show();
         loadInterestecialAd();
     }
 
