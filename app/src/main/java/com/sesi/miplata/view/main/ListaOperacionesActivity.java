@@ -29,12 +29,13 @@ import com.sesi.miplata.data.entity.Categorias;
 import com.sesi.miplata.databinding.ActivityListaOperacionesBinding;
 import com.sesi.miplata.model.OperacionesModel;
 import com.sesi.miplata.util.Utils;
+import com.sesi.miplata.view.BaseActivity;
 import com.sesi.miplata.view.main.adapter.OperacionesAdapter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ListaOperacionesActivity extends AppCompatActivity implements OnChartValueSelectedListener {
+public class ListaOperacionesActivity extends BaseActivity implements OnChartValueSelectedListener {
 
     private ActivityListaOperacionesBinding binding;
     private ListaOperacionesViewModel viewModel;

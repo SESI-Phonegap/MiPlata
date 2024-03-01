@@ -28,12 +28,13 @@ import com.sesi.miplata.data.entity.Operaciones;
 import com.sesi.miplata.databinding.ActivityRegistroOperacionesMensualesBinding;
 import com.sesi.miplata.model.OperacionesModel;
 import com.sesi.miplata.util.Utils;
+import com.sesi.miplata.view.BaseActivity;
 import com.sesi.miplata.view.fragment.datepicker.DatePickerFragment;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
-public class RegistroOperacionesDayliActivity extends AppCompatActivity {
+public class RegistroOperacionesDayliActivity extends BaseActivity {
 
     private ActivityRegistroOperacionesMensualesBinding binding;
     private RegistroOperacionesMensualesViewModel viewModel;

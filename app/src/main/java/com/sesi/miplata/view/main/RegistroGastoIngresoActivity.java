@@ -28,12 +28,13 @@ import com.sesi.miplata.data.entity.GastosRecurrentesV2;
 import com.sesi.miplata.data.entity.IngresosRecurrentes;
 import com.sesi.miplata.databinding.ActivityRegistroGastoIngresoBinding;
 import com.sesi.miplata.model.OperacionesModel;
+import com.sesi.miplata.view.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class RegistroGastoIngresoActivity extends AppCompatActivity {
+public class RegistroGastoIngresoActivity extends BaseActivity {
 
     private ActivityRegistroGastoIngresoBinding binding;
     private boolean isUpdate;

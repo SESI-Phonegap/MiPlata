@@ -29,9 +29,10 @@ import com.sesi.miplata.R;
 import com.sesi.miplata.data.preference.StoragePreference;
 import com.sesi.miplata.databinding.ActivityMenuBinding;
 import com.sesi.miplata.schedule.JobManager;
+import com.sesi.miplata.view.BaseActivity;
 import com.sesi.miplata.view.dialog.DialogNotification;
 
-public class MenuActivity extends AppCompatActivity implements DialogNotification.OnAction {
+public class MenuActivity extends BaseActivity implements DialogNotification.OnAction {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMenuBinding binding;
