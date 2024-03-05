@@ -202,24 +202,24 @@ public class RegistroGastoIngresoActivity extends BaseActivity {
         binding.spinnerCategorias.setSelection(position);
     }
 
-    public void saveOperation(OperacionesModel operacion){
+    public void saveOperation(OperacionesModel operacion) {
         String operationType = binding.spinnerTipo.getSelectedItem().toString();
-        if (isUpdate){
-            if (operationType.equals("Gasto")){
+        if (isUpdate) {
+            if (operationType.equals("Gasto")) {
                 updateGasto(operacion);
             } else {
                 updateIngreso(operacion);
             }
+            loadInterestecialAd();
 
         } else {
-            if (operationType.equals("Gasto")){
+            if (operationType.equals("Gasto")) {
                 insertGasto();
             } else {
                 insertIngreso();
             }
         }
         Toast.makeText(getApplicationContext(), "Se ha guardado exitosamente", Toast.LENGTH_LONG).show();
-        loadInterestecialAd();
     }
 
     private GastosRecurrentesV2 populatedGasto(){

@@ -52,6 +52,7 @@
             android:layout_marginStart="10dp"
             app:fabSize="mini"
             app:tint="@color/white"
+            android:backgroundTint="@color/green_1B4544"
             app:srcCompat="@drawable/ic_paid"
             android:contentDescription="@string/content_description"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -84,6 +85,7 @@
             android:id="@+id/fab_add_op_day"
             app:fabSize="mini"
             app:tint="@color/white"
+            android:backgroundTint="@color/green_1B4544"
             app:srcCompat="@drawable/ic_cash_check"
             android:contentDescription="@string/content_description"/>
 
@@ -98,6 +100,7 @@
         android:layout_marginBottom="16dp"
         app:fabSize="mini"
         app:tint="@color/white"
+        android:backgroundTint="@color/green_1B4544"
         android:src="@drawable/ic_plus"
         android:contentDescription="@string/content_description"/>
 

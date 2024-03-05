@@ -199,7 +199,6 @@ public class RegistroOperacionesDayliActivity extends BaseActivity {
             insertOperacion();
         }
         Toast.makeText(getApplicationContext(), "Se ha guardado exitosamente", Toast.LENGTH_LONG).show();
-        loadInterestecialAd();
     }
 
     private void insertOperacion(){
@@ -210,6 +209,7 @@ public class RegistroOperacionesDayliActivity extends BaseActivity {
         Operaciones operacionUpdate = populateOperation();
         operacionUpdate.setId(operacion.getId());
         viewModel.updateOperacion(operacionUpdate);
+        loadInterestecialAd();
     }
 
     private Operaciones populateOperation(){

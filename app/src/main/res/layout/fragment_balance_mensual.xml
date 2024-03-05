@@ -81,10 +81,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/lbl_fecha_default"
+                    android:elevation="@dimen/_5sdp"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_20ssp"
-                    android:textStyle="italic"
+                    android:textStyle="italic|bold"
                     app:layout_constraintEnd_toStartOf="@+id/btn_mes_siguiente"
                     app:layout_constraintStart_toEndOf="@+id/btn_mes_anterior"
                     app:layout_constraintTop_toBottomOf="@+id/tv_main_title" />
