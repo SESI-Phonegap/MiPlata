@@ -37,6 +37,7 @@
 
     <string name="menu_balance_mensual">Monthly Balance</string>
     <string name="menu_balance_general">Balance Sheet</string>
+    <string name="menu_year_report">Annual Report</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="lbl_subheader_menu">Organize Your Finances.</string>
     <string name="splash">MiPlata \n Manage your finances.</string>

@@ -36,6 +36,7 @@
 
     <string name="menu_balance_mensual">Balance mensual</string>
     <string name="menu_balance_general">Gastos/Ingresos fijos</string>
+    <string name="menu_year_report">Reporte anual</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="lbl_subheader_menu">Organiza tus finanzas.</string>
     <string name="splash">MiPlata \n Administra tus finanzas.</string>
@@ -64,5 +65,7 @@
     <string name="interesticial">ca-app-pub-2449148181464779/7995287355</string>
     <string name="prueba">ca-app-pub-3940256099942544/6300978111</string>
     <string name="pruebaInteresticial">ca-app-pub-3940256099942544/1033173712</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

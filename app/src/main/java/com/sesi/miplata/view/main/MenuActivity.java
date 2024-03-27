@@ -32,6 +32,9 @@ import com.sesi.miplata.schedule.JobManager;
 import com.sesi.miplata.view.BaseActivity;
 import com.sesi.miplata.view.dialog.DialogNotification;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MenuActivity extends BaseActivity implements DialogNotification.OnAction {
 
     private AppBarConfiguration mAppBarConfiguration;
