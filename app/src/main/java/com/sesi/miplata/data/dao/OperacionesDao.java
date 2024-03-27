@@ -11,6 +11,8 @@ import com.sesi.miplata.data.entity.Operaciones;
 
 import java.util.List;
 
+
+@Deprecated
 @Dao
 public interface OperacionesDao {
 

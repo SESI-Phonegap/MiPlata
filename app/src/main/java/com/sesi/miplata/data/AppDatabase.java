@@ -16,6 +16,7 @@ import com.sesi.miplata.data.dao.CategoriasDao;
 import com.sesi.miplata.data.dao.GastosRecurrentesDao;
 import com.sesi.miplata.data.dao.IngresosRecurrentesDao;
 import com.sesi.miplata.data.dao.OperacionesDao;
+import com.sesi.miplata.data.dao.OperationsV2Dao;
 import com.sesi.miplata.data.entity.Categorias;
 import com.sesi.miplata.data.entity.GastosRecurrentes;
 import com.sesi.miplata.data.entity.GastosRecurrentesV2;
@@ -40,6 +41,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract GastosRecurrentesDao getGastosRecurrentesDao();
     public abstract IngresosRecurrentesDao getIngresosRecurrentesDao();
     public abstract OperacionesDao getOperacionesDao();
+    public abstract OperationsV2Dao getOperationsDao();
 
     public static AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {
