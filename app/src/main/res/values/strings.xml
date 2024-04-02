@@ -65,7 +65,19 @@
     <string name="interesticial">ca-app-pub-2449148181464779/7995287355</string>
     <string name="prueba">ca-app-pub-3940256099942544/6300978111</string>
     <string name="pruebaInteresticial">ca-app-pub-3940256099942544/1033173712</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="enero">Ene</string>
+    <string name="febrero">Feb</string>
+    <string name="marzo">Mar</string>
+    <string name="abril">Abr</string>
+    <string name="mayo">May</string>
+    <string name="junio">Jun</string>
+    <string name="julio">Jul</string>
+    <string name="agosto">Ago</string>
+    <string name="septiembre">Sept</string>
+    <string name="octubre">Oct</string>
+    <string name="noviembre">Nov</string>
+    <string name="diciembre">Dic</string>
+
 
 </resources>

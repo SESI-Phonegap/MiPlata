@@ -21,7 +21,6 @@
     <fragment
         android:id="@+id/nav_year_report"
         android:name="com.sesi.miplata.view.fragment.annual.AnnualFragment"
-        android:label="fragment_annual"
         tools:layout="@layout/fragment_annual" />
 
 </navigation>

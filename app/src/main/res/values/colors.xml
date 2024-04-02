@@ -6,6 +6,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
     <color name="blue_436CFF">#436CFF</color>
+    <color name="text_color_green_264444">#264444</color>
+    <color name="gray_B0B0B2">#B0B0B2</color>
+
 
     <color name="primaryColor">#3C9640</color>
     <color name="primaryLightColor">#76d275</color>

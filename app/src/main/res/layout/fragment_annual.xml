@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.fragment.annual.AnnualFragment">
 
@@ -17,7 +18,7 @@
         android:popupElevation="3dp"
         android:stateListAnimator="@drawable/spinner_sla"
         android:textAlignment="center"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_18ssp"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
@@ -36,10 +37,15 @@
         android:id="@+id/rv_operaciones"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/chart" />
+        app:layout_constraintTop_toBottomOf="@+id/chart"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_year_month_summary" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -61,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".05" />
+        app:layout_constraintGuide_percent=".02" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline10"

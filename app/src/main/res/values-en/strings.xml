@@ -68,4 +68,17 @@
     <string name="prueba">ca-app-pub-3940256099942544/6300978111</string>
     <string name="pruebaInteresticial">ca-app-pub-3940256099942544/1033173712</string>
 
+    <string name="enero">Jan</string>
+    <string name="febrero">Feb</string>
+    <string name="marzo">Mar</string>
+    <string name="abril">Apr</string>
+    <string name="mayo">May</string>
+    <string name="junio">Jun</string>
+    <string name="julio">Jul</string>
+    <string name="agosto">Aug</string>
+    <string name="septiembre">Sep</string>
+    <string name="octubre">Oct</string>
+    <string name="noviembre">Nov</string>
+    <string name="diciembre">Dec</string>
+
 </resources>

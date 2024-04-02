@@ -30,7 +30,7 @@ class OperationsV2Repository @Inject constructor() {
         AppDatabase.databaseWriteExecutor.execute { dao?.delete(operation) }
     }
 
-    fun getOperationsByDate(initDate: Long, endDate: Long): LiveData<List<Operaciones>>? {
+    fun getOperationsByDate(initDate: Long, endDate: Long): List<Operaciones>? {
         return dao?.getOperationsByDate(initDate, endDate)
     }
 

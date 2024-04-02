@@ -20,7 +20,7 @@ interface OperationsV2Dao {
     fun delete(operations: Operaciones)
 
     @Query("SELECT * FROM OPERACIONES WHERE op_fecha BETWEEN :initDate AND :endDate ORDER BY op_fecha ASC")
-    fun getOperationsByDate(initDate: Long, endDate: Long): LiveData<List<Operaciones>>
+    fun getOperationsByDate(initDate: Long, endDate: Long): List<Operaciones>
 
     @Query("SELECT * FROM OPERACIONES")
     fun getAll(): List<Operaciones>
