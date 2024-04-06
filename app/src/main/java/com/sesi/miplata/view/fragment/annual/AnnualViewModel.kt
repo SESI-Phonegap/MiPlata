@@ -5,8 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sesi.miplata.data.dto.SummaryMonthDto
+import com.sesi.miplata.data.entity.GastosRecurrentesV2
+import com.sesi.miplata.data.entity.IngresosRecurrentes
 import com.sesi.miplata.data.entity.Operaciones
 import com.sesi.miplata.data.repository.OperationsV2Repository
+import com.sesi.miplata.data.repository.RecurrentIncomeRepository
+import com.sesi.miplata.data.repository.RecurrentSpentRepository
 import com.sesi.miplata.util.Operations
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.Calendar
@@ -15,16 +19,24 @@ import java.util.GregorianCalendar
 import javax.inject.Inject
 
 @HiltViewModel
-class AnnualViewModel @Inject constructor(private val repository: OperationsV2Repository) :
+class AnnualViewModel @Inject constructor(
+    private val repository: OperationsV2Repository,
+    private val incomeRepository: RecurrentIncomeRepository,
+    private val spentRepository: RecurrentSpentRepository
+) :
     ViewModel() {
 
     private var _annualOperations = MutableLiveData<List<Operaciones>>()
     var annualOperations: LiveData<List<Operaciones>> = _annualOperations
     private var _summaryMonths = MutableLiveData<List<List<SummaryMonthDto>>>()
-    var summaryMonths:LiveData<List<List<SummaryMonthDto>>> = _summaryMonths
+    var summaryMonths: LiveData<List<List<SummaryMonthDto>>> = _summaryMonths
+    private var totalIncomeRec = 0.0
+    private var totalSpentRec = 0.0
 
     fun getAnnualData(year: Int, context: Context) {
         repository.init(context)
+        incomeRepository.init(context)
+        spentRepository.init(context)
         val initDate = GregorianCalendar(year, Calendar.JANUARY, 1)
         val init = initDate.time
         val endDate = GregorianCalendar(year, Calendar.DECEMBER, 31)
@@ -32,11 +44,24 @@ class AnnualViewModel @Inject constructor(private val repository: OperationsV2Re
         _annualOperations.postValue(repository.getOperationsByDate(init.time, end.time))
     }
 
-    fun orderData(operations: List<Operaciones>) {
-        getIncomeByMonths(operations)
+    fun orderData(operations: List<Operaciones>, withRecurrent:Boolean) {
+        getIncomeByMonths(operations, withRecurrent)
     }
 
-    private fun getIncomeByMonths(operations: List<Operaciones>) {
+    private fun getRecurrentData() {
+        val income = incomeRepository.getAllMain()
+        val spent = spentRepository.getAllMain()
+        totalIncomeRec = getSummaryRecurrentData(income)
+        totalSpentRec = getSummarySpentRecurrentData(spent)
+    }
+
+    private fun getIncomeByMonths(operations: List<Operaciones>, withRecurrent:Boolean) {
+        if (withRecurrent) {
+            getRecurrentData()
+        } else {
+            totalIncomeRec = 0.0
+            totalSpentRec = 0.0
+        }
         val allIncome =
             operations.filter { operation -> operation.tipoOperacion.equals(Operations.INCOME.type) }
         val allSpent =
@@ -58,11 +83,11 @@ class AnnualViewModel @Inject constructor(private val repository: OperationsV2Re
             }
             val summaryIncomeData = arrayListOf<SummaryMonthDto>()
             incomeMonths.forEachIndexed { index, monthOp ->
-                summaryIncomeData.add(getSummaryData(monthOp, index))
+                summaryIncomeData.add(getSummaryData(monthOp, index, totalIncomeRec))
             }
             val summarySpentData = arrayListOf<SummaryMonthDto>()
             spentMonths.forEachIndexed { index, monthOp ->
-                summarySpentData.add(getSummaryData(monthOp, index))
+                summarySpentData.add(getSummaryData(monthOp, index, totalSpentRec))
             }
             val summarySpentIncomeMonths = arrayListOf<List<SummaryMonthDto>>()
             summarySpentIncomeMonths.add(summaryIncomeData)
@@ -77,11 +102,28 @@ class AnnualViewModel @Inject constructor(private val repository: OperationsV2Re
         return calendar.get(Calendar.MONTH) == month
     }
 
-    private fun getSummaryData(operations: List<Operaciones>, month: Int): SummaryMonthDto {
+    private fun getSummaryData(operations: List<Operaciones>, month: Int, totalRecurrent: Double): SummaryMonthDto {
         var total = 0.0
         operations.forEach { operation ->
             total += operation.monto
         }
+        total += totalRecurrent
         return SummaryMonthDto(month, total)
+    }
+
+    private fun getSummaryRecurrentData(recurrentData: List<IngresosRecurrentes?>?): Double {
+        var total = 0.0
+        recurrentData?.forEach { data ->
+            total += data!!.monto
+        }
+        return total
+    }
+
+    private fun getSummarySpentRecurrentData(recurrentData: List<GastosRecurrentesV2?>?): Double {
+        var total = 0.0
+        recurrentData?.forEach { data ->
+            total += data!!.monto
+        }
+        return total
     }
 }

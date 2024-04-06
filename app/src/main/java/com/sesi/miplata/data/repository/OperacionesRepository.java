@@ -10,6 +10,7 @@ import com.sesi.miplata.data.entity.Operaciones;
 
 import java.util.List;
 
+@Deprecated
 public class OperacionesRepository {
 
     private final OperacionesDao operacionesDao;

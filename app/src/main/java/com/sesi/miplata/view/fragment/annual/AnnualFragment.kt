@@ -47,23 +47,30 @@ class AnnualFragment : Fragment(), YearMonthAction {
                 position: Int,
                 id: Long
             ) {
-                binding.chart.clear()
-                viewModel.getAnnualData(
-                    (binding.spinnerYears.selectedItem as String).toInt(),
-                    requireContext()
-                )
+                getAnnual()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 //TODO("Not yet implemented")
             }
-
         }
+        binding.checkFijos.setOnCheckedChangeListener { buttonView, isChecked ->
+            getAnnual()
+        }
+    }
+
+    private fun getAnnual() {
+        binding.chart.clear()
+        binding.rvOperaciones.adapter = null
+        viewModel.getAnnualData(
+            (binding.spinnerYears.selectedItem as String).toInt(),
+            requireContext()
+        )
     }
 
     private fun observers() {
         viewModel.annualOperations.observe(viewLifecycleOwner) {
-            viewModel.orderData(it)
+            viewModel.orderData(it, binding.checkFijos.isChecked)
         }
         viewModel.summaryMonths.observe(viewLifecycleOwner) {
             binding.rvOperaciones.adapter = YearMonthAdapter(it[0], it[1], this)

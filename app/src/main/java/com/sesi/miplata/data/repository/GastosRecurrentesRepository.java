@@ -11,6 +11,7 @@ import com.sesi.miplata.data.entity.GastosRecurrentesV2;
 
 import java.util.List;
 
+@Deprecated
 public class GastosRecurrentesRepository {
 
     private final GastosRecurrentesDao gastosRecurrentesDao;

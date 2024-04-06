@@ -11,6 +11,7 @@ import com.sesi.miplata.data.entity.IngresosRecurrentes;
 
 import java.util.List;
 
+@Deprecated
 public class IngresosRecurrentesRepository {
 
     private final IngresosRecurrentesDao ingresosRecurrentesDao;

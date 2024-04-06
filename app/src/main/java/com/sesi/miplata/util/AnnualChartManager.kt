@@ -14,6 +14,7 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.sesi.miplata.R
@@ -51,30 +52,25 @@ object AnnualChartManager {
         // se translade con la velocidad que lleva, y no regreasa a la posicion de inicio o a la
         // preestablecida, es meramente visual
         chart.setVisibleXRangeMaximum(10f)
-        chart.setVisibleXRangeMinimum(8f)
+        chart.setVisibleXRangeMinimum(10f)
+        chart.data = data
 
-        val formatter = object : ValueFormatter() {
-            override fun getFormattedValue(value: Float): String {
-                return getMonths(context)[value.toInt()-1]
-            }
-        }
         //Set xAxis to Bottom
         val xAxis = chart.xAxis
         xAxis.axisMaximum = data.xMax
-        xAxis.axisMinimum = 1f
+        xAxis.axisMinimum = data.xMin
         xAxis.labelCount = data.xMax.toInt()
-        //xAxis.setLabelCount(12, true)
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.setDrawAxisLine(false)
         xAxis.setDrawGridLines(false)
         xAxis.setDrawLimitLinesBehindData(false)
         xAxis.setDrawLabels(true)
+        xAxis.labelRotationAngle = -90f
         xAxis.granularity = 1f
         xAxis.textColor = chart.context.getColor(R.color.gray_B0B0B2)
-        xAxis.valueFormatter = formatter
-        xAxis.labelRotationAngle = -65f
         xAxis.textSize = 12f
         xAxis.axisMaximum = data.xMax
+        xAxis.valueFormatter = IndexAxisValueFormatter(getMonths(context))
         //Set yAxis Hide
         val yAxis = chart.axisLeft
         yAxis.removeAllLimitLines()
@@ -93,12 +89,12 @@ object AnnualChartManager {
             LegendEntry().apply {
                 label = context.getString(R.string.lbl_ingreso)
                 formColor = Color.parseColor("#44D62C")
-                formSize = 13f
+                formSize = 11f
             },
             LegendEntry().apply {
                 label = context.getString(R.string.lbl_gastos)
                 formColor = Color.parseColor("#5CDFC1")
-                formSize = 13f
+                formSize = 11f
             }
         )
         l.setCustom(arrayLegends)
@@ -108,10 +104,10 @@ object AnnualChartManager {
         l.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
         l.orientation = Legend.LegendOrientation.HORIZONTAL
         l.setDrawInside(false)
-        l.textSize = 12f
+        l.textSize = 10f
         l.yOffset = 10f
         l.textColor = chart.context.getColor(R.color.text_color_green_264444)
-        chart.data = data
+
         //si no se agregan estas funciones de configuracion de la grafica abajo no las respeta :(
         chart.setVisibleXRangeMaximum(10f)
         chart.setVisibleXRangeMinimum(8f)
@@ -123,7 +119,7 @@ object AnnualChartManager {
             chart.resetPivot()
         }
         chart.resetZoom()
-        chart.setDragOffsetX(5f)
+        chart.setDragOffsetX(20f)
         chart.viewPortHandler.refresh(Matrix(), chart, true)
         chart.isHighlightPerTapEnabled = false
         chart.animateX(400)
@@ -189,6 +185,7 @@ object AnnualChartManager {
 
     private fun getMonths(context: Context): List<String> {
         return arrayListOf(
+            "",
             context.getString(R.string.enero),
             context.getString(R.string.febrero),
             context.getString(R.string.marzo),
