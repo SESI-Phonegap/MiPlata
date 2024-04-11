@@ -231,8 +231,8 @@
                         android:id="@+id/appCompatImageView2General"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:layout_marginStart="16dp"
-                        android:src="@drawable/ic_cash_check"
+                        android:layout_marginStart="24dp"
+                        android:src="@drawable/balance"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
