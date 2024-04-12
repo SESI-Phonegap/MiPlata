@@ -81,4 +81,6 @@
     <string name="noviembre">Nov</string>
     <string name="diciembre">Dec</string>
 
+    <string name="filtrar">Filter</string>
+
 </resources>

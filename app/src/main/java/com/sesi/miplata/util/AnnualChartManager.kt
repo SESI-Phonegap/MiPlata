@@ -122,7 +122,7 @@ object AnnualChartManager {
         chart.setDragOffsetX(20f)
         chart.viewPortHandler.refresh(Matrix(), chart, true)
         chart.isHighlightPerTapEnabled = false
-        chart.animateX(400)
+        chart.animateX(800)
     }
 
     fun configChartData(
