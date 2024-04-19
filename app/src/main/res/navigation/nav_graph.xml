@@ -21,6 +21,20 @@
     <fragment
         android:id="@+id/nav_year_report"
         android:name="com.sesi.miplata.view.fragment.annual.AnnualFragment"
-        tools:layout="@layout/fragment_annual" />
+        tools:layout="@layout/fragment_annual" >
+        <action
+            android:id="@+id/action_nav_year_report_to_monthlyDetailFragment"
+            app:destination="@id/monthlyDetailFragment">
+            <argument
+                android:name="month"
+                android:defaultValue="0"
+                app:argType="int"/>
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/monthlyDetailFragment"
+        android:name="com.sesi.miplata.view.fragment.bmensual.detalle.MonthlyDetailFragment"
+        android:label="fragment_detalle_mensual"
+        tools:layout="@layout/fragment_detalle_mensual" />
 
 </navigation>
