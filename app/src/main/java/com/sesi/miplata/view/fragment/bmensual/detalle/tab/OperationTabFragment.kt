@@ -5,13 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.sesi.miplata.R
-import com.sesi.miplata.data.entity.Operaciones
+import com.sesi.miplata.data.entity.GastosRecurrentesV2
+import com.sesi.miplata.data.entity.IngresosRecurrentes
+import com.sesi.miplata.databinding.FragmentOperacionTabBinding
+import com.sesi.miplata.model.OperacionesModel
 import com.sesi.miplata.util.Operations
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class OperationTabFragment(operations: List<Operaciones>, operationType: Operations) : Fragment() {
+class OperationTabFragment(
+    private val operations: List<OperacionesModel>,
+    private val operationType: Operations,
+    private val recurrentIncome: List<IngresosRecurrentes?>?,
+    private val recurrentSpent: List<GastosRecurrentesV2?>?
+) : Fragment() {
+
+    private lateinit var binding: FragmentOperacionTabBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,9 +30,10 @@ class OperationTabFragment(operations: List<Operaciones>, operationType: Operati
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_operacion_tab, container, false)
+    ): View {
+        binding = FragmentOperacionTabBinding.inflate(layoutInflater)
+        //operations.filter { op -> op.idCategoria   }
+        return binding.root
     }
 
 }

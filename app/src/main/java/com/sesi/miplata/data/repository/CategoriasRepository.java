@@ -7,6 +7,7 @@ import com.sesi.miplata.data.dao.CategoriasDao;
 import com.sesi.miplata.data.entity.Categorias;
 import java.util.List;
 
+@Deprecated
 public class CategoriasRepository {
 
     private final CategoriasDao categoriasDao;

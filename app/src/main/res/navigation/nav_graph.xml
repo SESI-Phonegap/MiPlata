@@ -28,7 +28,15 @@
             <argument
                 android:name="month"
                 android:defaultValue="0"
-                app:argType="int"/>
+                app:argType="string"/>
+            <argument
+                android:name="year"
+                android:defaultValue="2000"
+                app:argType="string"/>
+            <argument
+                android:name="recurrent"
+                android:defaultValue="false"
+                app:argType="boolean"/>
         </action>
     </fragment>
     <fragment

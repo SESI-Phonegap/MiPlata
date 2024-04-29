@@ -4,16 +4,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.sesi.miplata.data.entity.Operaciones
+import com.sesi.miplata.data.entity.GastosRecurrentesV2
+import com.sesi.miplata.data.entity.IngresosRecurrentes
+import com.sesi.miplata.model.OperacionesModel
 import com.sesi.miplata.util.Operations
 import com.sesi.miplata.view.fragment.bmensual.detalle.tab.OperationTabFragment
 
 class ViewPagerAdapter(
     fragment: FragmentManager,
     lifeCycle: Lifecycle,
-    private val operations: List<Operaciones>,
-    private  val operationType: Operations
-    ): FragmentStateAdapter(fragment, lifeCycle) {
+    private val operations: List<OperacionesModel>,
+    private val recurrentIncome: List<IngresosRecurrentes?>?,
+    private val recurrentSpent: List<GastosRecurrentesV2?>?,
+    private val operationType: Operations
+) : FragmentStateAdapter(fragment, lifeCycle) {
 
     private lateinit var fragment: OperationTabFragment
     override fun getItemCount(): Int {
@@ -21,7 +25,10 @@ class ViewPagerAdapter(
     }
 
     override fun createFragment(position: Int): Fragment {
-        fragment = OperationTabFragment(operations, operationType)
+        when (position) {
+            0 -> fragment = OperationTabFragment(operations, operationType, recurrentIncome, null)
+            1 -> fragment = OperationTabFragment(operations, operationType, null, recurrentSpent)
+        }
         return fragment
     }
 }
