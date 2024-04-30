@@ -4,8 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sesi.miplata.databinding.ItemRvCategoriaFilterBinding
+import com.sesi.miplata.model.OperacionesModel
 
-class FilterCategoriesAdapter(private val categories: List<String>) :
+class FilterCategoriesAdapter(private val categories:  List<OperacionesModel>) :
     RecyclerView.Adapter<FilterCategoriesAdapter.FilterCategoriesViewHolder>() {
     inner class FilterCategoriesViewHolder(val binding: ItemRvCategoriaFilterBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -26,7 +27,7 @@ class FilterCategoriesAdapter(private val categories: List<String>) :
 
     override fun onBindViewHolder(holder: FilterCategoriesViewHolder, position: Int) {
         with(holder) {
-            binding.tvCategory.text = categories[position]
+            binding.tvCategory.text = categories[position].catNombre
         }
     }
 }

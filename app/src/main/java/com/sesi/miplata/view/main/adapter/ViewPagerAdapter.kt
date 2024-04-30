@@ -13,7 +13,8 @@ import com.sesi.miplata.view.fragment.bmensual.detalle.tab.OperationTabFragment
 class ViewPagerAdapter(
     fragment: FragmentManager,
     lifeCycle: Lifecycle,
-    private val operations: List<OperacionesModel>,
+    private val billsOperations: List<OperacionesModel>,
+    private val incomeOperations: List<OperacionesModel>,
     private val recurrentIncome: List<IngresosRecurrentes?>?,
     private val recurrentSpent: List<GastosRecurrentesV2?>?,
     private val operationType: Operations
@@ -21,13 +22,13 @@ class ViewPagerAdapter(
 
     private lateinit var fragment: OperationTabFragment
     override fun getItemCount(): Int {
-        return operations.size
+        return 2
     }
 
     override fun createFragment(position: Int): Fragment {
         when (position) {
-            0 -> fragment = OperationTabFragment(operations, operationType, recurrentIncome, null)
-            1 -> fragment = OperationTabFragment(operations, operationType, null, recurrentSpent)
+            0 -> fragment = OperationTabFragment(incomeOperations, operationType, recurrentIncome, null)
+            1 -> fragment = OperationTabFragment(billsOperations, operationType, null, recurrentSpent)
         }
         return fragment
     }

@@ -21,7 +21,7 @@ class MonthlyDetailFragment : Fragment() {
     private lateinit var adapter: ViewPagerAdapter
     private val viewModel: MonthlyDetailViewModel by viewModels()
     private lateinit var binding: FragmentDetalleMensualBinding
-    private var month = "01"
+    private var month = 1
     private var year = "2000"
     private var isRecurrent = false
     private var operations: MonthlyDetailDto? = null
@@ -32,14 +32,13 @@ class MonthlyDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetalleMensualBinding.inflate(layoutInflater)
-        month = arguments?.getString("month") ?: "01"
+        month = arguments?.getInt("month") ?: 1
         year = arguments?.getString("year") ?: "2000"
         isRecurrent = arguments?.getBoolean("recurrent") ?: false
-        val formatMes = Utils.formatMonth(month)
-        val dates = Utils.getDateInitEnd(formatMes, year)
-        viewModel.getOperations(dateInit = dates[0], dateEnd = dates[1], isRecurrent)
+
+        val dates = Utils.getDateInitEnd(month.toString(), year)
+        viewModel.getOperations(dateInit = dates[0], dateEnd = dates[1], isRecurrent, requireContext())
         observers()
-        initTabLayout()
         return binding.root
     }
 
@@ -49,12 +48,14 @@ class MonthlyDetailFragment : Fragment() {
             adapter = ViewPagerAdapter(
                 parentFragmentManager,
                 lifecycle,
+                monthly.bills,
                 monthly.incomes,
                 monthly.recurrentIncomes,
                 monthly.recurrentBills,
                 Operations.INCOME
             )
             binding.pager.adapter = adapter
+            initTabLayout()
         }
     }
 

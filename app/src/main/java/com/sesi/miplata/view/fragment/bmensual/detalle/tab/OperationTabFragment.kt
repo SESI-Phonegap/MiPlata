@@ -10,6 +10,7 @@ import com.sesi.miplata.data.entity.IngresosRecurrentes
 import com.sesi.miplata.databinding.FragmentOperacionTabBinding
 import com.sesi.miplata.model.OperacionesModel
 import com.sesi.miplata.util.Operations
+import com.sesi.miplata.view.main.adapter.FilterCategoriesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,7 +33,8 @@ class OperationTabFragment(
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentOperacionTabBinding.inflate(layoutInflater)
-        //operations.filter { op -> op.idCategoria   }
+        val categories = operations.distinctBy { operacionesModel -> operacionesModel.idCategoria }
+        binding.rvCategoriasFilter.adapter = FilterCategoriesAdapter(categories)
         return binding.root
     }
 

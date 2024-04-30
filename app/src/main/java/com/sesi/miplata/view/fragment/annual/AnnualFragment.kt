@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.sesi.miplata.R
 import com.sesi.miplata.databinding.FragmentAnnualBinding
 import com.sesi.miplata.util.AnnualChartManager
@@ -73,7 +74,8 @@ class AnnualFragment : Fragment(), YearMonthAction {
             viewModel.orderData(it, binding.checkFijos.isChecked)
         }
         viewModel.summaryMonths.observe(viewLifecycleOwner) {
-            binding.rvOperaciones.adapter = YearMonthAdapter(it[0], it[1], this)
+            binding.rvOperaciones.adapter =
+                YearMonthAdapter(binding.spinnerYears.selectedItem as String, it[0], it[1], this)
             val income = AnnualChartManager.generateEntryValues(it[0])
             val spent = AnnualChartManager.generateEntryValues(it[1])
             val lineData = AnnualChartManager.configChartData(income, spent, requireContext())
@@ -81,8 +83,12 @@ class AnnualFragment : Fragment(), YearMonthAction {
         }
     }
 
-    override fun onClickMont() {
-
+    override fun onClickMonth(year: String, month: Int) {
+        val bundle = Bundle()
+        bundle.putInt("month",month)
+        bundle.putString("year", year)
+        bundle.putBoolean("recurrent", binding.checkFijos.isChecked)
+        findNavController().navigate(R.id.action_nav_year_report_to_monthlyDetailFragment,bundle)
     }
 
 

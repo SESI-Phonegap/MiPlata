@@ -9,6 +9,7 @@ import com.sesi.miplata.util.DateUtil
 import com.sesi.miplata.util.Utils
 
 class YearMonthAdapter(
+    private val year:String,
     private val incomeList: List<SummaryMonthDto>,
     private val spentList: List<SummaryMonthDto>,
     private val action: YearMonthAction
@@ -33,16 +34,17 @@ class YearMonthAdapter(
 
     override fun onBindViewHolder(holder: YearMonthViewHolder, position: Int) {
         with(holder){
-            binding.tvMonth.text = DateUtil.getMonthByIndex(incomeList[position].month)
+            val month = DateUtil.getMonthByIndex(incomeList[position].month)
+            binding.tvMonth.text = month
             binding.tvIngresoMonto.text = Utils.getCurrencyFormatter(incomeList[position].total)
             binding.tvGastoMonto.text = Utils.getCurrencyFormatter(spentList[position].total)
             binding.root.setOnClickListener {
-                action.onClickMont()
+                action.onClickMonth(year,incomeList[position].month + 1)
             }
         }
     }
 }
 
 interface YearMonthAction {
-    fun onClickMont()
+    fun onClickMonth(year:String, month:Int)
 }

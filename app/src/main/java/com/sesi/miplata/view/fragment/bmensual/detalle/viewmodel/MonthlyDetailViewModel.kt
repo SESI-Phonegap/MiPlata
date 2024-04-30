@@ -1,5 +1,6 @@
 package com.sesi.miplata.view.fragment.bmensual.detalle.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -29,7 +30,11 @@ class MonthlyDetailViewModel @Inject constructor(
     private var _operations = MutableLiveData<MonthlyDetailDto>()
     var operation:LiveData<MonthlyDetailDto> = _operations
 
-    fun getOperations(dateInit: Long, dateEnd: Long, withRecurrent: Boolean) {
+    fun getOperations(dateInit: Long, dateEnd: Long, withRecurrent: Boolean, context:Context) {
+        operations.init(context)
+        categoriesRepo.init(context)
+        spentRepository.init(context)
+        incomeRepository.init(context)
         var recurrentIncome: List<IngresosRecurrentes?>? = null
         var recurrentSpent: List<GastosRecurrentesV2?>? = null
         val categories = categoriesRepo.getAll()
