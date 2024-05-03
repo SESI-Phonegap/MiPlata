@@ -1,6 +1,7 @@
 package com.sesi.miplata.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class OperacionesModel implements Serializable {
 
@@ -8,10 +9,21 @@ public class OperacionesModel implements Serializable {
     private String name;
     private String nota;
     private String fecha;
+
+    private Date date;
     private double monto;
     private Long idCategoria;
     private String catNombre;
     private int icono;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     private boolean isGasto;
     private boolean isUpdate;
 

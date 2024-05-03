@@ -80,6 +80,7 @@
     <string name="diciembre">Dic</string>
 
     <string name="filtrar">Filtrar</string>
+    <string name="summary_day">Dia: %1s</string>
 
 
 </resources>

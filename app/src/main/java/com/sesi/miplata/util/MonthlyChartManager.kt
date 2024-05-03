@@ -16,9 +16,12 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.sesi.miplata.R
+import com.sesi.miplata.data.dto.MonthlyDetailDto
 import com.sesi.miplata.data.dto.SummaryDto
+import com.sesi.miplata.model.OperacionesModel
+import java.util.Calendar
 
-object AnnualChartManager {
+object MonthlyChartManager {
 
     fun setupLineChart(chart: LineChart, data: LineData, context: Context) {
         chart.clear()
@@ -55,7 +58,6 @@ object AnnualChartManager {
 
         //Set xAxis to Bottom
         val xAxis = chart.xAxis
-        xAxis.axisMaximum = data.xMax
         xAxis.axisMinimum = data.xMin
         xAxis.labelCount = data.xMax.toInt()
         xAxis.position = XAxis.XAxisPosition.BOTTOM
@@ -63,12 +65,12 @@ object AnnualChartManager {
         xAxis.setDrawGridLines(false)
         xAxis.setDrawLimitLinesBehindData(false)
         xAxis.setDrawLabels(true)
-        xAxis.labelRotationAngle = -90f
+        //xAxis.labelRotationAngle = -90f
         xAxis.granularity = 1f
         xAxis.textColor = chart.context.getColor(R.color.gray_B0B0B2)
         xAxis.textSize = 12f
-        xAxis.axisMaximum = data.xMax
-        xAxis.valueFormatter = IndexAxisValueFormatter(getMonths(context))
+        //xAxis.axisMaximum = data.xMax
+        //xAxis.valueFormatter = IndexAxisValueFormatter(days)
         //Set yAxis Hide
         val yAxis = chart.axisLeft
         yAxis.removeAllLimitLines()
@@ -173,29 +175,11 @@ object AnnualChartManager {
         return LineData(dataSet)
     }
 
-    fun generateEntryValues(summaryData: List<SummaryDto>): List<Entry> {
+    fun generateEntryValues(operations:List<SummaryDto>): List<Entry> {
         val values = ArrayList<Entry>()
-        summaryData.forEach { data ->
-            values.add(Entry(data.month.toFloat() + 1, data.total.toFloat()))
+        operations.forEach { data ->
+            values.add(Entry(data.month.toFloat(), data.total.toFloat()))
         }
         return values
-    }
-
-    private fun getMonths(context: Context): List<String> {
-        return arrayListOf(
-            "",
-            context.getString(R.string.enero),
-            context.getString(R.string.febrero),
-            context.getString(R.string.marzo),
-            context.getString(R.string.abril),
-            context.getString(R.string.mayo),
-            context.getString(R.string.junio),
-            context.getString(R.string.julio),
-            context.getString(R.string.agosto),
-            context.getString(R.string.septiembre),
-            context.getString(R.string.octubre),
-            context.getString(R.string.noviembre),
-            context.getString(R.string.diciembre)
-        )
     }
 }

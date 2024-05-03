@@ -3,23 +3,24 @@ package com.sesi.miplata.view.main.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.sesi.miplata.R
 import com.sesi.miplata.data.dto.SummaryDto
 import com.sesi.miplata.databinding.ItemYearMonthSummaryBinding
-import com.sesi.miplata.util.DateUtil
 import com.sesi.miplata.util.Utils
+import java.util.Date
 
-class YearMonthAdapter(
-    private val year:String="",
+class SummaryDayAdapter(
     private val incomeList: List<SummaryDto>,
     private val spentList: List<SummaryDto>,
-    private val action: YearMonthAction
-) : RecyclerView.Adapter<YearMonthAdapter.YearMonthViewHolder>() {
+    private val action: SummaryDayAction
 
-    inner class YearMonthViewHolder(val binding: ItemYearMonthSummaryBinding) :
+) : RecyclerView.Adapter<SummaryDayAdapter.SummaryDayViewHolder>() {
+
+    inner class SummaryDayViewHolder(val binding: ItemYearMonthSummaryBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): YearMonthViewHolder {
-        return YearMonthViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SummaryDayViewHolder {
+        return SummaryDayViewHolder(
             ItemYearMonthSummaryBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -32,19 +33,17 @@ class YearMonthAdapter(
         return incomeList.size
     }
 
-    override fun onBindViewHolder(holder: YearMonthViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SummaryDayViewHolder, position: Int) {
         with(holder){
-            val month = DateUtil.getMonthByIndex(incomeList[position].month)
-            binding.tvMonth.text = month
+            binding.tvMonth.text = String.format(itemView.context.getString(R.string.summary_day), incomeList[position].month)
             binding.tvIngresoMonto.text = Utils.getCurrencyFormatter(incomeList[position].total)
             binding.tvGastoMonto.text = Utils.getCurrencyFormatter(spentList[position].total)
             binding.root.setOnClickListener {
-                action.onClickMonth(year,incomeList[position].month + 1)
+                action.onClickDay(incomeList.first().date!!)
             }
         }
     }
 }
-
-interface YearMonthAction {
-    fun onClickMonth(year:String, month:Int)
+interface SummaryDayAction {
+    fun onClickDay(date: Date)
 }

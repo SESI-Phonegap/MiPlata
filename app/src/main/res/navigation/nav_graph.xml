@@ -42,7 +42,6 @@
     <fragment
         android:id="@+id/monthlyDetailFragment"
         android:name="com.sesi.miplata.view.fragment.bmensual.detalle.MonthlyDetailFragment"
-        android:label="fragment_detalle_mensual"
         tools:layout="@layout/fragment_detalle_mensual" />
 
 </navigation>

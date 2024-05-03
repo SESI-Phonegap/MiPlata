@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".view.fragment.bmensual.detalle.MonthlyDetailFragment">
 
     <TextView
@@ -28,13 +29,28 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_operaciones"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/chart"
+        tools:itemCount="6"
+        tools:listitem="@layout/item_year_month_summary" />
+
+    <!--
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:tabGravity="fill"
+        app:tabGravity="center"
         app:tabIndicatorGravity="bottom"
-        app:tabMode="scrollable"
+        app:tabMode="fixed"
         app:tabBackground="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
@@ -47,7 +63,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout" />-->
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_start"

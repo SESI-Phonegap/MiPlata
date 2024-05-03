@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sesi.miplata.data.dto.MonthlyDetailDto
+import com.sesi.miplata.data.dto.SummaryDto
 import com.sesi.miplata.data.entity.Categorias
 import com.sesi.miplata.data.entity.GastosRecurrentesV2
 import com.sesi.miplata.data.entity.IngresosRecurrentes
@@ -17,6 +18,7 @@ import com.sesi.miplata.model.OperacionesModel
 import com.sesi.miplata.util.Operations
 import com.sesi.miplata.util.Utils
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.util.Calendar
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,6 +31,9 @@ class MonthlyDetailViewModel @Inject constructor(
 
     private var _operations = MutableLiveData<MonthlyDetailDto>()
     var operation:LiveData<MonthlyDetailDto> = _operations
+    private var _summaryDays = MutableLiveData<List<List<SummaryDto>>>()
+    var summaryDays: LiveData<List<List<SummaryDto>>> = _summaryDays
+
 
     fun getOperations(dateInit: Long, dateEnd: Long, withRecurrent: Boolean, context:Context) {
         operations.init(context)
@@ -75,6 +80,8 @@ class MonthlyDetailViewModel @Inject constructor(
                             idCategoria =op.idCategoria
                             icono = cat.icono
                             catNombre = cat.nombre
+                            fecha = Utils.dateFormat(op.fecha)
+                            date = op.fecha
                         }
                         lstOpModel.add(operationModel)
                     }
@@ -82,6 +89,40 @@ class MonthlyDetailViewModel @Inject constructor(
             }
         }
         return lstOpModel
+    }
+
+    fun sumTotalByDay(
+        maxDaysOfMonth:Int,
+        incomeList: List<OperacionesModel>,
+        billList: List<OperacionesModel>
+    ) {
+        val summaryIncomeData = arrayListOf<SummaryDto>()
+        val summaryBillData = arrayListOf<SummaryDto>()
+
+        for (day in 1..maxDaysOfMonth) {
+            var totalIncome = 0.0
+            var totalBills = 0.0
+            incomeList.forEach { operacionesModel ->
+                val calendar = Calendar.getInstance()
+                calendar.time = operacionesModel.date
+                if (day == calendar.get(Calendar.DAY_OF_MONTH)) {
+                    totalIncome += operacionesModel.monto
+                }
+            }
+            billList.forEach { bills ->
+                val calendar = Calendar.getInstance()
+                calendar.time = bills.date
+                if (day == calendar.get(Calendar.DAY_OF_MONTH)) {
+                    totalBills += bills.monto
+                }
+            }
+            summaryIncomeData.add(SummaryDto(day, totalIncome, incomeList.first().date))
+            summaryBillData.add(SummaryDto(day, totalBills, billList.first().date))
+        }
+        val summarySpentIncomeDays = arrayListOf<List<SummaryDto>>()
+        summarySpentIncomeDays.add(summaryIncomeData)
+        summarySpentIncomeDays.add(summaryBillData)
+        this._summaryDays.postValue(summarySpentIncomeDays)
     }
 
 }

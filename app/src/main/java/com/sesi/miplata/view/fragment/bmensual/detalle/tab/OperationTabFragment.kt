@@ -11,6 +11,7 @@ import com.sesi.miplata.databinding.FragmentOperacionTabBinding
 import com.sesi.miplata.model.OperacionesModel
 import com.sesi.miplata.util.Operations
 import com.sesi.miplata.view.main.adapter.FilterCategoriesAdapter
+import com.sesi.miplata.view.main.adapter.OperacionesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,9 +34,20 @@ class OperationTabFragment(
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentOperacionTabBinding.inflate(layoutInflater)
+        //initCategories()
+        //initOperations()
+        return binding.root
+    }
+
+    private fun initCategories() {
         val categories = operations.distinctBy { operacionesModel -> operacionesModel.idCategoria }
         binding.rvCategoriasFilter.adapter = FilterCategoriesAdapter(categories)
-        return binding.root
+    }
+
+    private fun initOperations() {
+        val opAdapter = OperacionesAdapter()
+        opAdapter.setOperaciones(operations)
+        binding.rvOperaciones.adapter = opAdapter
     }
 
 }

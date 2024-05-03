@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sesi.miplata.data.dto.SummaryMonthDto
+import com.sesi.miplata.data.dto.SummaryDto
 import com.sesi.miplata.data.entity.GastosRecurrentesV2
 import com.sesi.miplata.data.entity.IngresosRecurrentes
 import com.sesi.miplata.data.entity.Operaciones
@@ -28,8 +28,8 @@ class AnnualViewModel @Inject constructor(
 
     private var _annualOperations = MutableLiveData<List<Operaciones>>()
     var annualOperations: LiveData<List<Operaciones>> = _annualOperations
-    private var _summaryMonths = MutableLiveData<List<List<SummaryMonthDto>>>()
-    var summaryMonths: LiveData<List<List<SummaryMonthDto>>> = _summaryMonths
+    private var _summaryMonths = MutableLiveData<List<List<SummaryDto>>>()
+    var summaryMonths: LiveData<List<List<SummaryDto>>> = _summaryMonths
     private var totalIncomeRec = 0.0
     private var totalSpentRec = 0.0
 
@@ -81,15 +81,15 @@ class AnnualViewModel @Inject constructor(
                 })
                 spentMonths.add(allSpent.filter { operation -> getByMonth(operation.fecha, month) })
             }
-            val summaryIncomeData = arrayListOf<SummaryMonthDto>()
+            val summaryIncomeData = arrayListOf<SummaryDto>()
             incomeMonths.forEachIndexed { index, monthOp ->
                 summaryIncomeData.add(getSummaryData(monthOp, index, totalIncomeRec))
             }
-            val summarySpentData = arrayListOf<SummaryMonthDto>()
+            val summarySpentData = arrayListOf<SummaryDto>()
             spentMonths.forEachIndexed { index, monthOp ->
                 summarySpentData.add(getSummaryData(monthOp, index, totalSpentRec))
             }
-            val summarySpentIncomeMonths = arrayListOf<List<SummaryMonthDto>>()
+            val summarySpentIncomeMonths = arrayListOf<List<SummaryDto>>()
             summarySpentIncomeMonths.add(summaryIncomeData)
             summarySpentIncomeMonths.add(summarySpentData)
             this._summaryMonths.postValue(summarySpentIncomeMonths)
@@ -102,13 +102,13 @@ class AnnualViewModel @Inject constructor(
         return calendar.get(Calendar.MONTH) == month
     }
 
-    private fun getSummaryData(operations: List<Operaciones>, month: Int, totalRecurrent: Double): SummaryMonthDto {
+    private fun getSummaryData(operations: List<Operaciones>, month: Int, totalRecurrent: Double): SummaryDto {
         var total = 0.0
         operations.forEach { operation ->
             total += operation.monto
         }
         total += totalRecurrent
-        return SummaryMonthDto(month, total)
+        return SummaryDto(month, total)
     }
 
     private fun getSummaryRecurrentData(recurrentData: List<IngresosRecurrentes?>?): Double {

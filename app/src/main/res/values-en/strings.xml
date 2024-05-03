@@ -82,5 +82,5 @@
     <string name="diciembre">Dec</string>
 
     <string name="filtrar">Filter</string>
-
+    <string name="summary_day">Day: %1s</string>
 </resources>
