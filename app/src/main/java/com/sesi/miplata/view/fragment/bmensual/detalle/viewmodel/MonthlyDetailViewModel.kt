@@ -116,8 +116,8 @@ class MonthlyDetailViewModel @Inject constructor(
                     totalBills += bills.monto
                 }
             }
-            summaryIncomeData.add(SummaryDto(day, totalIncome, incomeList.first().date))
-            summaryBillData.add(SummaryDto(day, totalBills, billList.first().date))
+            summaryIncomeData.add(SummaryDto(day, totalIncome, incomeList.first().fecha))
+            summaryBillData.add(SummaryDto(day, totalBills, billList.first().fecha))
         }
         val summarySpentIncomeDays = arrayListOf<List<SummaryDto>>()
         summarySpentIncomeDays.add(summaryIncomeData)

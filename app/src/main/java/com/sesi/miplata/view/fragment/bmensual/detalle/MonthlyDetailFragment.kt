@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
+import com.sesi.miplata.R
 import com.sesi.miplata.data.dto.MonthlyDetailDto
 import com.sesi.miplata.data.dto.SummaryDto
 import com.sesi.miplata.databinding.FragmentDetalleMensualBinding
@@ -27,14 +29,12 @@ import java.util.Date
 @AndroidEntryPoint
 class MonthlyDetailFragment : Fragment(), SummaryDayAction {
 
-    private lateinit var adapter: ViewPagerAdapter
     private val viewModel: MonthlyDetailViewModel by viewModels()
     private lateinit var binding: FragmentDetalleMensualBinding
     private var month = 1
     private var year = "2000"
     private var isRecurrent = false
     private var operations: MonthlyDetailDto? = null
-    private val operationsArray = arrayOf(Operations.INCOME.type, Operations.SPENT.type)
     private var maxDaysOfMonth = 30
 
     override fun onCreateView(
@@ -83,14 +83,6 @@ class MonthlyDetailFragment : Fragment(), SummaryDayAction {
         }
     }
 
-   /* private fun initTabLayout() {
-        TabLayoutMediator(binding.tabLayout, binding.pager) {
-            tab, position ->
-            tab.text = operationsArray[position]
-        }.attach()
-    }*/
-
-
     private fun initChart(incomeList:List<SummaryDto>, billList:List<SummaryDto>){
         binding.chart.clear()
         val income = MonthlyChartManager.generateEntryValues(incomeList)
@@ -99,8 +91,8 @@ class MonthlyDetailFragment : Fragment(), SummaryDayAction {
         MonthlyChartManager.setupLineChart(binding.chart,lineData,requireContext())
     }
 
-    override fun onClickDay(date: Date) {
-
+    override fun onClickDay(date: String) {
+        findNavController().navigate(R.id.action_monthlyDetailFragment_to_dayFragment)
     }
 
 }

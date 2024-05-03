@@ -42,6 +42,18 @@
     <fragment
         android:id="@+id/monthlyDetailFragment"
         android:name="com.sesi.miplata.view.fragment.bmensual.detalle.MonthlyDetailFragment"
-        tools:layout="@layout/fragment_detalle_mensual" />
+        tools:layout="@layout/fragment_detalle_mensual" >
+        <action
+            android:id="@+id/action_monthlyDetailFragment_to_dayFragment"
+            app:destination="@id/dayFragment">
+            <argument
+                android:name="date"
+                app:argType="string"/>
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/dayFragment"
+        android:name="com.sesi.miplata.view.fragment.bmensual.day.DayFragment"
+        tools:layout="@layout/fragment_day" />
 
 </navigation>

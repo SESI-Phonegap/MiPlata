@@ -45,5 +45,5 @@ class SummaryDayAdapter(
     }
 }
 interface SummaryDayAction {
-    fun onClickDay(date: Date)
+    fun onClickDay(date: String)
 }
