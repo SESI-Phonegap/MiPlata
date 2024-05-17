@@ -13,6 +13,8 @@ import com.sesi.miplata.data.dto.MonthlyDetailDto
 import com.sesi.miplata.data.dto.SummaryDto
 import com.sesi.miplata.databinding.FragmentDetalleMensualBinding
 import com.sesi.miplata.model.OperacionesModel
+import com.sesi.miplata.util.DateUtil
+import com.sesi.miplata.util.Month
 import com.sesi.miplata.util.MonthlyChartManager
 import com.sesi.miplata.util.Operations
 import com.sesi.miplata.util.Utils
@@ -45,6 +47,8 @@ class MonthlyDetailFragment : Fragment(), SummaryDayAction {
         month = arguments?.getInt("month") ?: 1
         year = arguments?.getString("year") ?: "2000"
         isRecurrent = arguments?.getBoolean("recurrent") ?: false
+        val monthLbl = Utils.getMonth(month.toString())
+        binding.tvTitle.text = monthLbl
 
         val dates = Utils.getDateInitEnd(month.toString(), year)
         viewModel.getOperations(dateInit = dates[0], dateEnd = dates[1], isRecurrent, requireContext())
@@ -92,7 +96,9 @@ class MonthlyDetailFragment : Fragment(), SummaryDayAction {
     }
 
     override fun onClickDay(date: String) {
-        findNavController().navigate(R.id.action_monthlyDetailFragment_to_dayFragment)
+        val bundle = Bundle()
+        bundle.putString("date", date)
+        findNavController().navigate(R.id.action_monthlyDetailFragment_to_dayFragment, bundle)
     }
 
 }

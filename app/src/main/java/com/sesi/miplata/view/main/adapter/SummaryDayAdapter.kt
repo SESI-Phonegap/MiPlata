@@ -39,9 +39,15 @@ class SummaryDayAdapter(
             binding.tvIngresoMonto.text = Utils.getCurrencyFormatter(incomeList[position].total)
             binding.tvGastoMonto.text = Utils.getCurrencyFormatter(spentList[position].total)
             binding.root.setOnClickListener {
-                action.onClickDay(incomeList.first().date!!)
+                val date = getDate(incomeList[position].month.toString(), incomeList.first().date!!)
+                action.onClickDay(date)
             }
         }
+    }
+
+    private fun getDate(day: String, dateMonth: String): String {
+        val split = dateMonth.split("/")
+        return "$day/${split[1]}/${split[2]}"
     }
 }
 interface SummaryDayAction {

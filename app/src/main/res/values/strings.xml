@@ -12,7 +12,7 @@
     <string name="lbl_default_monto">0.00 *</string>
     <string name="lbl_guardar">Guardar</string>
     <string name="lbl_date_format">dd/mm/yyyy *</string>
-    <string name="lbl_balance_general">Balance General</string>
+    <string name="lbl_balance_general">Balance \nGastos/Ingresos fijos</string>
     <string name="lbl_fecha_default">Enero 2022</string>
     <string name="content_description">.</string>
     <string name="lbl_default_item_title">Hipoteca</string>
