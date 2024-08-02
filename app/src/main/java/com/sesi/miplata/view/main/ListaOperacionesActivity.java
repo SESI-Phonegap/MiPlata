@@ -89,6 +89,13 @@ public class ListaOperacionesActivity extends BaseActivity implements OnChartVal
 
         configChart();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        viewModel.getAllOperations();
+    }
+
     private void loadAds() {
         AdRequest adRequest = new AdRequest.Builder().build();
         binding.adViewBanner.loadAd(adRequest);

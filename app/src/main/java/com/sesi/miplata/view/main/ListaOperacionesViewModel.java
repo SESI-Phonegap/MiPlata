@@ -25,14 +25,19 @@ public class ListaOperacionesViewModel extends ViewModel {
     private final MutableLiveData<List<GastosRecurrentesV2>> gastos = new MutableLiveData<>();
     private final MutableLiveData<List<IngresosRecurrentes>> ingresos = new MutableLiveData<>();
     private List<Categorias> categorias;
+    private GastosRecurrentesRepository gastosRepo = null;
+    private IngresosRecurrentesRepository ingresosRepo = null;
 
     public ListaOperacionesViewModel(Application application) {
-        GastosRecurrentesRepository gastosRepo = new GastosRecurrentesRepository(application);
-        IngresosRecurrentesRepository ingresosRepo = new IngresosRecurrentesRepository(application);
+        gastosRepo = new GastosRecurrentesRepository(application);
+        ingresosRepo = new IngresosRecurrentesRepository(application);
         categoriasRepo = new CategoriasRepository(application);
+        categorias = null;
+    }
+
+    public void getAllOperations(){
         gastos.setValue(gastosRepo.getAll());
         ingresos.setValue(ingresosRepo.getAll());
-        categorias = null;
     }
 
     public List<OperacionesModel> fillGastos() {

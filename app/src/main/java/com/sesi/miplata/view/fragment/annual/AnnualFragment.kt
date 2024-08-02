@@ -92,4 +92,8 @@ class AnnualFragment : Fragment(), YearMonthAction {
     }
 
 
+    override fun onResume() {
+        super.onResume()
+        getAnnual()
+    }
 }

@@ -199,6 +199,7 @@ public class RegistroOperacionesDayliActivity extends BaseActivity {
             insertOperacion();
         }
         Toast.makeText(getApplicationContext(), "Se ha guardado exitosamente", Toast.LENGTH_LONG).show();
+        finish();
     }
 
     private void insertOperacion(){

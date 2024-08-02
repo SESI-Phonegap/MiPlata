@@ -42,6 +42,7 @@ public class ListaOperacionesMensualesActivity extends BaseActivity implements O
     private ActivityListaOperacionesMensualesBinding binding;
     private  ListaOperacionesMensualesViewModel viewModel;
     private OperacionesAdapter adapter;
+    private  List<Long> dates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +55,12 @@ public class ListaOperacionesMensualesActivity extends BaseActivity implements O
         viewModel = new ViewModelProvider(this, factory).get(ListaOperacionesMensualesViewModel.class);
         boolean isGasto = getIntent().getBooleanExtra("isGastoView", false);
         String typeOp = isGasto ? "Gasto" : "Ingreso";
-        List<Long> dates = (List<Long>) getIntent().getSerializableExtra("dates");
+        dates = (List<Long>) getIntent().getSerializableExtra("dates");
         binding.setLifecycleOwner(this);
         binding.setViewModel(viewModel);
         binding.setListaOperacionesMensualesActivity(this);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        viewModel.setFilterDates(dates);
+
         viewModel.getOperaciones().observe(this, operaciones -> {
             adapter = new OperacionesAdapter();
             List<OperacionesModel> operacionesFill = viewModel.fillOperaciones(dates.get(0), dates.get(1), typeOp);
@@ -75,6 +76,12 @@ public class ListaOperacionesMensualesActivity extends BaseActivity implements O
             }
         });
         configChart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        viewModel.setFilterDates(dates);
     }
 
     private void configChart() {
