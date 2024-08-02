@@ -159,8 +159,16 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
         binding.tvIngreso.setText(Utils.getCurrencyFormatter(ingresoTotal));
         double ingresoNeto = ingresoTotal - gastoTotal;
         binding.tvIngresoNeto.setText(Utils.getCurrencyFormatter(ingresoNeto));
-        setData(ingresoTotal,gastoTotal,ingresoNeto);
-        binding.chart1.setCenterText(Utils.generateCenterSpannableText(Utils.getCurrencyFormatter(ingresoTotal)));
+        if (ingresoNeto < 0) {
+            binding.tvNegativeBalance.setVisibility(View.VISIBLE);
+            binding.tvNegativeBalance.setText(String.format(getString(R.string.lbl_negative_balance), Utils.getCurrencyFormatter(ingresoNeto)));
+            binding.chart1.setCenterText("");
+            binding.chart1.clear();
+        } else {
+            binding.tvNegativeBalance.setVisibility(View.GONE);
+            setData(ingresoTotal,gastoTotal,ingresoNeto);
+            binding.chart1.setCenterText(Utils.generateCenterSpannableText(Utils.getCurrencyFormatter(ingresoTotal)));
+        }
     }
 
     private void setData(double ingreso, double gasto, double ingresoNeto) {

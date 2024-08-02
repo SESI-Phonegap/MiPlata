@@ -102,6 +102,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_title"/>
 
+                <TextView
+                    android:id="@+id/tv_negative_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red"
+                    android:text="@string/lbl_negative_balance"
+                    android:textSize="@dimen/_14ssp"
+                    android:textAlignment="center"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
                 <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/check_fijos"
                     android:layout_width="wrap_content"
