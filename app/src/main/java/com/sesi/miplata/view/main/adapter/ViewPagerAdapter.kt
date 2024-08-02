@@ -17,7 +17,7 @@ class ViewPagerAdapter(
     private val incomeOperations: List<OperacionesModel>,
     private val recurrentIncome: List<IngresosRecurrentes?>?,
     private val recurrentSpent: List<GastosRecurrentesV2?>?,
-    private val operationType: Operations
+    private val operationType: Operations?
 ) : FragmentStateAdapter(fragment, lifeCycle) {
 
     private lateinit var fragment: OperationTabFragment
@@ -27,8 +27,8 @@ class ViewPagerAdapter(
 
     override fun createFragment(position: Int): Fragment {
         when (position) {
-            0 -> fragment = OperationTabFragment(incomeOperations, operationType, recurrentIncome, null)
-            1 -> fragment = OperationTabFragment(billsOperations, operationType, null, recurrentSpent)
+            0 -> fragment = OperationTabFragment(incomeOperations, Operations.INCOME, recurrentIncome, null)
+            1 -> fragment = OperationTabFragment(billsOperations, Operations.SPENT, null, recurrentSpent)
         }
         return fragment
     }

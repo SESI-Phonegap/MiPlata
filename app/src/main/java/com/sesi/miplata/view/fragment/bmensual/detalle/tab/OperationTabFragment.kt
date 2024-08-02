@@ -34,8 +34,9 @@ class OperationTabFragment(
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentOperacionTabBinding.inflate(layoutInflater)
-        //initCategories()
-        //initOperations()
+        binding.tvTitle.text = operationType.type
+        initCategories()
+        initOperations()
         return binding.root
     }
 

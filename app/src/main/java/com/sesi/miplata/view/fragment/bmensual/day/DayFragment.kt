@@ -1,6 +1,5 @@
 package com.sesi.miplata.view.fragment.bmensual.day
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +13,6 @@ import com.sesi.miplata.util.Utils
 import com.sesi.miplata.view.fragment.bmensual.day.viewmodel.DayViewModel
 import com.sesi.miplata.view.main.adapter.ViewPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 
 
 @AndroidEntryPoint
@@ -39,16 +34,27 @@ class DayFragment : Fragment() {
 
         val date = arguments?.getString("date")
 
-        /*val cal = Calendar.getInstance()
-        val sdf = SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH)
-        val dateD = sdf.parse(date!!.replace("/","-"))
-        cal.setTime(dateD!!)*/
         val splitDate = date!!.split("/")
         val dates = Utils.getDateInitEnd(splitDate[0],splitDate[1],splitDate[2],splitDate[0],splitDate[1],splitDate[2])
         viewModel.getOperations(dates[0],dates[1],requireContext())
-
-        //initTabLayout()
+        observers()
         return binding.root
+    }
+
+    private fun observers() {
+        viewModel.operation.observe(viewLifecycleOwner) { op ->
+            adapter = ViewPagerAdapter(
+                fragment = parentFragmentManager,
+                lifeCycle = lifecycle,
+                incomeOperations = op[0],
+                billsOperations = op[1],
+                operationType = null,
+                recurrentIncome = null,
+                recurrentSpent = null
+            )
+            binding.pager.adapter = adapter
+            initTabLayout()
+        }
     }
 
     private fun initTabLayout() {

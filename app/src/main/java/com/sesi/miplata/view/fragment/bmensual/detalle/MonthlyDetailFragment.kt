@@ -66,19 +66,6 @@ class MonthlyDetailFragment : Fragment(), SummaryDayAction {
                 calendar.time = monthly.incomes.first().date
                 maxDaysOfMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
             }
-
-            /*operations = monthly
-            adapter = ViewPagerAdapter(
-                parentFragmentManager,
-                lifecycle,
-                monthly.bills,
-                monthly.incomes,
-                monthly.recurrentIncomes,
-                monthly.recurrentBills,
-                Operations.INCOME
-            )
-            binding.pager.adapter = adapter
-            initTabLayout()*/
             viewModel.sumTotalByDay(maxDaysOfMonth, monthly.incomes, monthly.bills)
         }
         viewModel.summaryDays.observe(viewLifecycleOwner){ operations ->
