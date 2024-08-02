@@ -5,5 +5,5 @@ import java.util.Date
 data class SummaryDto(
     var month:Int,
     var total:Double,
-    var date: String?=null
+    var date: String = ""
 )

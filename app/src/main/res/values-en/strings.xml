@@ -83,4 +83,6 @@
 
     <string name="filtrar">Filter</string>
     <string name="summary_day">Day: %1s</string>
+    <string name="lbl_negative_balance">negative balance : \n%1s</string>
+
 </resources>
