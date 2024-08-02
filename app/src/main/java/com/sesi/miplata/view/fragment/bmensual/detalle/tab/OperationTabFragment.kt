@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.sesi.miplata.data.dto.CategoryDayDto
 import com.sesi.miplata.data.entity.GastosRecurrentesV2
 import com.sesi.miplata.data.entity.IngresosRecurrentes
 import com.sesi.miplata.databinding.FragmentOperacionTabBinding
@@ -20,13 +21,15 @@ class OperationTabFragment(
     private val operationType: Operations,
     private val recurrentIncome: List<IngresosRecurrentes?>?,
     private val recurrentSpent: List<GastosRecurrentesV2?>?
-) : Fragment() {
+) : Fragment(), CategoryAction {
 
     private lateinit var binding: FragmentOperacionTabBinding
+    private lateinit var opAdapter:OperacionesAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        opAdapter = OperacionesAdapter()
     }
 
     override fun onCreateView(
@@ -42,13 +45,30 @@ class OperationTabFragment(
 
     private fun initCategories() {
         val categories = operations.distinctBy { operacionesModel -> operacionesModel.idCategoria }
-        binding.rvCategoriasFilter.adapter = FilterCategoriesAdapter(categories)
+        val categoriesDayDto = mutableListOf<CategoryDayDto>()
+        categories.forEach { category ->
+            categoriesDayDto.add(CategoryDayDto(category.idCategoria, category.catNombre))
+        }
+        binding.rvCategoriasFilter.adapter = FilterCategoriesAdapter(categoriesDayDto, this)
     }
 
     private fun initOperations() {
-        val opAdapter = OperacionesAdapter()
         opAdapter.setOperaciones(operations)
         binding.rvOperaciones.adapter = opAdapter
     }
 
+    override fun onClickCategory(category: CategoryDayDto) {
+        val filteredOperations = operations.filter { it.idCategoria == category.categoryId }
+        opAdapter.setOperaciones(filteredOperations)
+    }
+
+    override fun onDeselectCategory() {
+        opAdapter.setOperaciones(operations)
+    }
+
+}
+
+interface CategoryAction {
+    fun onClickCategory(category: CategoryDayDto)
+    fun onDeselectCategory()
 }

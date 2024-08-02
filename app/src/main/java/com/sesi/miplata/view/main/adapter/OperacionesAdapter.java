@@ -51,6 +51,7 @@ public class OperacionesAdapter extends RecyclerView.Adapter<OperacionesAdapter.
 
     public void setOperaciones(List<OperacionesModel> gastos) {
         this.gastos = gastos;
+        notifyDataSetChanged();
     }
 
     @Override
