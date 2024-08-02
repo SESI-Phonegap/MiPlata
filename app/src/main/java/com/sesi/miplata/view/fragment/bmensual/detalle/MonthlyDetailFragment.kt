@@ -50,10 +50,14 @@ class MonthlyDetailFragment : Fragment(), SummaryDayAction {
         val monthLbl = Utils.getMonth(month.toString())
         binding.tvTitle.text = monthLbl
 
-        val dates = Utils.getDateInitEnd(month.toString(), year)
-        viewModel.getOperations(dateInit = dates[0], dateEnd = dates[1], isRecurrent, requireContext())
         observers()
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val dates = Utils.getDateInitEnd(month.toString(), year)
+        viewModel.getOperations(dateInit = dates[0], dateEnd = dates[1], isRecurrent, requireContext())
     }
 
     private fun observers() {

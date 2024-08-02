@@ -76,7 +76,6 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
         ano = String.valueOf(calendar.get(Calendar.YEAR));
         String dateDisplay = Utils.getMonth(mes) + " "+ ano;
         binding.tvTitle.setText(dateDisplay);
-        viewModel.setFilterDate(mes, ano);
 
         viewModel.getGastos().observe(getViewLifecycleOwner(), gastosRecurrentes -> updateUi());
 
@@ -95,6 +94,8 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
         checkListener();
         return binding.getRoot();
     }
+
+
 
     private void checkListener() {
         binding.checkFijos.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -341,6 +342,7 @@ public class BalanceMensualFragment extends Fragment implements OnChartValueSele
     @Override
     public void onResume() {
         super.onResume();
+        viewModel.setFilterDate(mes, ano);
         getParentFragment().onAttach(requireContext());
     }
 }
